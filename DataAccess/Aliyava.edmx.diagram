@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ff5516cd6d6643719cf95bd2c061d096" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="AliyavaModel.Categoria" Width="1.5" PointX="7" PointY="2.75" IsExpanded="true" FillColor="0, 0, 192" />
+        <EntityTypeShape EntityType="AliyavaModel.Cliente" Width="1.5" PointX="5.125" PointY="0.5" IsExpanded="true" FillColor="192, 0, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.DetallePedido" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" FillColor="255, 128, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="3.625" PointY="4.25" IsExpanded="true" FillColor="0, 0, 192" />
+        <EntityTypeShape EntityType="AliyavaModel.Empleado" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" FillColor="192, 0, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="7" PointY="0.5" IsExpanded="true" FillColor="0, 0, 192" />
+        <EntityTypeShape EntityType="AliyavaModel.Pedido" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" FillColor="255, 128, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="10.375" PointY="3.375" IsExpanded="true" FillColor="0, 192, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Reparto" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" FillColor="0, 0, 192" />
+        <EntityTypeShape EntityType="AliyavaModel.Reserva" Width="1.5" PointX="0.5" PointY="5.375" IsExpanded="true" FillColor="255, 128, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Stock" Width="1.5" PointX="5.375" PointY="4.625" IsExpanded="true" FillColor="0, 192, 0" />
+        <AssociationConnector Association="AliyavaModel.FKProducto_Categoria" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKClienteDirecciones" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKClientePedido" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKPedido_Detalle" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKEmpleado_Producto" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKEmpleado_Stock" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKPedido_Reparto" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKPedido_Reserva" ManuallyRouted="false" />
+        <AssociationConnector Association="AliyavaModel.FKProducto_Stock" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
