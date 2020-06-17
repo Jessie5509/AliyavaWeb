@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AliyavaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Categoria">
+    <Key>
+      <PropertyRef Name="idCategoria" />
+    </Key>
+    <Property Name="idCategoria" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FKProducto_Categoria" FromRole="Categoria" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="idCliente" />
+    </Key>
+    <Property Name="idCliente" Type="Int32" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombreUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellido" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idDireccion" Type="Int32" Nullable="false" />
+    <Property Name="idPedido" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Direcciones" Relationship="Self.FKClienteDirecciones" FromRole="Cliente" ToRole="Direcciones" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FKClientePedido" FromRole="Cliente" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="DetallePedido">
+    <Key>
+      <PropertyRef Name="idDetallePedido" />
+    </Key>
+    <Property Name="IdProducto" Type="Int32" Nullable="false" />
+    <Property Name="CantidadPreparar" Type="Double" Nullable="false" />
+    <Property Name="idDetallePedido" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Double" Nullable="false" />
+    <Property Name="PrecioU" Type="Double" Nullable="false" />
+    <Property Name="UbicacionPro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FKPedido_Detalle" FromRole="DetallePedido" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Direcciones">
+    <Key>
+      <PropertyRef Name="idDireccion" />
+    </Key>
+    <Property Name="idDireccion" Type="Int32" Nullable="false" />
+    <Property Name="Ciudad" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Barrio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Numero" Type="Double" Nullable="false" />
+    <Property Name="Apartamento" Type="Int32" Nullable="false" />
+    <Property Name="Edificio" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FKClienteDirecciones" FromRole="Direcciones" ToRole="Cliente" />
+  </EntityType>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contraseña" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NombreUsuario" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="idStock" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FKEmpleado_Producto" FromRole="Empleado" ToRole="Producto" />
+    <NavigationProperty Name="Stock" Relationship="Self.FKEmpleado_Stock" FromRole="Empleado" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Historico_de_Cambio_de_estados">
+    <Key>
+      <PropertyRef Name="idHistorico" />
+    </Key>
+    <Property Name="idHistorico" Type="Int32" Nullable="false" />
+    <Property Name="Accion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Funcionario" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estados" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaCambio" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="Numero" />
+    </Key>
+    <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PrecioTotal" Type="Double" Nullable="false" />
+    <Property Name="Numero" Type="Int32" Nullable="false" />
+    <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="idDetallePe" Type="Int32" Nullable="false" />
+    <Property Name="idReserva" Type="Int32" Nullable="false" />
+    <Property Name="idReparto" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FKClientePedido" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="DetallePedido" Relationship="Self.FKPedido_Detalle" FromRole="Pedido" ToRole="DetallePedido" />
+    <NavigationProperty Name="Reparto" Relationship="Self.FKPedido_Reparto" FromRole="Pedido" ToRole="Reparto" />
+    <NavigationProperty Name="Reserva" Relationship="Self.FKPedido_Reserva" FromRole="Pedido" ToRole="Reserva" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Codigo" />
+    </Key>
+    <Property Name="Codigo" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Familia" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="PrecioVenta" Type="Double" />
+    <Property Name="idStock" Type="Int32" Nullable="false" />
+    <Property Name="idCategoria" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categoria" Relationship="Self.FKProducto_Categoria" FromRole="Producto" ToRole="Categoria" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FKEmpleado_Producto" FromRole="Producto" ToRole="Empleado" />
+    <NavigationProperty Name="Stock" Relationship="Self.FKProducto_Stock" FromRole="Producto" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="Reparto">
+    <Key>
+      <PropertyRef Name="idReparto" />
+    </Key>
+    <Property Name="idReparto" Type="Int32" Nullable="false" />
+    <Property Name="MatriculaVehiculo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Chofer" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FKPedido_Reparto" FromRole="Reparto" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Reserva">
+    <Key>
+      <PropertyRef Name="idReserva" />
+    </Key>
+    <Property Name="idReserva" Type="Int32" Nullable="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cantidad" Type="Double" />
+    <NavigationProperty Name="Pedido" Relationship="Self.FKPedido_Reserva" FromRole="Reserva" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="idStock" />
+    </Key>
+    <Property Name="idStock" Type="Int32" Nullable="false" />
+    <Property Name="Ubicacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Motivo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Cantidad" Type="Double" />
+    <NavigationProperty Name="Empleado" Relationship="Self.FKEmpleado_Stock" FromRole="Stock" ToRole="Empleado" />
+    <NavigationProperty Name="Producto" Relationship="Self.FKProducto_Stock" FromRole="Stock" ToRole="Producto" />
+  </EntityType>
+  <Association Name="FKProducto_Categoria">
+    <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categoria">
+        <PropertyRef Name="idCategoria" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idCategoria" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKClienteDirecciones">
+    <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Direcciones">
+        <PropertyRef Name="idDireccion" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="idDireccion" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKClientePedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="Numero" />
+      </Principal>
+      <Dependent Role="Cliente">
+        <PropertyRef Name="idPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPedido_Detalle">
+    <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DetallePedido">
+        <PropertyRef Name="idDetallePedido" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idDetallePe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKEmpleado_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Codigo" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKEmpleado_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+    <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="idStock" />
+      </Principal>
+      <Dependent Role="Empleado">
+        <PropertyRef Name="idStock" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPedido_Reparto">
+    <End Role="Reparto" Type="Self.Reparto" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reparto">
+        <PropertyRef Name="idReparto" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idReparto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKPedido_Reserva">
+    <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Reserva">
+        <PropertyRef Name="idReserva" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idReserva" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FKProducto_Stock">
+    <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Stock">
+        <PropertyRef Name="idStock" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idStock" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AliyavaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
+    <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+    <EntitySet Name="Empleado" EntityType="Self.Empleado" />
+    <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="Self.Historico_de_Cambio_de_estados" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="Reparto" EntityType="Self.Reparto" />
+    <EntitySet Name="Reserva" EntityType="Self.Reserva" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" />
+    <AssociationSet Name="FKProducto_Categoria" Association="Self.FKProducto_Categoria">
+      <End Role="Categoria" EntitySet="Categoria" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="FKClienteDirecciones" Association="Self.FKClienteDirecciones">
+      <End Role="Direcciones" EntitySet="Direcciones" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FKClientePedido" Association="Self.FKClientePedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="Cliente" EntitySet="Cliente" />
+    </AssociationSet>
+    <AssociationSet Name="FKPedido_Detalle" Association="Self.FKPedido_Detalle">
+      <End Role="DetallePedido" EntitySet="DetallePedido" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FKEmpleado_Producto" Association="Self.FKEmpleado_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FKEmpleado_Stock" Association="Self.FKEmpleado_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="Empleado" EntitySet="Empleado" />
+    </AssociationSet>
+    <AssociationSet Name="FKPedido_Reparto" Association="Self.FKPedido_Reparto">
+      <End Role="Reparto" EntitySet="Reparto" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FKPedido_Reserva" Association="Self.FKPedido_Reserva">
+      <End Role="Reserva" EntitySet="Reserva" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FKProducto_Stock" Association="Self.FKProducto_Stock">
+      <End Role="Stock" EntitySet="Stock" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

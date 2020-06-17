@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +15,19 @@ namespace Aliyava.Controllers
         {
             return View();
         }
+
+        public ActionResult RegistroCliente()
+        {
+    
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddCliente(DtoCliente nuevoCliente)
+        {
+            HCliente.getInstace().AddCliente(nuevoCliente);
+            return RedirectToAction("RegistroCliente");
+        }
+
     }
 }
