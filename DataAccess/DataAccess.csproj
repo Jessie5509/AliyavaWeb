@@ -89,6 +89,7 @@
     <Compile Include="Model\Producto.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
+    <Compile Include="Persistencia\PCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Reparto.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
@@ -102,7 +103,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappers\" />
-    <Folder Include="Persistencia\" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Model\Aliyava.edmx">
@@ -131,6 +131,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{A7362B4C-FEDF-49BD-B23D-7017E959A624}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
