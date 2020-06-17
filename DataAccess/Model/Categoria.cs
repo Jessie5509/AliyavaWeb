@@ -7,27 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess
+namespace DataAccess.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class DetallePedido
+    public partial class Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DetallePedido()
+        public Categoria()
         {
-            this.Pedido = new HashSet<Pedido>();
+            this.Producto = new HashSet<Producto>();
         }
     
-        public int IdProducto { get; set; }
-        public double CantidadPreparar { get; set; }
-        public int idDetallePedido { get; set; }
-        public double Cantidad { get; set; }
-        public double PrecioU { get; set; }
-        public string UbicacionPro { get; set; }
+        public int idCategoria { get; set; }
+        public int idProducto { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
+        public virtual ICollection<Producto> Producto { get; set; }
     }
 }

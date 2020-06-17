@@ -50,81 +50,80 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aliyava.Context.cs">
+    <Compile Include="Model\Aliyava.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Aliyava.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Aliyava.cs">
+    <Compile Include="Model\Aliyava.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Aliyava.Designer.cs">
+    <Compile Include="Model\Aliyava.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Aliyava.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Categoria.cs">
+    <Compile Include="Model\Categoria.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Cliente.cs">
+    <Compile Include="Model\Cliente.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="DetallePedido.cs">
+    <Compile Include="Model\DetallePedido.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Direcciones.cs">
+    <Compile Include="Model\Direcciones.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Empleado.cs">
+    <Compile Include="Model\Empleado.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Historico_de_Cambio_de_estados.cs">
+    <Compile Include="Model\Historico_de_Cambio_de_estados.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Pedido.cs">
+    <Compile Include="Model\Pedido.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Producto.cs">
+    <Compile Include="Model\Producto.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reparto.cs">
+    <Compile Include="Model\Reparto.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Reserva.cs">
+    <Compile Include="Model\Reserva.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
-    <Compile Include="Stock.cs">
+    <Compile Include="Model\Stock.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mappers\" />
-    <Folder Include="Model\" />
     <Folder Include="Persistencia\" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Aliyava.edmx">
+    <EntityDeploy Include="Model\Aliyava.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Aliyava.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Aliyava.edmx.diagram">
+    <None Include="Model\Aliyava.edmx.diagram">
       <DependentUpon>Aliyava.edmx</DependentUpon>
     </None>
     <None Include="App.Config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Aliyava.Context.tt">
+    <Content Include="Model\Aliyava.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Aliyava.Context.cs</LastGenOutput>
       <DependentUpon>Aliyava.edmx</DependentUpon>
     </Content>
-    <Content Include="Aliyava.tt">
+    <Content Include="Model\Aliyava.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Aliyava.edmx</DependentUpon>
       <LastGenOutput>Aliyava.cs</LastGenOutput>

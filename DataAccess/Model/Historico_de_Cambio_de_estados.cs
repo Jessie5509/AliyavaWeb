@@ -7,21 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess
+namespace DataAccess.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Empleado
+    public partial class Historico_de_Cambio_de_estados
     {
-        public int idEmpleado { get; set; }
-        public string email { get; set; }
-        public string contraseña { get; set; }
-        public string NombreUsuario { get; set; }
-        public int idProducto { get; set; }
-        public int idStock { get; set; }
-    
-        public virtual Producto Producto { get; set; }
-        public virtual Stock Stock { get; set; }
+        public int idHistorico { get; set; }
+        public string Accion { get; set; }
+        public string Funcionario { get; set; }
+        public string Estados { get; set; }
+        public System.DateTime FechaCambio { get; set; }
     }
 }

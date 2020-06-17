@@ -7,29 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess
+namespace DataAccess.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Producto
+    public partial class Reparto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Producto()
+        public Reparto()
         {
-            this.Empleado = new HashSet<Empleado>();
+            this.Pedido = new HashSet<Pedido>();
         }
     
-        public int Codigo { get; set; }
-        public string Descripcion { get; set; }
-        public string Familia { get; set; }
-        public Nullable<double> PrecioVenta { get; set; }
-        public int idStock { get; set; }
-        public int idCategoria { get; set; }
+        public int idReparto { get; set; }
+        public string MatriculaVehiculo { get; set; }
+        public string Estado { get; set; }
+        public string Chofer { get; set; }
+        public System.DateTime FechaSalida { get; set; }
     
-        public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Empleado> Empleado { get; set; }
-        public virtual Stock Stock { get; set; }
+        public virtual ICollection<Pedido> Pedido { get; set; }
     }
 }

@@ -7,24 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DataAccess
+namespace DataAccess.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Cliente
+    public partial class Empleado
     {
-        public int idCliente { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
+        public int idEmpleado { get; set; }
         public string email { get; set; }
-        public int idDireccion { get; set; }
-        public int idPedido { get; set; }
+        public string contraseña { get; set; }
+        public string NombreUsuario { get; set; }
+        public int idProducto { get; set; }
+        public int idStock { get; set; }
     
-        public virtual Direcciones Direcciones { get; set; }
-        public virtual Pedido Pedido { get; set; }
+        public virtual Producto Producto { get; set; }
+        public virtual Stock Stock { get; set; }
     }
 }
