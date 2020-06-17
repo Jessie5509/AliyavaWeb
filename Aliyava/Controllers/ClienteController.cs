@@ -29,5 +29,11 @@ namespace Aliyava.Controllers
             return RedirectToAction("RegistroCliente");
         }
 
+        public ActionResult LoginCliente()
+        {
+
+            return View();
+        }
+
     }
 }
