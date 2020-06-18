@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Persistencia;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ namespace BussinesLogic.Helpers
         public void AddStock(DtoStock dto)
         {
             PStock ps = new PStock();
-            ps.RegistrarCliente(dto);
+            ps.AddStock(dto);
         }
 
 
