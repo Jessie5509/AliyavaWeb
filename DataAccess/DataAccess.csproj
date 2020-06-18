@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAccess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Aliyava\Bin\DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -50,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mappers\MPedido.cs" />
     <Compile Include="Model\Aliyava.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -65,46 +70,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Aliyava.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Categoria.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Cliente.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DetallePedido.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Direcciones.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Empleado.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Historico_de_Cambio_de_estados.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Pedido.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Producto.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
     <Compile Include="Persistencia\PCliente.cs" />
+    <Compile Include="Persistencia\PPedido.cs" />
     <Compile Include="Persistencia\PProducto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\Reparto.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Reserva.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Stock.cs">
-      <DependentUpon>Aliyava.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EntityDeploy Include="Model\Aliyava.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

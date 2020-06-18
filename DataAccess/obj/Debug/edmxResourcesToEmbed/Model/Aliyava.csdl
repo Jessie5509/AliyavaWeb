@@ -160,8 +160,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FKClientePedido">
-    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
-    <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Pedido">
         <PropertyRef Name="Numero" />
