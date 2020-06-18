@@ -20,6 +20,13 @@ namespace Aliyava.Controllers
             return View();
         }
 
+        public ActionResult AgregarStock(DtoCliente nuevoCliente)
+        {
+            HStock.getInstace().AddCliente(nuevoCliente);
+            return RedirectToAction("AddStock");
+        }
+
+
 
     }
 }
