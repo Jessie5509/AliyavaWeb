@@ -1,5 +1,4 @@
 ﻿using Common.DTO;
-using DataAccess.Model;
 using DataAccess.Persistencia;
 using System;
 using System.Collections.Generic;
@@ -28,12 +27,18 @@ namespace BussinesLogic.Helpers
             PProducto pc = new PProducto();
             pc.RegistarProducto(dto);
         }
-/*
+
         public List<DtoProducto> GetProducto()
         {
             PProducto pc = new PProducto();
             return pc.GetProducto();
         }
-        */
+
+        public void RemoveProducto(DtoProducto dto)
+        {
+            PProducto ps = new PProducto();
+            ps.RemoveProducto(dto);
+        }
+
     }
 }

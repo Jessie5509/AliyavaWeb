@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace DataAccess.Persistencia
             }
         }
 
-/*
+
         public List<DtoProducto> GetProducto()
         {
             List<DtoProducto> colDtoProducto = new List<DtoProducto>();
@@ -43,7 +44,23 @@ namespace DataAccess.Persistencia
                 }
             }
             return colDtoProducto;
-        }*/
+        }
 
+
+        public void RemoveProducto(DtoProducto dto)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+
+                MProducto prod = MProducto.MapToEntity(dto);
+
+                context.Producto.Remove(prod);
+                context.SaveChanges();
+
+            }
+
+
+        }
+        
     }
 }

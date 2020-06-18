@@ -30,13 +30,19 @@ namespace Aliyava.Controllers
             return RedirectToAction("RegistrarProducto");
         }
 
-/*
+
         public ActionResult ListarProducto()
         {
             List<DtoProducto> colProducto = new List<DtoProducto>();
             colProducto = HProducto.getInstace().GetProducto();
             return View(colProducto);
         }
-        */
+
+        public ActionResult RemoveProducto(DtoProducto prod)
+        {
+            HProducto.getInstace().RemoveProducto(prod);
+            return RedirectToAction("RemoveProducto");
+        }
+
     }
 }
