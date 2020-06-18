@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,9 +22,9 @@ namespace Aliyava.Controllers
             return View();
         }
 
-        public ActionResult AgregarStock(DtoCliente nuevoCliente)
+        public ActionResult AgregarStock(DtoStock stock)
         {
-            HStock.getInstace().AddCliente(nuevoCliente);
+            HStock.getInstace().AddCliente(stock);
             return RedirectToAction("AddStock");
         }
 
