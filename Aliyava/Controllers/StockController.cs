@@ -28,6 +28,12 @@ namespace Aliyava.Controllers
             return RedirectToAction("AddStock");
         }
 
+        public ActionResult BajaStock(DtoStock stock)
+        {
+            HStock.getInstace().BajaStock(stock);
+            return RedirectToAction("AddStock");
+        }
+
 
 
     }
