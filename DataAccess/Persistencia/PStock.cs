@@ -18,9 +18,8 @@ namespace DataAccess.Persistencia
                 nuevoStock.Ubicacion = dto.Ubicacion;
                 nuevoStock.Cantidad = dto.Cantidad;
                 nuevoStock.Motivo = dto.Motivo;
-                nuevoStock.Producto = dto.Producto;
-               
-                context.Cliente.Add(nuevoStock);
+      
+                context.Stock.Add(nuevoStock);
                 context.SaveChanges();
 
             }

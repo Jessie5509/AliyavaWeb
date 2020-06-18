@@ -90,6 +90,7 @@
       <DependentUpon>Aliyava.tt</DependentUpon>
     </Compile>
     <Compile Include="Persistencia\PCliente.cs" />
+    <Compile Include="Persistencia\PStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\Reparto.cs">
       <DependentUpon>Aliyava.tt</DependentUpon>
