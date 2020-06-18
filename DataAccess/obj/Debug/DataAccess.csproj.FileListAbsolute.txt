@@ -12,3 +12,17 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csprojAssemblyReference.cache
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\DataAccess.dll.config
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\DataAccess.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\DataAccess.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\Common.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\EntityFramework.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\Common.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\EntityFramework.xml
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete

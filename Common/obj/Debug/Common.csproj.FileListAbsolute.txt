@@ -4,3 +4,9 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csprojAssemblyR
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.pdb

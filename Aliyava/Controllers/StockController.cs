@@ -24,7 +24,7 @@ namespace Aliyava.Controllers
 
         public ActionResult AgregarStock(DtoStock stock)
         {
-            HStock.getInstace().AddCliente(stock);
+            //HStock.getInstace().AddCliente(stock);
             return RedirectToAction("AddStock");
         }
 
