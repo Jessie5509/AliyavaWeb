@@ -307,7 +307,7 @@
           <Property Name="idDireccion" Type="Int32" Nullable="false" />
           <Property Name="idPedido" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Direcciones" Relationship="Self.FKClienteDirecciones" FromRole="Cliente" ToRole="Direcciones" />
-          <NavigationProperty Name="Pedido" Relationship="Self.FKClientePedido" FromRole="Cliente" ToRole="Pedido" />
+          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKClientePedido" FromRole="Cliente" ToRole="Pedido" />
         </EntityType>
         <EntityType Name="DetallePedido">
           <Key>
@@ -369,7 +369,7 @@
           <Property Name="idDetallePe" Type="Int32" Nullable="false" />
           <Property Name="idReserva" Type="Int32" Nullable="false" />
           <Property Name="idReparto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FKClientePedido" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKClientePedido" FromRole="Pedido" ToRole="Cliente" />
           <NavigationProperty Name="DetallePedido" Relationship="Self.FKPedido_Detalle" FromRole="Pedido" ToRole="DetallePedido" />
           <NavigationProperty Name="Reparto" Relationship="Self.FKPedido_Reparto" FromRole="Pedido" ToRole="Reparto" />
           <NavigationProperty Name="Reserva" Relationship="Self.FKPedido_Reserva" FromRole="Pedido" ToRole="Reserva" />

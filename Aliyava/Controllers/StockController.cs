@@ -24,15 +24,15 @@ namespace Aliyava.Controllers
 
         public ActionResult AgregarStock(DtoStock stock)
         {
-            //HStock.getInstace().AddCliente(stock);
+            HStock.getInstace().AddStock(stock);
             return RedirectToAction("AddStock");
         }
 
-        //public ActionResult BajaStock(DtoStock stock)
-        //{
-        //    HStock.getInstace().BajaStock(stock);
-        //    return RedirectToAction("AddStock");
-        //}
+        public ActionResult BajaStock(DtoStock stock)
+        {
+            HStock.getInstace().BajaStock(stock);
+            return RedirectToAction("AddStock");
+        }
 
 
 

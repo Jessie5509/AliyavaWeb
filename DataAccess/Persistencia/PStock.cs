@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -10,21 +11,34 @@ namespace DataAccess.Persistencia
 {
     public class PStock
     {
-        public void AddStock(DtoStock dto)
+        public void AgregarStock(DtoStock dto)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Stock nuevoStock = new Stock();
                 nuevoStock.Ubicacion = dto.Ubicacion;
-                nuevoStock.Cantidad = dto.Cantidad;
                 nuevoStock.Motivo = dto.Motivo;
-      
+                nuevoStock.Cantidad = dto.Cantidad;
+           
                 context.Stock.Add(nuevoStock);
                 context.SaveChanges();
 
             }
         }
 
+        public void DeleteStock(DtoStock dto)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
 
+                Stock stock = MStock.MapToEntity(dto);
+
+                context.Stock.Remove(stock);
+                context.SaveChanges();
+
+            }
+
+
+        }
     }
 }

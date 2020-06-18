@@ -32,9 +32,8 @@ namespace Aliyava.Controllers
 
 
         public ActionResult ListarPedidosCarrito(DtoPedido dto)
-        {
-            List<DtoPedido> colPedidos = new List<DtoPedido>();
-            colPedidos = HPedido.getInstace().GetPedido(dto);
+        { 
+            List<DtoPedido> colPedidos = HPedido.getInstace().GetPedido(dto);
             return View(colPedidos);   
         }
 

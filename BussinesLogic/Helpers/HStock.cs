@@ -24,7 +24,13 @@ namespace BussinesLogic.Helpers
         public void AddStock(DtoStock dto)
         {
             PStock ps = new PStock();
-            ps.AddStock(dto);
+            ps.AgregarStock(dto);
+        }
+
+        public void BajaStock(DtoStock dto)
+        {
+            PStock ps = new PStock();
+            ps.DeleteStock(dto);
         }
 
 
