@@ -38,10 +38,26 @@ namespace Aliyava.Controllers
             return View(colProducto);
         }
 
-        public ActionResult RemoveProducto(DtoProducto prod)
+        public ActionResult RemoveProducto(int Codigo)
         {
-            HProducto.getInstace().RemoveProducto(prod);
+            HProducto.getInstace().RemoveProducto(Codigo);
             return RedirectToAction("RemoveProducto");
+        }
+
+        public ActionResult ConfirmarCambios(DtoProducto dtoPro)
+        {
+            HProducto.getInstace().ModificarProducto(dtoPro);
+            return RedirectToAction("ListarProducto");
+
+        }
+
+        public ActionResult ModificarProducto(int Codigo)
+        {
+            DtoProducto productoFB = new DtoProducto();
+
+            productoFB = HProducto.getInstace().GetProductoM(Codigo);
+
+            return View(productoFB);
         }
 
     }

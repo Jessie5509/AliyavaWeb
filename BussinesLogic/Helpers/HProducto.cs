@@ -34,10 +34,22 @@ namespace BussinesLogic.Helpers
             return pc.GetProducto();
         }
 
-        public void RemoveProducto(DtoProducto dto)
+        public void RemoveProducto(int Codigo)
         {
             PProducto ps = new PProducto();
-            ps.RemoveProducto(dto);
+            ps.RemoveProducto(Codigo);
+        }
+
+        public DtoProducto GetProductoM(int Codigo)
+        {
+            PProducto pc = new PProducto();
+            return pc.GetProductoM(Codigo);
+        }
+
+        public void ModificarProducto(DtoProducto dto)
+        {
+            PProducto pc = new PProducto();
+            pc.ModificarProducto(dto);
         }
 
     }

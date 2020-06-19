@@ -46,13 +46,13 @@ namespace DataAccess.Persistencia
         }
 
 
-        public void RemoveProducto(DtoProducto dto)
+        public void RemoveProducto(int Codigo)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
-                MProducto prod = MProducto.MapToEntity(dto);
 
+                Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo );
                 context.Producto.Remove(prod);
                 context.SaveChanges();
 
@@ -60,6 +60,31 @@ namespace DataAccess.Persistencia
 
 
         }
-        
+
+        public DtoProducto GetProductoM(int Codigo)
+        {
+            DtoProducto dto = new DtoProducto();
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo);
+
+                dto = MProducto.MapToDto(prod);
+            }
+            return dto;
+        }
+
+        public void ModificarProducto(DtoProducto DtoProdu)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Producto updatePro = context.Producto.FirstOrDefault(f => f.Codigo == DtoProdu.Codigo);
+                updatePro.Codigo = DtoProdu.Codigo;
+                updatePro.Descripcion = DtoProdu.Descripcion;
+                updatePro.Familia = DtoProdu.Familia;
+                updatePro.PrecioVenta = DtoProdu.PrecioVenta;
+                context.SaveChanges();
+            }
+        }
+
     }
 }
