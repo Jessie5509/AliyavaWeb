@@ -1,4 +1,5 @@
-﻿using BussinesLogic.Helpers;
+﻿using AliyavaCliente.Helpers;
+using BussinesLogic.Helpers;
 using Common.DTO;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace AliyavaCliente.Controllers
 {
+    [UserAuthentication]
     public class ClienteController : Controller
     {
         // GET: Cliente
@@ -29,11 +31,6 @@ namespace AliyavaCliente.Controllers
             return RedirectToAction("RegistroCliente");
         }
 
-        public ActionResult LoginCliente()
-        {
-
-            return View();
-        }
 
     }
 }

@@ -17,13 +17,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Welcome to Aliyava!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+
+
+                    @{ if (User.Identity.IsAuthenticated == true)
+                        {
+                            <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
+
+
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Ingresar", "LoginV", "Usuario")</li>
+                            <li>@Html.ActionLink("Registrarse", "RegistroCliente", "Cliente")</li>
+                        }
+                    }
+
+
                 </ul>
             </div>
         </div>
