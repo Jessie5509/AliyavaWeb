@@ -39,10 +39,9 @@ namespace Common.DTO
         [StringLength(20, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
         public string email { get; set; }
 
+        public string contraseña { get; set; }
 
 
-        public int idDireccion { get; set; }
-        public int idPedido { get; set; }
 
 
     }

@@ -14,8 +14,9 @@ namespace Common.DTO
         public string Usuario { get; set; }
         public string Direccion { get; set; }
         public System.DateTime FechaIngreso { get; set; }
-        public int idDetallePe { get; set; }
+        public string Urgente { get; set; }
+        public int idCliente { get; set; }
         public int idReserva { get; set; }
-        public int idReparto { get; set; }
+        public Nullable<int> idReparto { get; set; }
     }
 }

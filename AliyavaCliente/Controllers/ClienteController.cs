@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Aliyava.Controllers
+namespace AliyavaCliente.Controllers
 {
     public class ClienteController : Controller
     {
@@ -18,7 +18,7 @@ namespace Aliyava.Controllers
 
         public ActionResult RegistroCliente()
         {
-    
+
             return View();
         }
 

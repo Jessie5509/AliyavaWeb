@@ -24,5 +24,7 @@ namespace Common.DTO
         [DisplayName("Cantidad")]
         public Nullable<double> Cantidad { get; set; }
 
+        public int idProducto { get; set; }
+
     }
 }
