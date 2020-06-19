@@ -42,10 +42,12 @@ namespace DataAccess.Persistencia
         }
 
 
-        public DtoCliente getDataCliente()
+        public DtoCliente getDataCli()
         {
+            DtoCliente dtoCli = new DtoCliente();
 
-            return;
+
+            return dtoCli;
         }
 
     }

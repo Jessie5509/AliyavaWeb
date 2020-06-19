@@ -29,8 +29,9 @@ namespace BussinesLogic.Helpers
 
         public DtoCliente GetDataCliente()
         {
-
-            return;
+            PCliente pc = new PCliente();
+            return pc.getDataCli();
+            
         }
 
     }
