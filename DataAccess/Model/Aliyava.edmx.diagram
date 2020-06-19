@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="AliyavaModel.Empleado" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="7" PointY="0.5" IsExpanded="true" FillColor="0, 0, 192" />
         <EntityTypeShape EntityType="AliyavaModel.Pedido" Width="1.5" PointX="2.875" PointY="0.5" IsExpanded="true" FillColor="255, 128, 0" />
-        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="10.375" PointY="3.375" IsExpanded="true" FillColor="0, 192, 0" />
+        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="10.125" PointY="2.75" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Reparto" Width="1.5" PointX="0.5" PointY="3" IsExpanded="true" FillColor="0, 0, 192" />
         <EntityTypeShape EntityType="AliyavaModel.Reserva" Width="1.5" PointX="0.5" PointY="5.375" IsExpanded="true" FillColor="255, 128, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Stock" Width="1.5" PointX="5.375" PointY="4.625" IsExpanded="true" FillColor="0, 192, 0" />
