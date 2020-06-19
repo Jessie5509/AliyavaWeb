@@ -73,6 +73,45 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Aliyava.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Model\Categoria.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Cliente.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\DetallePedido.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Direcciones.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Empleado.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\HistoricoStock.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Historico_de_Cambio_de_estados.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Pedido.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Producto.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Reparto.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Reserva.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Stock.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Usuario.cs">
+      <DependentUpon>Aliyava.tt</DependentUpon>
+    </Compile>
     <Compile Include="Persistencia\PCategoria.cs" />
     <Compile Include="Persistencia\PCliente.cs" />
     <Compile Include="Persistencia\PPedido.cs" />

@@ -1,4 +1,6 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
+using DataAccess.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +17,7 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Categoria Cat = new Categoria();
-                Cat.nombre = dto.Nombre;
+                Cat.Nombre = dto.Nombre;
                 Cat.idProducto = dto.idProducto;
 
 
@@ -50,7 +52,7 @@ namespace DataAccess.Persistencia
 
                 Categoria cat = MCategoria.MapToEntity(dto);
 
-                context.Stock.Remove(cat);
+                context.Categoria.Remove(cat);
                 context.SaveChanges();
 
             }
@@ -58,30 +60,7 @@ namespace DataAccess.Persistencia
 
         }
 
-        public DtoProducto GetCategoriaM(int Codigo)
-        {
-            DtoProducto dto = new DtoProducto();
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo);
 
-                dto = MProducto.MapToDto(prod);
-            }
-            return dto;
-        }
-
-        public void ModificarProducto(DtoProducto DtoProdu)
-        {
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                Producto updatePro = context.Producto.FirstOrDefault(f => f.Codigo == DtoProdu.Codigo);
-                updatePro.Codigo = DtoProdu.Codigo;
-                updatePro.Descripcion = DtoProdu.Descripcion;
-                updatePro.Familia = DtoProdu.Familia;
-                updatePro.PrecioVenta = DtoProdu.PrecioVenta;
-                context.SaveChanges();
-            }
-        }
 
     }
 }
