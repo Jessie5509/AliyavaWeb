@@ -27,5 +27,11 @@ namespace BussinesLogic.Helpers
             pc.RegistrarCliente(dto);
         }
 
+        public DtoCliente GetDataCliente()
+        {
+
+            return;
+        }
+
     }
 }

@@ -41,5 +41,12 @@ namespace DataAccess.Persistencia
             }
         }
 
+
+        public DtoCliente getDataCliente()
+        {
+
+            return;
+        }
+
     }
 }

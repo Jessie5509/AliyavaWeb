@@ -31,6 +31,22 @@ namespace AliyavaCliente.Controllers
             return RedirectToAction("RegistroCliente");
         }
 
+        public ActionResult PerfilV()
+        {
+
+            return View();
+        }
+
+        public ActionResult PerfilCliente()
+        {
+            string password = Session["Contraseña"].ToString();
+            HCliente.getInstace().GetDataCliente();
+
+            return RedirectToAction("PerfilV");
+        }
+
+
+
         //public void AddReserva(DtoReserva nuevaReserva)
         //{
         //    using (HotelEntities context = new HotelEntities())

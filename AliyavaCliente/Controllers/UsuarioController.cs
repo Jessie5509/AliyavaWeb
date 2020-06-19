@@ -36,7 +36,8 @@ namespace AliyavaCliente.Controllers
                 //Crea la Cookie para que el usuario sea autenticado
                 FormsAuthentication.SetAuthCookie(dto.nombreUsuario, false);
                 Session["NombreDeUsuario"] = dto.nombreUsuario;
-     
+                Session["Contraseña"] = dto.contraseña;
+
                 return Redirect("/Home");
             }
 
