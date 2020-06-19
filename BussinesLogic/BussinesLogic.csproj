@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\HCategoria.cs" />
     <Compile Include="Helpers\HCliente.cs" />
     <Compile Include="Helpers\HPedido.cs" />
     <Compile Include="Helpers\HProducto.cs" />
