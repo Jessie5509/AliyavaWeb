@@ -4,3 +4,15 @@ C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csprojAssemb
 C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
 C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.dll
 C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.pdb
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.dll.config
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.pdb
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\System.Web.Mvc.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\System.Web.Razor.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\System.Web.Razor.xml
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\bin\Debug\es\System.Web.Razor.resources.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CoreCompileInputs.cache
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CopyComplete
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.pdb

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AliyavaCliente.Controllers
 {
- 
+ //[UserAuthentication]
     public class ClienteController : Controller
     {
         // GET: Cliente
