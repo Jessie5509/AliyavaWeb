@@ -44,7 +44,7 @@ namespace AliyavaCliente.Controllers
         public ActionResult ConfirmarCambios(DtoCliente dtoCli)
         {
             HCliente.getInstace().ModificarPerfil(dtoCli);
-            return RedirectToAction("/Home");
+            return RedirectToAction("/Index");
 
         }
 

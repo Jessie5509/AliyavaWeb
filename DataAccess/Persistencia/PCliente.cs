@@ -61,16 +61,28 @@ namespace DataAccess.Persistencia
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Cliente updateCliente = context.Cliente.FirstOrDefault(f => f.contraseña == dtoCliente.contraseña && f.idCliente == dtoCliente.idCliente);
-                updateCliente.Nombre = dtoCliente.Nombre;
-                updateCliente.Apellido = dtoCliente.Apellido;
-                updateCliente.NombreUsuario = dtoCliente.NombreUsuario;
-                updateCliente.Direccion = dtoCliente.Direccion;
-                updateCliente.Telefono = dtoCliente.Telefono;
-                updateCliente.email = dtoCliente.email;
-                updateCliente.contraseña = dtoCliente.contraseña;
-               
-                context.SaveChanges();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Cliente updateCliente = context.Cliente.FirstOrDefault(f => f.contraseña == dtoCliente.contraseña && f.idCliente == dtoCliente.idCliente);
+                        updateCliente.Nombre = dtoCliente.Nombre;
+                        updateCliente.Apellido = dtoCliente.Apellido;
+                        updateCliente.NombreUsuario = dtoCliente.NombreUsuario;
+                        updateCliente.Direccion = dtoCliente.Direccion;
+                        updateCliente.Telefono = dtoCliente.Telefono;
+                        updateCliente.email = dtoCliente.email;
+                        updateCliente.contraseña = dtoCliente.contraseña;
+
+                        context.SaveChanges();
+                        scope.Complete();
+                    }
+                    catch(Exception ex)
+                    {
+                        scope.Dispose();
+                    }
+                    
+                }
             }
         }
 
