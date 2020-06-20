@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace AliyavaCliente.Controllers
 {
- //[UserAuthentication]
+    //[UserAuthentication]
     public class ClienteController : Controller
     {
         // GET: Cliente
@@ -33,16 +33,19 @@ namespace AliyavaCliente.Controllers
 
         public ActionResult PerfilV()
         {
+            string password = Session["Contraseña"].ToString();
+            DtoCliente clienteDB = new DtoCliente();
+            clienteDB = HCliente.getInstace().GetDataCliente(password);
 
-            return View();
+            return View(clienteDB);
+       
         }
 
-        public ActionResult PerfilCliente()
+        public ActionResult ConfirmarCambios(DtoCliente dtoCli)
         {
-            string password = Session["Contraseña"].ToString();
-            HCliente.getInstace().GetDataCliente();
+            HCliente.getInstace().ModificarPerfil(dtoCli);
+            return RedirectToAction("/Home");
 
-            return RedirectToAction("PerfilV");
         }
 
 

@@ -19,7 +19,7 @@ namespace Common.DTO
         [StringLength(20, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
         public string Telefono { get; set; }
        
-        [DisplayName("NombreUsuario")]
+        [DisplayName("Usuario")]
         [Required(ErrorMessage = "El {0} del cliente es requerido!")]
         [StringLength(20, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
         public string NombreUsuario { get; set; }
@@ -34,11 +34,12 @@ namespace Common.DTO
         [StringLength(20, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
         public string Apellido { get; set; }
 
-        [DisplayName("email")]
+        [DisplayName("Email")]
         [Required(ErrorMessage = "El {0} del cliente es requerido!")]
-        [StringLength(20, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
+        [StringLength(75, ErrorMessage = "El {0} del cliente no debe superar los {1} caracteres")]
         public string email { get; set; }
 
+        [DisplayName("Contraseña")]
         public string contraseña { get; set; }
 
 

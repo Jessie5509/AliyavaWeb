@@ -27,12 +27,21 @@ namespace BussinesLogic.Helpers
             pc.RegistrarCliente(dto);
         }
 
-        public DtoCliente GetDataCliente()
+        public DtoCliente GetDataCliente(string password)
         {
             PCliente pc = new PCliente();
-            return pc.getDataCli();
+            return pc.getDataCli(password);
             
         }
+
+        public void ModificarPerfil(DtoCliente dto)
+        {
+            PCliente pc = new PCliente();
+            pc.UpdateCliente(dto);
+        }
+
+
+
 
     }
 }

@@ -29,13 +29,13 @@ namespace AliyavaCliente.Controllers
         }
 
    
-        public ActionResult Login(DtoLogin dto)
+        public ActionResult Login(DtoCliente dto)
         {
-            if (dto.nombreUsuario == "jessi" && dto.contraseña == "1234")
+            if (dto.NombreUsuario == "jessi" && dto.contraseña == "1234")
             {
                 //Crea la Cookie para que el usuario sea autenticado
-                FormsAuthentication.SetAuthCookie(dto.nombreUsuario, false);
-                Session["NombreDeUsuario"] = dto.nombreUsuario;
+                FormsAuthentication.SetAuthCookie(dto.NombreUsuario, false);
+                Session["NombreDeUsuario"] = dto.NombreUsuario;
                 Session["Contraseña"] = dto.contraseña;
 
                 return Redirect("/Home");
