@@ -1,4 +1,5 @@
-﻿using BussinesLogic.Helpers;
+﻿using Aliyava.Helpers;
+using BussinesLogic.Helpers;
 using Common.DTO;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Aliyava.Controllers
 {
+    [UserAuthentication]
     public class PedidoController : Controller
     {
         // GET: Pedido

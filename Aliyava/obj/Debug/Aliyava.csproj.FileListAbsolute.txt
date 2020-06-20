@@ -190,3 +190,5 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.csproj.CoreCo
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.csproj.CopyComplete
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.pdb
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.dll
+C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.xml

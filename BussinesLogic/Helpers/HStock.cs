@@ -21,10 +21,16 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void AddStock(DtoStock dto)
+        public void CreateStock(DtoStock dto)
         {
             PStock ps = new PStock();
-            ps.AgregarStock(dto);
+            ps.AltaStock(dto);
+        }
+
+        public void SumStock(DtoStock dto)
+        {
+            PStock ps = new PStock();
+            ps.SumarStock(dto);
         }
 
         public void BajaStock(DtoStock dto)
