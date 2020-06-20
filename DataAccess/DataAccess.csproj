@@ -115,6 +115,7 @@
     </Compile>
     <Compile Include="Persistencia\PCategoria.cs" />
     <Compile Include="Persistencia\PCliente.cs" />
+    <Compile Include="Persistencia\PEmpleado.cs" />
     <Compile Include="Persistencia\PPedido.cs" />
     <Compile Include="Persistencia\PProducto.cs" />
     <Compile Include="Persistencia\PStock.cs" />

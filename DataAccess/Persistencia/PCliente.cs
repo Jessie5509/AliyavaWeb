@@ -86,6 +86,20 @@ namespace DataAccess.Persistencia
             }
         }
 
+        public bool existeCliente(DtoCliente dto)
+        {
+            bool existe = false;
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                existe = context.Cliente.Any(a => a.idCliente == dto.idCliente && 
+                a.NombreUsuario == dto.NombreUsuario && a.contraseña == dto.contraseña);
+
+            }
+
+                return existe;
+        }
+
 
     }
 }

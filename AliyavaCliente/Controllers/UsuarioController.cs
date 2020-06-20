@@ -1,4 +1,5 @@
-﻿using Common.DTO;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,9 @@ namespace AliyavaCliente.Controllers
    
         public ActionResult Login(DtoCliente dto)
         {
-            if (dto.NombreUsuario == "jessi" && dto.contraseña == "1234")
+            bool existe = HCliente.getInstace().ExisteCliente(dto);
+
+            if (existe)
             {
                 //Crea la Cookie para que el usuario sea autenticado
                 FormsAuthentication.SetAuthCookie(dto.NombreUsuario, false);

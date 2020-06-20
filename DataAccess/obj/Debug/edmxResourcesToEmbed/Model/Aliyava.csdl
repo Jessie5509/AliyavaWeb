@@ -5,7 +5,6 @@
     <EntitySet Name="Cliente" EntityType="AliyavaModel.Cliente" />
     <EntitySet Name="DetallePedido" EntityType="AliyavaModel.DetallePedido" />
     <EntitySet Name="Direcciones" EntityType="AliyavaModel.Direcciones" />
-    <EntitySet Name="Empleado" EntityType="AliyavaModel.Empleado" />
     <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
     <EntitySet Name="HistoricoStock" EntityType="AliyavaModel.HistoricoStock" />
     <EntitySet Name="Pedido" EntityType="AliyavaModel.Pedido" />
@@ -34,10 +33,6 @@
       <End Role="Producto" EntitySet="Producto" />
       <End Role="DetallePedido" EntitySet="DetallePedido" />
     </AssociationSet>
-    <AssociationSet Name="FKHistStock_Empleado" Association="AliyavaModel.FKHistStock_Empleado">
-      <End Role="Empleado" EntitySet="Empleado" />
-      <End Role="HistoricoStock" EntitySet="HistoricoStock" />
-    </AssociationSet>
     <AssociationSet Name="FKPedido_Reparto" Association="AliyavaModel.FKPedido_Reparto">
       <End Role="Reparto" EntitySet="Reparto" />
       <End Role="Pedido" EntitySet="Pedido" />
@@ -49,6 +44,11 @@
     <AssociationSet Name="FKStock_Producto" Association="AliyavaModel.FKStock_Producto">
       <End Role="Producto" EntitySet="Producto" />
       <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <EntitySet Name="Empleado" EntityType="AliyavaModel.Empleado" />
+    <AssociationSet Name="FKHistStock_Empleado" Association="AliyavaModel.FKHistStock_Empleado">
+      <End Role="Empleado" EntitySet="Empleado" />
+      <End Role="HistoricoStock" EntitySet="HistoricoStock" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Categoria">
@@ -101,16 +101,6 @@
     <Property Name="Edificio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="idCliente" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Direcciones" ToRole="Cliente" />
-  </EntityType>
-  <EntityType Name="Empleado">
-    <Key>
-      <PropertyRef Name="idEmpleado" />
-    </Key>
-    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
-    <Property Name="email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="contraseña" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="HistoricoStock" Relationship="AliyavaModel.FKHistStock_Empleado" FromRole="Empleado" ToRole="HistoricoStock" />
   </EntityType>
   <EntityType Name="Historico_de_Cambio_de_estados">
     <Key>
@@ -265,18 +255,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FKHistStock_Empleado">
-    <End Type="AliyavaModel.Empleado" Role="Empleado" Multiplicity="1" />
-    <End Type="AliyavaModel.HistoricoStock" Role="HistoricoStock" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Empleado">
-        <PropertyRef Name="idEmpleado" />
-      </Principal>
-      <Dependent Role="HistoricoStock">
-        <PropertyRef Name="idEmpleado" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FKPedido_Reparto">
     <End Type="AliyavaModel.Reparto" Role="Reparto" Multiplicity="0..1" />
     <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
@@ -310,6 +288,28 @@
       </Principal>
       <Dependent Role="Stock">
         <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Empleado">
+    <Key>
+      <PropertyRef Name="idEmpleado" />
+    </Key>
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="contraseña" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HistoricoStock" Relationship="AliyavaModel.FKHistStock_Empleado" FromRole="Empleado" ToRole="HistoricoStock" />
+  </EntityType>
+  <Association Name="FKHistStock_Empleado">
+    <End Type="AliyavaModel.Empleado" Role="Empleado" Multiplicity="1" />
+    <End Type="AliyavaModel.HistoricoStock" Role="HistoricoStock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Empleado">
+        <PropertyRef Name="idEmpleado" />
+      </Principal>
+      <Dependent Role="HistoricoStock">
+        <PropertyRef Name="idEmpleado" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

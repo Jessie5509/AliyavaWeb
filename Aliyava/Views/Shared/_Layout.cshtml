@@ -21,13 +21,33 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
 
-                    <li>@Html.ActionLink("Productos", "RegistrarProducto", "Producto")</li>                    
-              
-                    <li>@Html.ActionLink("Stock", "AddStock", "Stock")</li>
+                    @{ if (User.Identity.IsAuthenticated == true)
+                        {
 
-                    <li>@Html.ActionLink("Carrito", "ListarPedidosCarrito", "Pedido")</li>
+                            <li>@Html.ActionLink("Productos", "RegistrarProducto", "Producto")</li>
+
+                            <li>@Html.ActionLink("Stock", "AddStock", "Stock")</li>
+
+                            <li>@Html.ActionLink("Carrito", "ListarPedidosCarrito", "Pedido")</li>
+
+                            <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
+
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Ingresar", "LoginV", "Usuario")</li>
+                            @*<li>@Html.ActionLink("Registrarse", "RegistroCliente", "Cliente")</li>*@
+                        }
+                    }
+
+
+
+
+
+
                 </ul>
             </div>
         </div>

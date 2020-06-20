@@ -40,6 +40,12 @@ namespace BussinesLogic.Helpers
             pc.UpdateCliente(dto);
         }
 
+        public bool ExisteCliente(DtoCliente dto)
+        {
+            PCliente pc = new PCliente();
+            return pc.existeCliente(dto);
+        }
+
 
 
 

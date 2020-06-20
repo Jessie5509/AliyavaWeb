@@ -50,16 +50,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Empleado">
-      <EntityTypeMapping TypeName="AliyavaModel.Empleado">
-        <MappingFragment StoreEntitySet="Empleado">
-          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Historico_de_Cambio_de_estados">
       <EntityTypeMapping TypeName="AliyavaModel.Historico_de_Cambio_de_estados">
         <MappingFragment StoreEntitySet="Historico de Cambio de estados">
@@ -147,6 +137,16 @@
           <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
           <ScalarProperty Name="contraseña" ColumnName="contraseña" />
           <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empleado">
+      <EntityTypeMapping TypeName="AliyavaModel.Empleado">
+        <MappingFragment StoreEntitySet="Empleado">
+          <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+          <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

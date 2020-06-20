@@ -50,7 +50,7 @@
       <PropertyRef Name="idEmpleado" />
     </Key>
     <Property Name="idEmpleado" Type="int" Nullable="false" />
-    <Property Name="email" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="75" Nullable="false" />
     <Property Name="contraseña" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="NombreUsuario" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
