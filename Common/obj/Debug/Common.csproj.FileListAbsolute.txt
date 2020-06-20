@@ -16,3 +16,8 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CoreComp
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CopyComplete
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\Common.dll.config
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\System.Web.Razor.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\System.Web.Razor.xml
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\bin\Debug\es\System.Web.Razor.resources.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Common\obj\Debug\Common.csproj.CopyComplete

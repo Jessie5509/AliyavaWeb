@@ -27,3 +27,4 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.csproj.CopyComplete
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\DataAccess\obj\Debug\DataAccess.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\DataAccess\bin\Debug\Common.dll.config
