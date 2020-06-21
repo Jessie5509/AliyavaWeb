@@ -281,6 +281,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Usuario\LoginV.cshtml" />
     <Content Include="Views\Stock\CrearStockV.cshtml" />
+    <Content Include="Views\Producto\ModificarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

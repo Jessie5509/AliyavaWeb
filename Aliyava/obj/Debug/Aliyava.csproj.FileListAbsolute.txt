@@ -192,3 +192,7 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\obj\Debug\Aliyava.pdb
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.xml
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.dll
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Aliyava\bin\BussinesLogic.dll.config
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Aliyava\bin\Common.dll.config
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\Aliyava\bin\EntityFramework.SqlServer.xml

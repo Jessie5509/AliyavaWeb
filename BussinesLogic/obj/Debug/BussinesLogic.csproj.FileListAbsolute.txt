@@ -28,3 +28,5 @@ C:\Users\SCN\Documents\GitHub\AliyavaWeb\BussinesLogic\obj\Debug\BussinesLogic.c
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\BussinesLogic\obj\Debug\BussinesLogic.csproj.CopyComplete
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\BussinesLogic\obj\Debug\BussinesLogic.dll
 C:\Users\SCN\Documents\GitHub\AliyavaWeb\BussinesLogic\obj\Debug\BussinesLogic.pdb
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\BussinesLogic\bin\Debug\BussinesLogic.dll.config
+C:\Users\Marcos\Documents\GitHub\AliyavaWeb\BussinesLogic\bin\Debug\Common.dll.config
