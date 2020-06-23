@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="idCategoria" />
     </Key>
-    <Property Name="idCategoria" Type="int" Nullable="false" />
+    <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="idProducto" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
@@ -12,7 +12,7 @@
     <Key>
       <PropertyRef Name="idCliente" />
     </Key>
-    <Property Name="idCliente" Type="int" Nullable="false" />
+    <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Direccion" Type="varchar" MaxLength="100" />
     <Property Name="Telefono" Type="varchar" MaxLength="20" />
     <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
@@ -26,7 +26,7 @@
       <PropertyRef Name="idDetallePedido" />
     </Key>
     <Property Name="CantidadPreparar" Type="float" Nullable="false" />
-    <Property Name="idDetallePedido" Type="int" Nullable="false" />
+    <Property Name="idDetallePedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Cantidad" Type="float" Nullable="false" />
     <Property Name="PrecioU" Type="float" Nullable="false" />
     <Property Name="UbicacionPro" Type="varchar" MaxLength="50" />
@@ -37,7 +37,7 @@
     <Key>
       <PropertyRef Name="idDireccion" />
     </Key>
-    <Property Name="idDireccion" Type="int" Nullable="false" />
+    <Property Name="idDireccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ciudad" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Barrio" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Numero" Type="float" Nullable="false" />
@@ -49,7 +49,7 @@
     <Key>
       <PropertyRef Name="idEmpleado" />
     </Key>
-    <Property Name="idEmpleado" Type="int" Nullable="false" />
+    <Property Name="idEmpleado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="75" Nullable="false" />
     <Property Name="contraseña" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="NombreUsuario" Type="varchar" MaxLength="20" Nullable="false" />
@@ -58,7 +58,7 @@
     <Key>
       <PropertyRef Name="idHistorico" />
     </Key>
-    <Property Name="idHistorico" Type="int" Nullable="false" />
+    <Property Name="idHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Accion" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Funcionario" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Estados" Type="varchar" MaxLength="10" Nullable="false" />
@@ -68,7 +68,7 @@
     <Key>
       <PropertyRef Name="idHistorico" />
     </Key>
-    <Property Name="idHistorico" Type="int" Nullable="false" />
+    <Property Name="idHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ubicacion" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Motivo" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Cantidad" Type="float" Nullable="false" />
@@ -80,7 +80,7 @@
     </Key>
     <Property Name="Estado" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="PrecioTotal" Type="float" Nullable="false" />
-    <Property Name="Numero" Type="int" Nullable="false" />
+    <Property Name="Numero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Direccion" Type="varchar" MaxLength="50" />
     <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
@@ -93,17 +93,18 @@
     <Key>
       <PropertyRef Name="Codigo" />
     </Key>
-    <Property Name="Codigo" Type="int" Nullable="false" />
+    <Property Name="Codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="20" />
     <Property Name="Familia" Type="varchar" MaxLength="20" />
     <Property Name="PrecioVenta" Type="float" />
     <Property Name="idCategoria" Type="int" Nullable="false" />
+    <Property Name="codigo_barras" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
   <EntityType Name="Reparto">
     <Key>
       <PropertyRef Name="idReparto" />
     </Key>
-    <Property Name="idReparto" Type="int" Nullable="false" />
+    <Property Name="idReparto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MatriculaVehiculo" Type="varchar" MaxLength="10" Nullable="false" />
     <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Chofer" Type="varchar" MaxLength="20" Nullable="false" />
@@ -113,7 +114,7 @@
     <Key>
       <PropertyRef Name="idReserva" />
     </Key>
-    <Property Name="idReserva" Type="int" Nullable="false" />
+    <Property Name="idReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Cantidad" Type="float" />
     <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
@@ -122,7 +123,7 @@
     <Key>
       <PropertyRef Name="idStock" />
     </Key>
-    <Property Name="idStock" Type="int" Nullable="false" />
+    <Property Name="idStock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Ubicacion" Type="varchar" MaxLength="10" />
     <Property Name="Motivo" Type="varchar" MaxLength="20" />
     <Property Name="Cantidad" Type="float" />
@@ -134,7 +135,7 @@
     </Key>
     <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <Association Name="FKDetalle_Pedido">
     <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
