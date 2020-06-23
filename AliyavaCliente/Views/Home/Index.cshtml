@@ -1,20 +1,37 @@
-﻿@{
+﻿@model IEnumerable<Common.DTO.DtoProducto>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>Aliyava Clientes</h1>
-   
+
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div >
         <h2>Productos</h2>
     </div>
-    <div class="col-md-4">
+    
+    <div >
+        <div class="row" style="height:auto; background-color: rgba(255,0,0,0.1);">
+            <div class="container">
+                @foreach (Common.DTO.DtoProducto item in Model)
+                {
+                    <div class="panel panel-default " style="width: 200px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
+                        <div class="panel-heading">@Html.DisplayFor(modelItem => item.Descripcion)</div>
+                        <div class="panel-body">
+                            <img class="img-responsive" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
 
-    </div>
-    <div class="col-md-4">
+                        </div>
+                        <div class="panel-footer">
+                            <p>@Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                        </div>
+                    </div>
+                }
 
+            </div>
+        </div>
     </div>
+
 </div>

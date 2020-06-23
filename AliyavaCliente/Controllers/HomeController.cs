@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,8 +13,11 @@ namespace AliyavaCliente.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            List<DtoProducto> colProducto = new List<DtoProducto>();
+            colProducto = HProducto.getInstace().GetProducto();
+            return View(colProducto);
         }
+
 
     }
 }
