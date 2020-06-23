@@ -27,13 +27,6 @@ namespace BussinesLogic.Helpers
             return pe.existeEmpleado(dto);
         }
 
-        public void AddEmpleado(DtoEmpleado dto)
-        {
-            PEmpleado pe = new PEmpleado();
-            pe.RegistrarEmpleado(dto);
-
-        }
-
 
     }
 }

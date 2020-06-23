@@ -26,7 +26,6 @@ namespace DataAccess.Model
         public string Familia { get; set; }
         public Nullable<double> PrecioVenta { get; set; }
         public int idCategoria { get; set; }
-        public string codigo_barras { get; set; }
     
         public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
