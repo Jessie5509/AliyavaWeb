@@ -21,22 +21,22 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void CreateStock(DtoStock dto)
+        //public void CreateStock(DtoStock dto)
+        //{
+        //    PStock ps = new PStock();
+        //    ps.AltaStock(dto);
+        //}
+
+        public void SumStock(DtoStock dto, string codigoBarras)
         {
             PStock ps = new PStock();
-            ps.AltaStock(dto);
+            ps.SumarStock(dto, codigoBarras);
         }
 
-        public void SumStock(DtoStock dto)
+        public void BajaStock(DtoStock dto, string codigoBarras)
         {
             PStock ps = new PStock();
-            ps.SumarStock(dto);
-        }
-
-        public void BajaStock(DtoStock dto)
-        {
-            PStock ps = new PStock();
-            ps.DeleteStock(dto);
+            ps.DeleteStock(dto, codigoBarras);
         }
 
 
