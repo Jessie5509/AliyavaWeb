@@ -1,6 +1,4 @@
-﻿using BussinesLogic.Helpers;
-using Common.DTO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -15,19 +13,5 @@ namespace Aliyava.Controllers
         {
             return View();
         }
-
-        public ActionResult RegistroEmpleado()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult AddEmpleado(DtoEmpleado nuevoEmpleado)
-        {
-            HEmpleado.getInstace().AddEmpleado(nuevoEmpleado);
-            return RedirectToAction("Home");
-        }
-
     }
 }

@@ -15,10 +15,6 @@ namespace Common.DTO
         //[StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
         public int Codigo { get; set; }
 
-        [DisplayName("Código de barras")]
-        [Required(ErrorMessage = "El {0} es requerido!")]
-        public string codigoBarras { get; set; }
-
         [DisplayName("Descripcion Producto")]
         [Required(ErrorMessage = "La {0} del producto es requerido!")]
         [StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
