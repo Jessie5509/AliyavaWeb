@@ -26,30 +26,30 @@ namespace Aliyava.Controllers
         }
 
         //Vista de crear un nuevo stock.
-        public ActionResult CrearStockV()
-        {
+        //public ActionResult CrearStockV()
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         //Crea nuevo stock.
-        public ActionResult CrearStock(DtoStock stock)
-        {
-            HStock.getInstace().CreateStock(stock);
-            return RedirectToAction("Home");
-        }
+        //public ActionResult CrearStock(DtoStock stock)
+        //{
+        //    HStock.getInstace().CreateStock(stock);
+        //    return RedirectToAction("Home");
+        //}
 
         //Agrega mas cantidad de stock.
-        public ActionResult SumaStock(DtoStock stock)
+        public ActionResult SumaStock(DtoStock stock, string codigoBarras)
         {
-            HStock.getInstace().SumStock(stock);
+            HStock.getInstace().SumStock(stock, codigoBarras);
             return RedirectToAction("AddStock");
         }
 
         //Quita cantidad de stock.
-        public ActionResult BajaStock(DtoStock stock)
+        public ActionResult BajaStock(DtoStock stock, string codigoBarras)
         {
-            HStock.getInstace().BajaStock(stock);
+            HStock.getInstace().BajaStock(stock, codigoBarras);
             return RedirectToAction("AddStock");
         }
 
