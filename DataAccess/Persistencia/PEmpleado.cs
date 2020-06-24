@@ -17,8 +17,7 @@ namespace DataAccess.Persistencia
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                existe = context.Empleado.Any(a => a.idEmpleado == dto.idEmpleado &&
-                a.NombreUsuario == dto.NombreUsuario && a.contraseña == dto.contraseña);
+                existe = context.Empleado.Any(a => a.NombreUsuario == dto.NombreUsuario && a.contraseña == dto.contraseña);
 
             }
 

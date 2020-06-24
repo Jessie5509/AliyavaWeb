@@ -40,16 +40,17 @@ namespace Aliyava.Controllers
         //}
 
         //Agrega mas cantidad de stock.
-        public ActionResult SumaStock(DtoStock stock, string codigoBarras)
+        public ActionResult SumaStock(DtoStock stock)
         {
-            HStock.getInstace().SumStock(stock, codigoBarras);
+            HStock.getInstace().SumStock(stock);
             return RedirectToAction("AddStock");
         }
 
         //Quita cantidad de stock.
-        public ActionResult BajaStock(DtoStock stock, string codigoBarras)
+        public ActionResult BajaStock(DtoStock stock)
         {
-            HStock.getInstace().BajaStock(stock, codigoBarras);
+
+            HStock.getInstace().BajaStock(stock);
             return RedirectToAction("AddStock");
         }
 

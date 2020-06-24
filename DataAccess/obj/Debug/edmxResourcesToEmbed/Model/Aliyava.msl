@@ -88,17 +88,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Producto">
-      <EntityTypeMapping TypeName="AliyavaModel.Producto">
-        <MappingFragment StoreEntitySet="Producto">
-          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
-          <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
-          <ScalarProperty Name="Familia" ColumnName="Familia" />
-          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Reparto">
       <EntityTypeMapping TypeName="AliyavaModel.Reparto">
         <MappingFragment StoreEntitySet="Reparto">
@@ -147,6 +136,18 @@
           <ScalarProperty Name="contraseña" ColumnName="contraseña" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="idEmpleado" ColumnName="idEmpleado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="AliyavaModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="codigo_barras" ColumnName="codigo_barras" />
+          <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+          <ScalarProperty Name="PrecioVenta" ColumnName="PrecioVenta" />
+          <ScalarProperty Name="Familia" ColumnName="Familia" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Codigo" ColumnName="Codigo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

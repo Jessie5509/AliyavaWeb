@@ -26,7 +26,7 @@ namespace Aliyava.Controllers
         public ActionResult AddEmpleado(DtoEmpleado nuevoEmpleado)
         {
             HEmpleado.getInstace().AddEmpleado(nuevoEmpleado);
-            return RedirectToAction("Home");
+            return RedirectToAction("RegistroEmpleado");
         }
 
     }

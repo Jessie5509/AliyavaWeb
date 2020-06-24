@@ -355,14 +355,14 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="idCategoria" />
           </Key>
           <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKProducto_Categoria" FromRole="Categoria" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Cliente">
@@ -474,7 +474,7 @@
           </Key>
           <Property Name="idStock" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ubicacion" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Motivo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Motivo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="Cantidad" Type="Double" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKStock_Producto" FromRole="Stock" ToRole="Producto" />
@@ -619,7 +619,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>

@@ -27,16 +27,16 @@ namespace BussinesLogic.Helpers
         //    ps.AltaStock(dto);
         //}
 
-        public void SumStock(DtoStock dto, string codigoBarras)
+        public void SumStock(DtoStock dto)
         {
             PStock ps = new PStock();
-            ps.SumarStock(dto, codigoBarras);
+            ps.SumarStock(dto);
         }
 
-        public void BajaStock(DtoStock dto, string codigoBarras)
+        public void BajaStock(DtoStock dto)
         {
             PStock ps = new PStock();
-            ps.DeleteStock(dto, codigoBarras);
+            ps.DeleteStock(dto);
         }
 
 

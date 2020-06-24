@@ -43,31 +43,41 @@ namespace DataAccess.Persistencia
         //    }
         //}
 
-        public void SumarStock(DtoStock dto, string codigoBarras)
+        public void SumarStock(DtoStock dto)
         {
             double cantidadAlta = (double)dto.Cantidad;
             double cantResto = 0;
             Stock stock = new Stock();
+            
             //Validación: Depende que motivo lo que se hace con la cantidad.
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
-                    bool existeStock = context.Stock.Any(a => a.idProducto == dto.idProducto);
-                    bool existeProducto = context.Stock.Include("Producto").Any(a => a.Producto.codigo_barras == codigoBarras);
+                bool existeProducto = context.Stock.Include("Producto").Any(a => a.Producto.codigo_barras == dto.codigoBarras);
 
-                    if (existeStock)
+
+                    if (existeProducto)
                     {
-                        stock = context.Stock.FirstOrDefault(f => f.idProducto == dto.idProducto);
+                        stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
+
+                        //stock = MStock.MapToEntity(dto);
+                        cantResto = (double)(cantidadAlta + stock.Cantidad);
+                        stock.Cantidad = cantResto;
+
+                        context.SaveChanges();
                     }
                     else
                     {
                         using (TransactionScope scope = new TransactionScope())
                         {
+
+                            Producto pro = context.Producto.FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
+                            
                             try
                             {
                                 Stock nuevoStock = new Stock();
-                                nuevoStock.idProducto = dto.idProducto;
+                                nuevoStock.Producto = pro;
                                 nuevoStock.Ubicacion = dto.Ubicacion;
                                 nuevoStock.Motivo = dto.Motivo;
                                 nuevoStock.Cantidad = dto.Cantidad;
@@ -84,41 +94,54 @@ namespace DataAccess.Persistencia
                         }
                     }
 
-                    stock = MStock.MapToEntity(dto);
-                    cantResto = (double)(cantidadAlta + stock.Cantidad);
-                    stock.Cantidad = cantResto;
-
-                    context.SaveChanges();
+                    
 
                 
             }
         }
 
-        public void DeleteStock(DtoStock dto, string codigoBarras)
+        public void DeleteStock(DtoStock dto)
         {
             double cantidadBaja = (double)dto.Cantidad;
             double cantResto = 0;
+            Stock stock = new Stock();
 
             using (AliyavaEntities context = new AliyavaEntities())
-            { 
-                Stock stock = context.Stock.FirstOrDefault(f => f.idStock == dto.idStock && f.idProducto == dto.idProducto);
+            {
 
-                stock = MStock.MapToEntity(dto);
+                bool existeProducto = context.Stock.Include("Producto").Any(a => a.Producto.codigo_barras == dto.codigoBarras);
 
-                cantResto = (double)(cantidadBaja - stock.Cantidad);
-                stock.Cantidad = cantResto;
 
-                if (stock.Cantidad == 0)
+                if (existeProducto)
                 {
-                    context.Stock.Remove(stock);
-                    context.SaveChanges();
+                    stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
+
+                    cantResto = (double)(cantidadBaja - stock.Cantidad);
+                    stock.Cantidad = cantResto;
+
+                    if (stock.Cantidad == 0)
+                    {
+                        context.Stock.Remove(stock);
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        context.SaveChanges();
+                    }
+
+                  
                 }
                 else
                 {
-                    context.SaveChanges();
+                    //Mensaje de error sobre "No existe el producto a dar de baja"
+
                 }
 
+
+
+
             }
+
 
 
         }
