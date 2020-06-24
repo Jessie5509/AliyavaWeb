@@ -18,8 +18,8 @@ namespace DataAccess.Mappers
             dto.Descripcion = entity.Descripcion;
             dto.Familia = entity.Familia;
             dto.PrecioVenta = entity.PrecioVenta;
-          
-
+            dto.codigoBarras = entity.codigo_barras;
+ 
             return dto;
         }
 
@@ -30,6 +30,7 @@ namespace DataAccess.Mappers
             entity.Descripcion = dto.Descripcion;
             entity.Familia = dto.Familia;
             entity.PrecioVenta = dto.PrecioVenta;
+            dto.codigoBarras = entity.codigo_barras;
 
             return entity;
         }
