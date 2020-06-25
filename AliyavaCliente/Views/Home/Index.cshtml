@@ -26,8 +26,10 @@
                     </div>
                     <div class="panel-footer">
                         <p>@Html.DisplayFor(modelItem => item.PrecioVenta)</p>
-                        <p>@Html.ActionLink("Agregar al carrito", "ListarCarrito", "Pedido", new { @class = "btn btn-primary" })</p>
-                        @Html.ActionLink("Ver", "ProductoInfo", "Producto", new { @class = "btn btn-info" })
+                        <p>@Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
+                                       new { @class = "btn btn-primary"})</p>
+                      
+                        @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
                     </div>
 
                  

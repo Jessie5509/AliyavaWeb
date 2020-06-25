@@ -1,20 +1,17 @@
 ﻿@model List<Common.DTO.DtoProducto>
 
 @{
-    ViewBag.Title = "ListarProducto";
+    ViewBag.Title = "CarritoView";
+    
 }
 
-<h2>Lista de productos</h2>
+<h2>Carrito</h2>
 
-<p>
-    @Html.ActionLink("Agregar productos", "RegistrarProducto", "Producto", new { @class = "btn btn-primary" })
-</p>
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Código
-            </th>
+
             <th>
                 Código de barras
             </th>
@@ -32,13 +29,13 @@
             </th>
         </tr>
     </thead>
+
     <tbody>
+
         @foreach (Common.DTO.DtoProducto item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Codigo)
-                </td>
+
                 <td>
                     @Html.DisplayFor(modelItem => item.codigoBarras)
                 </td>
@@ -52,11 +49,18 @@
                     @Html.DisplayFor(modelItem => item.PrecioVenta)
                 </td>
                 <td>
-                    @Html.ActionLink("Eliminar", "RemoveProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Modificar", "ModificarProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-primary" })
+
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
     </tbody>
 
 </table>
+
+<div>
+    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model },
+                                  new { @class = "btn btn-primary" })
+</div>
+

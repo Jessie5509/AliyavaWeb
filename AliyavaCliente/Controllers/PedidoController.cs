@@ -18,15 +18,29 @@ namespace AliyavaCliente.Controllers
             return View();
         }
 
-        //public ActionResult CarritoV()
-        //{
-        //    List<DtoProducto> colProducto = new List<DtoProducto>();
-        //    colProducto = HProducto.getInstace().GetProductoCarrito();
-            
-        //    return View(colProducto);
-        //}
-        public ActionResult ListarCarrito()
+        public ActionResult CarritoView()
         {
+            
+            return View(Session["colProductos"]);
+        }
+        public ActionResult CarritoV(int id)
+        {
+            List<DtoProducto> colProducto = new List<DtoProducto>();
+            DtoProducto producto = new DtoProducto();
+            producto = HProducto.getInstace().GetProductoCarrito(id);
+
+            colProducto.Add(producto);
+
+            //ViewBag.colPro = colProducto;
+            Session["colProductos"] = colProducto;
+
+            return View(colProducto);
+        }
+
+        public ActionResult RealizarPedido(List<DtoProducto> colProductosPedidos)
+        {
+            //Alta pedido, detalle pedido, reserva y baja del stock, cambio del estado y ver historico de estados.
+            HPedido.getInstace().AddPedido(colProductosPedidos);
 
 
             return View();

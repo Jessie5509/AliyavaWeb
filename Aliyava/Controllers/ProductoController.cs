@@ -43,9 +43,10 @@ namespace Aliyava.Controllers
         public ActionResult RemoveProducto(int Codigo)
         {
             HProducto.getInstace().RemoveProducto(Codigo);
-            return RedirectToAction("RemoveProducto");
+            return RedirectToAction("ListarProducto");
         }
 
+        //Modifica el producto.
         public ActionResult ConfirmarCambios(DtoProducto dtoPro)
         {
             HProducto.getInstace().ModificarProducto(dtoPro);
@@ -53,6 +54,7 @@ namespace Aliyava.Controllers
 
         }
 
+        //Vista formulario a modificar.
         public ActionResult ModificarProducto(int Codigo)
         {
             DtoProducto productoFB = new DtoProducto();

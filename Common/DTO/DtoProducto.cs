@@ -10,16 +10,16 @@ namespace Common.DTO
 {
     public class DtoProducto
     {
-        [DisplayName("Codigo Producto")]
+        [DisplayName("Código Producto")]
         [Required(ErrorMessage = "El {0} del producto es requerido!")]
-        //[StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
+       
         public int Codigo { get; set; }
 
         [DisplayName("Código de barras")]
         [Required(ErrorMessage = "El {0} es requerido!")]
         public string codigoBarras { get; set; }
 
-        [DisplayName("Descripcion")]
+        [DisplayName("Descripción")]
         [Required(ErrorMessage = "La {0} del producto es requerido!")]
         [StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
         public string Descripcion { get; set; }

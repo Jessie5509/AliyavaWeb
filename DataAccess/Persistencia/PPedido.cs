@@ -11,7 +11,7 @@ namespace DataAccess.Persistencia
 {
     public class PPedido
     {
-        public void AgregarPedido(DtoPedido dto)
+        public void AgregarPedido(List<DtoPedido> colProductosPedidos)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {

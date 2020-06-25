@@ -18,6 +18,14 @@ namespace AliyavaCliente.Controllers
             return View(colProducto);
         }
 
+        public ActionResult ProductoInfo(int id)
+        {
+            DtoProducto producto = new DtoProducto();
+            producto = HProducto.getInstace().GetProductoInfo(id);
+
+            return View(producto);
+        }
+
 
     }
 }

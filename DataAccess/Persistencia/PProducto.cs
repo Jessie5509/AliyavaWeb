@@ -49,11 +49,37 @@ namespace DataAccess.Persistencia
             return colDtoProducto;
         }
 
-        //public List<DtoProducto> GetProductoCarrito()
-        //{
+        public DtoProducto GetProductoCarrito(int id)
+        {
+            DtoProducto dto = new DtoProducto();
 
-        //    return;
-        //}
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Producto Producto = context.Producto.FirstOrDefault(f => f.Codigo == id);
+                dto = MProducto.MapToDto(Producto);
+                 
+                
+            }
+
+            return dto;
+      
+        }
+
+        public DtoProducto GetProductoInfo(int id)
+        {
+            DtoProducto dto = new DtoProducto();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Producto Producto = context.Producto.FirstOrDefault(f => f.Codigo == id);
+                dto = MProducto.MapToDto(Producto);
+
+            }
+
+            return dto;
+
+        }
+
 
         public void RemoveProducto(int Codigo)
         {
@@ -86,12 +112,10 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Producto updatePro = context.Producto.FirstOrDefault(f => f.Codigo == DtoProdu.Codigo);
-                updatePro.Codigo = DtoProdu.Codigo;
                 updatePro.Descripcion = DtoProdu.Descripcion;
                 updatePro.Familia = DtoProdu.Familia;
                 updatePro.PrecioVenta = DtoProdu.PrecioVenta;
-                updatePro.codigo_barras = DtoProdu.codigoBarras;
-
+        
                 context.SaveChanges();
             }
         }
