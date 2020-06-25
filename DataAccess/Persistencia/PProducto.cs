@@ -16,12 +16,15 @@ namespace DataAccess.Persistencia
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
+                int idcat = context.Categoria.FirstOrDefault(f => f.Nombre == dto.Familia).idCategoria;
+
                 Producto nProducto = new Producto();
                 nProducto.Codigo = dto.Codigo;
+                nProducto.idCategoria = idcat;
                 nProducto.Descripcion = dto.Descripcion;
                 nProducto.Familia = dto.Familia;
                 nProducto.PrecioVenta = dto.PrecioVenta;
-                
+                nProducto.codigo_barras = dto.codigoBarras;
 
                 context.Producto.Add(nProducto);
                 context.SaveChanges();
@@ -51,7 +54,6 @@ namespace DataAccess.Persistencia
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
-
 
                 Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo );
                 context.Producto.Remove(prod);
@@ -83,6 +85,8 @@ namespace DataAccess.Persistencia
                 updatePro.Descripcion = DtoProdu.Descripcion;
                 updatePro.Familia = DtoProdu.Familia;
                 updatePro.PrecioVenta = DtoProdu.PrecioVenta;
+                updatePro.codigo_barras = DtoProdu.codigoBarras;
+
                 context.SaveChanges();
             }
         }

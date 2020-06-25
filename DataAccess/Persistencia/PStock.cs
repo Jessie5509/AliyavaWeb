@@ -12,81 +12,136 @@ namespace DataAccess.Persistencia
 {
     public class PStock
     {
-        public void AltaStock(DtoStock dto)
-        {
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                using (TransactionScope scope = new TransactionScope())
-                {
-                    try
-                    {
-                        Stock nuevoStock = new Stock();
-                        nuevoStock.idProducto = dto.idProducto;
-                        nuevoStock.Ubicacion = dto.Ubicacion;
-                        nuevoStock.Motivo = dto.Motivo;
-                        nuevoStock.Cantidad = dto.Cantidad;
+        //public void AltaStock(DtoStock dto)
+        //{
+        //    using (AliyavaEntities context = new AliyavaEntities())
+        //    {
+        //        using (TransactionScope scope = new TransactionScope())
+        //        {
+        //            try
+        //            {
+        //                Stock nuevoStock = new Stock();
+        //                nuevoStock.idProducto = dto.idProducto;
+        //                nuevoStock.Ubicacion = dto.Ubicacion;
+        //                nuevoStock.Motivo = dto.Motivo;
+        //                nuevoStock.Cantidad = dto.Cantidad;
 
-                        context.Stock.Add(nuevoStock);
-                        context.SaveChanges();
+        //                context.Stock.Add(nuevoStock);
+        //                context.SaveChanges();
 
-                        scope.Complete();
+        //                scope.Complete();
 
-                    }
-                    catch (Exception ex)
-                    {
-                        scope.Dispose();
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                scope.Dispose();
 
-                    }
+        //            }
                     
-                }
+        //        }
 
-            }
-        }
+        //    }
+        //}
 
         public void SumarStock(DtoStock dto)
         {
             double cantidadAlta = (double)dto.Cantidad;
             double cantResto = 0;
+            Stock stock = new Stock();
+            
             //Validación: Depende que motivo lo que se hace con la cantidad.
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Stock stock = context.Stock.FirstOrDefault(f => f.idStock == dto.idStock);
 
-                stock = MStock.MapToEntity(dto);
-                cantResto = (double)(cantidadAlta + stock.Cantidad);
-                stock.Cantidad = cantResto;
+                bool existeProducto = context.Stock.Include("Producto").Any(a => a.Producto.codigo_barras == dto.codigoBarras);
 
-                context.SaveChanges();
 
+                    if (existeProducto)
+                    {
+                        stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
+
+                        //stock = MStock.MapToEntity(dto);
+                        cantResto = (double)(cantidadAlta + stock.Cantidad);
+                        stock.Cantidad = cantResto;
+
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        using (TransactionScope scope = new TransactionScope())
+                        {
+
+                            Producto pro = context.Producto.FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
+                            
+                            try
+                            {
+                                Stock nuevoStock = new Stock();
+                                nuevoStock.Producto = pro;
+                                nuevoStock.Ubicacion = dto.Ubicacion;
+                                nuevoStock.Motivo = dto.Motivo;
+                                nuevoStock.Cantidad = dto.Cantidad;
+
+                                context.Stock.Add(nuevoStock);
+                                context.SaveChanges();
+
+                                scope.Complete();
+                            }
+                            catch(Exception ex)
+                            {
+                                scope.Dispose();
+                            }
+                        }
+                    }
+
+                    
+
+                
             }
-
         }
 
         public void DeleteStock(DtoStock dto)
         {
             double cantidadBaja = (double)dto.Cantidad;
             double cantResto = 0;
+            Stock stock = new Stock();
 
             using (AliyavaEntities context = new AliyavaEntities())
-            { 
-                Stock stock = context.Stock.FirstOrDefault(f => f.idStock == dto.idStock);
+            {
 
-                stock = MStock.MapToEntity(dto);
+                bool existeProducto = context.Stock.Include("Producto").Any(a => a.Producto.codigo_barras == dto.codigoBarras);
 
-                cantResto = (double)(cantidadBaja - stock.Cantidad);
-                stock.Cantidad = cantResto;
 
-                if (stock.Cantidad == 0)
+                if (existeProducto)
                 {
-                    context.Stock.Remove(stock);
-                    context.SaveChanges();
+                    stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
+
+                    cantResto = (double)(cantidadBaja - stock.Cantidad);
+                    stock.Cantidad = cantResto;
+
+                    if (stock.Cantidad == 0)
+                    {
+                        context.Stock.Remove(stock);
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        context.SaveChanges();
+                    }
+
+                  
                 }
                 else
                 {
-                    context.SaveChanges();
+                    //Mensaje de error sobre "No existe el producto a dar de baja"
+
                 }
 
+
+
+
             }
+
 
 
         }

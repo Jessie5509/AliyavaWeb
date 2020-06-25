@@ -15,19 +15,25 @@ namespace Common.DTO
         //[StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
         public int Codigo { get; set; }
 
-        [DisplayName("Descripcion Producto")]
+        [DisplayName("Código de barras")]
+        [Required(ErrorMessage = "El {0} es requerido!")]
+        public string codigoBarras { get; set; }
+
+        [DisplayName("Descripcion")]
         [Required(ErrorMessage = "La {0} del producto es requerido!")]
         [StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
         public string Descripcion { get; set; }
 
-        [DisplayName("Familia Producto")]
+        [DisplayName("Familia")]
         [Required(ErrorMessage = "La {0} del producto es requerido!")]
         [StringLength(20, ErrorMessage = "El {0} del producto no debe superar los {1} caracteres")]
         public string Familia { get; set; }
 
-        [DisplayName("Precio venta Producto")]
+        [DisplayName("Precio venta")]
         [Required(ErrorMessage = "El {0} del producto es requerido!")]
         public Nullable<double> PrecioVenta { get; set; }
+
+
 
     }
 }
