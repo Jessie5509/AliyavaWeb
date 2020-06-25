@@ -11,6 +11,11 @@ namespace AliyavaCliente.Controllers
 {
     public class UsuarioController : Controller
     {
+        // GET: Usuario
+        public ActionResult Index()
+        {
+            return View();
+        }
         public ActionResult LoginV()
         {
             if (User.Identity.IsAuthenticated == true)

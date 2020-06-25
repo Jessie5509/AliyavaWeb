@@ -27,15 +27,17 @@
 
                     @{ if (User.Identity.IsAuthenticated == true)
                         {
-                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                            <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
+                            
                             <li>@Html.ActionLink("Perfil", "PerfilV", "Cliente")</li>
+                            <li>@Html.ActionLink("Carrito", "CarritoV", "Pedido")</li>
+                            <li>@Html.ActionLink("LogOut", "LogOut", "Usuario")</li>
+
 
 
                         }
                         else
                         {
-                            
+
                             <li>@Html.ActionLink("Ingresar", "LoginV", "Usuario")</li>
                             <li>@Html.ActionLink("Registrarse", "RegistroCliente", "Cliente")</li>
                             @*<li>@Html.ActionLink("Listas de productos", "ListarProducto", "Producto")</li>*@

@@ -49,6 +49,11 @@ namespace DataAccess.Persistencia
             return colDtoProducto;
         }
 
+        //public List<DtoProducto> GetProductoCarrito()
+        //{
+
+        //    return;
+        //}
 
         public void RemoveProducto(int Codigo)
         {

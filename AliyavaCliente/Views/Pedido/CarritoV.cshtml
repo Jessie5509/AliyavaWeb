@@ -1,0 +1,61 @@
+﻿@model List<Common.DTO.DtoProducto>
+
+@{
+    ViewBag.Title = "CarritoV";
+}
+
+<h2>Carrito</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Código de barras
+            </th>
+            <th>
+                Descripción
+            </th>
+            <th>
+                Familia
+            </th>
+            <th>
+                Precio de venta
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Common.DTO.DtoProducto item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.codigoBarras)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Familia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioVenta)
+                </td>
+                <td>
+
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

@@ -35,6 +35,12 @@ namespace BussinesLogic.Helpers
             return pc.GetProducto();
         }
 
+        //public List<DtoProducto> GetProductoCarrito()
+        //{
+        //    PProducto pp = new PProducto();
+        //    return pp.GetProductoCarrito();
+        //}
+
         public void RemoveProducto(int Codigo)
         {
             PProducto ps = new PProducto();
