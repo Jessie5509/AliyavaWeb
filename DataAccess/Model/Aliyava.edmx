@@ -17,7 +17,7 @@
           <Key>
             <PropertyRef Name="idCliente" />
           </Key>
-          <Property Name="idCliente" Type="int" Nullable="false" />
+          <Property Name="idCliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
           <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
@@ -31,7 +31,7 @@
             <PropertyRef Name="idDetallePedido" />
           </Key>
           <Property Name="CantidadPreparar" Type="float" Nullable="false" />
-          <Property Name="idDetallePedido" Type="int" Nullable="false" />
+          <Property Name="idDetallePedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cantidad" Type="float" Nullable="false" />
           <Property Name="PrecioU" Type="float" Nullable="false" />
           <Property Name="UbicacionPro" Type="varchar" MaxLength="50" />
@@ -108,7 +108,7 @@
           <Key>
             <PropertyRef Name="idReparto" />
           </Key>
-          <Property Name="idReparto" Type="int" Nullable="false" />
+          <Property Name="idReparto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MatriculaVehiculo" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Chofer" Type="varchar" MaxLength="20" Nullable="false" />
@@ -118,7 +118,7 @@
           <Key>
             <PropertyRef Name="idReserva" />
           </Key>
-          <Property Name="idReserva" Type="int" Nullable="false" />
+          <Property Name="idReserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Cantidad" Type="float" />
           <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
@@ -127,7 +127,7 @@
           <Key>
             <PropertyRef Name="idStock" />
           </Key>
-          <Property Name="idStock" Type="int" Nullable="false" />
+          <Property Name="idStock" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ubicacion" Type="varchar" MaxLength="10" />
           <Property Name="Motivo" Type="varchar" MaxLength="20" />
           <Property Name="Cantidad" Type="float" />
@@ -139,7 +139,7 @@
           </Key>
           <Property Name="nombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="contraseña" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="idUsuario" Type="int" Nullable="false" />
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <Association Name="FKDetalle_Pedido">
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
@@ -162,18 +162,6 @@
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="idProducto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKDireccionesCliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="idCliente" />
-            </Principal>
-            <Dependent Role="Direcciones">
-              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -270,10 +258,6 @@
           <AssociationSet Name="FKDetalle_Producto" Association="Self.FKDetalle_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetallePedido" EntitySet="DetallePedido" />
-          </AssociationSet>
-          <AssociationSet Name="FKDireccionesCliente" Association="Self.FKDireccionesCliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Direcciones" EntitySet="Direcciones" />
           </AssociationSet>
           <AssociationSet Name="FKHistStock_Empleado" Association="Self.FKHistStock_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
