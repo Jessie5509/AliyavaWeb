@@ -20,7 +20,7 @@ namespace BussinesLogic.Helpers
 
             return _instance;
         }
-        public void AddPedido(List<DtoPedido> colProductosPedidos)
+        public void AddPedido(List<DtoProducto> colProductosPedidos)
         {
             PPedido pp = new PPedido();
             pp.AgregarPedido(colProductosPedidos);
