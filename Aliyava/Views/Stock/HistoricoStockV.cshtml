@@ -1,8 +1,6 @@
 ﻿@model List<Common.DTO.DtoHistoricoStock>
 
-@{
-    ViewBag.Title = "HistoricoStockV";
-}
+@{ ViewBag.Title = "HistoricoStockV"; }
 
 <h2>Histórico Stock</h2>
 
@@ -13,10 +11,10 @@
     <thead>
         <tr>
             <th>
-               Ubicación
+                Ubicación
             </th>
             <th>
-               Motivo
+                Motivo
             </th>
             <th>
                 Cantidad
@@ -30,23 +28,22 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-             
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ubicacion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Motivo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cantidad)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.idEmpleado)
-                </td>
+    <tr>
 
-            </tr>
-        }
+    <td>
+        @Html.DisplayFor(modelItem => item.Ubicacion)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Motivo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cantidad)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.idEmpleado)
+    </td>
+
+</tr>}
     </tbody>
 
 
