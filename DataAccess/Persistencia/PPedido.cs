@@ -32,12 +32,14 @@ namespace DataAccess.Persistencia
                             nuevoPedido.Estado = "Pendiente";
                             nuevoPedido.FechaIngreso = DateTime.Today;
 
+                            //Precio total de productos en el pedido.
                             foreach (DtoProducto item in colProductosPedidos)
                             {
                                 precioTotal = (double)(item.PrecioVenta + precioTotal);
 
                             }
 
+                            //Validación de si es urgente o no.
                             if (urgente == true)
                             {
                                 precioTotal = precioTotal + 10;
@@ -50,20 +52,41 @@ namespace DataAccess.Persistencia
 
                             nuevoPedido.PrecioTotal = precioTotal;
                             nuevoPedido.Usuario = cli.NombreUsuario;
-                            
-
-
+                 
                             context.Pedido.Add(nuevoPedido);
+                            context.SaveChanges();
+
+                            //Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
+                            int Numero = context.Pedido.LastOrDefault(w => w.Usuario == NombreUsu).Numero;
 
                             //DetallePedidoAdd
+        
+                            foreach (DtoProducto dto in colProductosPedidos)
+                            {
+                                DetallePedido ingresoDetallePedido = new DetallePedido();
+                                ingresoDetallePedido.PrecioU = (double)dto.PrecioVenta;
+                                ingresoDetallePedido.idProducto = dto.Codigo;
+                                ingresoDetallePedido.idPedido = Numero;//Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
+                                ingresoDetallePedido.Pedido = nuevoPedido;//??
+
+                                Producto pro = context.Producto.Include("Stock").FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
+                                string ubicacionP = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
+
+                                ingresoDetallePedido.UbicacionPro = ubicacionP;
+
+                                //Contar cant productos.
+                                ingresoDetallePedido.CantidadPreparar = dto.Descripcion.Count();
 
 
+                                context.DetallePedido.Add(ingresoDetallePedido);
+                               
+                            }
 
+                            context.SaveChanges();
 
+                            //Dar de alta la reserva.
 
-
-
-
+                            AddReserva(colProductosPedidos);
 
 
                             scope.Complete();
@@ -84,6 +107,44 @@ namespace DataAccess.Persistencia
             }
         }
 
+        public void AddReserva(List<DtoProducto> colProductosPedidos)
+        {
+            Stock stockByPro = new Stock();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                foreach (DtoProducto dto in colProductosPedidos)
+                {
+                    Reserva nuevaReserva = new Reserva();
+
+                    Producto pro = context.Producto.FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
+                    string ubicacionP = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
+
+                    nuevaReserva.Ubicacion = ubicacionP;
+                    nuevaReserva.Estado = "Activo";
+
+                    int cant = colProductosPedidos.Count(c => c.Codigo == dto.Codigo);
+
+                    nuevaReserva.Cantidad = cant;
+                    //Reservar stock por cada producto de la lista.
+                    stockByPro = context.Stock.FirstOrDefault(f => f.idProducto == dto.Codigo);
+                    stockByPro.Cantidad = stockByPro.Cantidad - cant;
+
+                    context.Reserva.Add(nuevaReserva);
+                    context.SaveChanges();
+
+                }
+
+
+            }
+
+
+        }
+
+        public void CancelarPedido()
+        {
+
+        }
         public List<DtoPedido> GetPedidos(DtoPedido dto)
         {
             List<Pedido> colPedidosDB = new List<Pedido>();

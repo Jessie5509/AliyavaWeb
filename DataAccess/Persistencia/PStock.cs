@@ -43,7 +43,7 @@ namespace DataAccess.Persistencia
         //    }
         //}
 
-        public void SumarStock(DtoStock dto)
+        public void SumarStock(DtoStock dto, string NombreUsu)
         {
             double cantidadAlta = (double)dto.Cantidad;
             double cantResto = 0;
@@ -81,6 +81,7 @@ namespace DataAccess.Persistencia
                                 nuevoStock.Ubicacion = dto.Ubicacion;
                                 nuevoStock.Motivo = dto.Motivo;
                                 nuevoStock.Cantidad = dto.Cantidad;
+                                nuevoStock.nombreUsuEmpleado = NombreUsu;
 
                                 context.Stock.Add(nuevoStock);
                                 context.SaveChanges();
@@ -137,11 +138,46 @@ namespace DataAccess.Persistencia
 
                 }
 
+            }
 
+        }
+
+        public List<DtoHistoricoStock> GetStockHis()
+        {
+            List<DtoHistoricoStock> colHis = new List<DtoHistoricoStock>();
+            List<DtoStock> coldto = new List<DtoStock>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Stock> colStock = context.Stock.Select(s => s).ToList();
+                int idEmpl;
+
+                foreach (Stock stock in colStock)
+                {
+                    DtoStock dtoTo = MStock.MapToDto(stock);
+                    coldto.Add(dtoTo);
+                }
+
+                foreach (DtoStock dtoStock in coldto)
+                {
+                    DtoHistoricoStock dtoHis = new DtoHistoricoStock();
+                    dtoHis.Ubicacion = dtoStock.Ubicacion;
+                    dtoHis.Cantidad = (double)dtoStock.Cantidad;
+                    dtoHis.Motivo = dtoStock.Motivo;
+                   
+                    idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == dtoStock.nombreUsuEmpleado).idEmpleado;
+
+                    dtoHis.idEmpleado = idEmpl;
+                
+                    colHis.Add(dtoHis);
+     
+                }
+                
 
 
             }
 
+            return colHis;
 
 
         }

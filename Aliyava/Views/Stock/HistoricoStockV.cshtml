@@ -1,0 +1,53 @@
+﻿@model List<Common.DTO.DtoHistoricoStock>
+
+@{
+    ViewBag.Title = "HistoricoStockV";
+}
+
+<h2>Histórico Stock</h2>
+
+<p>
+    @Html.ActionLink("Gestionar stock", "AddStock", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+               Ubicación
+            </th>
+            <th>
+               Motivo
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Código empleado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idEmpleado)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+
+</table>

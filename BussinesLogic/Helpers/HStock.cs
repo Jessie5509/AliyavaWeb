@@ -27,10 +27,10 @@ namespace BussinesLogic.Helpers
         //    ps.AltaStock(dto);
         //}
 
-        public void SumStock(DtoStock dto)
+        public void SumStock(DtoStock dto, string NombreUsu)
         {
             PStock ps = new PStock();
-            ps.SumarStock(dto);
+            ps.SumarStock(dto, NombreUsu);
         }
 
         public void BajaStock(DtoStock dto)
@@ -39,6 +39,11 @@ namespace BussinesLogic.Helpers
             ps.DeleteStock(dto);
         }
 
+        public List<DtoHistoricoStock> GetStock()
+        {
+            PStock ps = new PStock();
+            return ps.GetStockHis();
+        }
 
     }
 }

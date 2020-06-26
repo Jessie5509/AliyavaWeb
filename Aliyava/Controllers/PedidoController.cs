@@ -24,12 +24,12 @@ namespace Aliyava.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult AddPedido(DtoPedido nuevoPedido)
-        {
-            HPedido.getInstace().AgregarPedido(nuevoPedido);
-            return RedirectToAction("AddPedidoV");
-        }
+        //[HttpPost]
+        //public ActionResult AddPedido(DtoPedido nuevoPedido)
+        //{
+        //    HPedido.getInstace().AgregarPedido(nuevoPedido);
+        //    return RedirectToAction("AddPedidoV");
+        //}
 
 
 

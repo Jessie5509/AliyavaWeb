@@ -42,19 +42,26 @@ namespace Aliyava.Controllers
         //Agrega mas cantidad de stock.
         public ActionResult SumaStock(DtoStock stock)
         {
-            HStock.getInstace().SumStock(stock);
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+       
+            HStock.getInstace().SumStock(stock, NombreUsu);
             return RedirectToAction("AddStock");
         }
 
         //Quita cantidad de stock.
         public ActionResult BajaStock(DtoStock stock)
         {
-
             HStock.getInstace().BajaStock(stock);
             return RedirectToAction("AddStock");
         }
 
+        public ActionResult HistoricoStockV()
+        { 
+            List<DtoHistoricoStock> colStockH = new List<DtoHistoricoStock>();
+            colStockH = HStock.getInstace().GetStock();
 
+            return View(colStockH);
+        }
 
     }
 }

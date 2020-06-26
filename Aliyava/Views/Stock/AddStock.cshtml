@@ -50,7 +50,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Ingresar" class="btn btn-primary" />
-                @Html.ActionLink("Dar de baja", "BajaStock", "Stock", new { @class = "btn btn-danger" })
+                @Html.ActionLink("Dar de baja", "BajaStock", "Stock", new { @class = "btn btn-danger" }, new { dto = Model })
                 @*<input type="submit" value="Dar de baja" class="btn btn-danger" />*@
             </div>
         </div>

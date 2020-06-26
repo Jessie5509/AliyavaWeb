@@ -34,9 +34,9 @@ namespace DataAccess.Model
         public virtual DbSet<Pedido> Pedido { get; set; }
         public virtual DbSet<Reparto> Reparto { get; set; }
         public virtual DbSet<Reserva> Reserva { get; set; }
-        public virtual DbSet<Stock> Stock { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Stock> Stock { get; set; }
     }
 }

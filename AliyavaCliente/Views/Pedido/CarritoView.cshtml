@@ -62,11 +62,12 @@
 </table>
 
 <div>
-    <label> Urgente  </label>
-    @Html.CheckBox("IsChecked")
+
+    @Html.CheckBox("check")
+    <label for="check" style="display:inline">Urgente</label>
     <br />
 
-    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model, urgente = @Html.CheckBox("IsChecked") },
+    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model, urgente = "check" },
                                   new { @class = "btn btn-primary" })
 
 

@@ -33,6 +33,7 @@ namespace Common.DTO
         [Required(ErrorMessage = "El {0} del producto es requerido!")]
         public Nullable<double> PrecioVenta { get; set; }
 
+        public bool check { get; set; }
 
 
     }

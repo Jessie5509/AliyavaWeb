@@ -16,8 +16,8 @@ namespace DataAccess.Mappers
             dto.Ubicacion = entity.Ubicacion;
             dto.Cantidad = entity.Cantidad;
             dto.Motivo = entity.Motivo;
+            dto.nombreUsuEmpleado = entity.nombreUsuEmpleado;
 
-      
             return dto;
         }
 
@@ -27,7 +27,8 @@ namespace DataAccess.Mappers
             entity.Ubicacion = dto.Ubicacion;
             entity.Cantidad = dto.Cantidad;
             entity.Motivo = dto.Motivo;
-   
+            entity.nombreUsuEmpleado = dto.nombreUsuEmpleado;
+ 
             return entity;
         }
 

@@ -19,6 +19,7 @@ namespace DataAccess.Model
         public string Motivo { get; set; }
         public Nullable<double> Cantidad { get; set; }
         public int idProducto { get; set; }
+        public string nombreUsuEmpleado { get; set; }
     
         public virtual Producto Producto { get; set; }
     }

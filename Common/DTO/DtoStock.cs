@@ -32,7 +32,9 @@ namespace Common.DTO
         [Required(ErrorMessage = "El {0} es requerido!")]
         public int idProducto { get; set; }
 
-     
+        public string nombreUsuEmpleado { get; set; }
+
+
 
     }
 }
