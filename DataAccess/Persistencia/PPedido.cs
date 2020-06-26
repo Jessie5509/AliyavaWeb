@@ -6,24 +6,80 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace DataAccess.Persistencia
 {
     public class PPedido
     {
-        public void AgregarPedido(List<DtoProducto> colProductosPedidos)
+        public void AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool urgente)
         {
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Pedido nuevoPedido = new Pedido();
-                nuevoPedido.Direccion = dto.Direccion;
-                nuevoPedido.Estado = dto.Estado;
-                nuevoPedido.FechaIngreso = dto.FechaIngreso;
-                nuevoPedido.PrecioTotal = dto.PrecioTotal;
-                nuevoPedido.Usuario = dto.Usuario;
-              
-                context.Pedido.Add(nuevoPedido);
-                context.SaveChanges();
+                Cliente cli = context.Cliente.FirstOrDefault(f => f.NombreUsuario == NombreUsu && f.contraseña == password);
+                double precioTotal = 0;
+
+                if (cli.Direccion != null && cli.Telefono != null)
+                {
+                    using (TransactionScope scope = new TransactionScope())
+                    {
+                        try
+                        {
+                            Pedido nuevoPedido = new Pedido();
+
+                            nuevoPedido.Direccion = cli.Direccion;
+                            nuevoPedido.Estado = "Pendiente";
+                            nuevoPedido.FechaIngreso = DateTime.Today;
+
+                            foreach (DtoProducto item in colProductosPedidos)
+                            {
+                                precioTotal = (double)(item.PrecioVenta + precioTotal);
+
+                            }
+
+                            if (urgente == true)
+                            {
+                                precioTotal = precioTotal + 10;
+                                nuevoPedido.Urgente = "Si";
+                            }
+                            else
+                            {
+                                nuevoPedido.Urgente = "No";
+                            }
+
+                            nuevoPedido.PrecioTotal = precioTotal;
+                            nuevoPedido.Usuario = cli.NombreUsuario;
+                            
+
+
+                            context.Pedido.Add(nuevoPedido);
+
+                            //DetallePedidoAdd
+
+
+
+
+
+
+
+
+
+
+                            scope.Complete();
+                        }
+                        catch (Exception ex)
+                        {
+                            scope.Dispose();
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    //Msj de error porque no ingreso esos datos.
+                }
 
             }
         }
