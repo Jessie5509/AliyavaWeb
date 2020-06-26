@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Common.DTO.DtoCategoria>
+
+@{
+    ViewBag.Title = "ListarCategoria";
+}
+
+<h2>ListarCategoria</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idCategoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idProducto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (Common.DTO.DtoCategoria item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.idCategoria)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.idProducto)
+    </td>
+    <td>
+        @Html.ActionLink("Eliminar", "RemoveCategoria", new { idCategoria = item.idCategoria }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Modificar", "ModificarCategoria", new { idCategoria = item.idCategoria }, new { @class = "btn btn-primary" })
+    </td>
+</tr>
+}
+
+</table>

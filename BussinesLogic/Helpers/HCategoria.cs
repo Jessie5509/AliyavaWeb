@@ -40,6 +40,11 @@ namespace BussinesLogic.Helpers
             ps.RemoveCategoria(dto);
         }
 
+        public void ModificarCategoria(DtoCategoria dto)
+        {
+            PCategoria pc = new PCategoria();
+            pc.ModificarCategoria(dto);
+        }
 
     }
 }
