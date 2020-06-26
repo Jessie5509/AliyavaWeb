@@ -44,5 +44,13 @@ namespace Aliyava.Controllers
             return RedirectToAction("RemoveProducto");
         }
 
+
+        public ActionResult ConfirmarCambios(DtoCategoria dtoCat)
+        {
+            HCategoria.getInstace().ModificarCategoria(dtoCat);
+            return RedirectToAction("ListarCategoria");
+
+        }
+
     }
 }

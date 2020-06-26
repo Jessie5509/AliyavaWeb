@@ -282,6 +282,8 @@
     <Content Include="Views\Stock\CrearStockV.cshtml" />
     <Content Include="Views\Producto\ModificarProducto.cshtml" />
     <Content Include="Views\Empleado\RegistroEmpleado.cshtml" />
+    <Content Include="Views\Categoria\ListarCategoria.cshtml" />
+    <Content Include="Views\Categoria\ModificarCategoria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

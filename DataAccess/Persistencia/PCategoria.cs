@@ -60,6 +60,19 @@ namespace DataAccess.Persistencia
 
         }
 
+        public void ModificarCategoria(DtoCategoria DtoCat)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Categoria updatecat = context.Categoria.FirstOrDefault(f => f.idCategoria == DtoCat.idCategoria);
+                updatecat.Nombre = DtoCat.Nombre;
+                updatecat.idProducto = DtoCat.idProducto;
+                
+
+                context.SaveChanges();
+            }
+        }
+
 
 
     }
