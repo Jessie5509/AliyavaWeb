@@ -37,10 +37,13 @@ namespace AliyavaCliente.Controllers
             return View(colProducto);
         }
 
-        public ActionResult RealizarPedido(List<DtoProducto> colProductosPedidos)
+        public ActionResult RealizarPedido(List<DtoProducto> colProductosPedidos, bool urgente)
         {
             //Alta pedido, detalle pedido, reserva y baja del stock, cambio del estado y ver historico de estados.
-            HPedido.getInstace().AddPedido(colProductosPedidos);
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            string password = Session["Contraseña"].ToString();
+     
+            HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, urgente);
 
 
             return View();

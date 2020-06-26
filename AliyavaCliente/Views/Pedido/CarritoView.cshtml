@@ -50,8 +50,10 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Eliminar", "RemoveProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
+
+
                 </td>
             </tr>
         }
@@ -60,7 +62,13 @@
 </table>
 
 <div>
-    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model },
+    <label> Urgente  </label>
+    @Html.CheckBox("IsChecked")
+    <br />
+
+    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model, urgente = @Html.CheckBox("IsChecked") },
                                   new { @class = "btn btn-primary" })
+
+
 </div>
 
