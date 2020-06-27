@@ -9,6 +9,23 @@
 {
     @Html.ValidationSummary(true, "")
 
+    //GOOGLE MAPS
+
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 350px;
+            width: 550px;
+            float: right;
+            position: absolute;
+            margin-left: 540px;
+            margin-top: 0px;
+        }
+    </style>
+
+    <div id="map"></div>
+
 
     <div class="row form-group">
         <div class="col-md-2">
@@ -81,6 +98,29 @@
     </div>
 
 
+    <div class="row form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.latitud)
+        </div>
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="row form-group">
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.longitud)
+        </div>
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
 
     <input type="submit" value="Confirmar" class="btn btn-primary" />
     @Html.ActionLink("Cancelar", "Index", "Home", new { @class = "btn btn-danger" })
@@ -91,5 +131,52 @@
 @section Scripts{
 
     @Scripts.Render("~/bundles/jqueryval")
-   
+
+    @*API*@
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8BB5_96zmhDpNryv9En4TbunSeXDnHMg&callback=initMap"></script>
+
+    @*GEOLOCATION*@
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 6
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+    </script>
+
 }
