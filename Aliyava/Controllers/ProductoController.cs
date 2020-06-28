@@ -13,10 +13,14 @@ namespace Aliyava.Controllers
     public class ProductoController : Controller
     {
         // GET: Producto
-        public ActionResult Index()
+        public ActionResult Index(string dato)
         {
+
+
             return View();
         }
+
+ 
 
 
         public ActionResult RegistrarProducto()

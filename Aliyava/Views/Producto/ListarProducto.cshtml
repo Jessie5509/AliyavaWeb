@@ -9,10 +9,14 @@
 <p>
     @Html.ActionLink("Agregar productos", "RegistrarProducto", "Producto", new { @class = "btn btn-primary" })
 </p>
+
+
+
 <table class="table">
     <thead>
         <tr>
             <th>
+                
                 Código
             </th>
             <th>
@@ -28,6 +32,9 @@
                 Precio de venta
             </th>
             <th>
+                Descripcion Producto
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -35,27 +42,30 @@
     <tbody>
         @foreach (Common.DTO.DtoProducto item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Codigo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.codigoBarras)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Familia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PrecioVenta)
-                </td>
-                <td>
-                    @Html.ActionLink("Eliminar", "RemoveProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Modificar", "ModificarProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-primary" })
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codigoBarras)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Familia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrecioVenta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProDescripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Eliminar", "RemoveProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Modificar", "ModificarProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-primary" })
+            </td>
+        </tr>
         }
     </tbody>
 

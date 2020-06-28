@@ -8,13 +8,24 @@
 
 </div>
 
+<style type="text/css">
+    #contenido {
+        width: 80%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+
+</style>
+
 <div class="row">
     <div >
         <h2>Productos</h2>
     </div>
     
     <div >
-        <div class="row" style="height:auto; background-color: rgba(255,0,0,0.1);">
+        <div class="row" style="height:5000px; background-color: rgba(255,0,0,0.1);">
             <div class="container">
                 @foreach (Common.DTO.DtoProducto item in Model)
                 {
@@ -25,7 +36,8 @@
 
                     </div>
                     <div class="panel-footer">
-                        <p>@Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                        <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                        <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
                         <p>@Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
                                        new { @class = "btn btn-primary"})</p>
                       

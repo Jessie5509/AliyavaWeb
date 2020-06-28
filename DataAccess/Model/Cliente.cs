@@ -29,6 +29,8 @@ namespace DataAccess.Model
         public string Apellido { get; set; }
         public string email { get; set; }
         public string contraseña { get; set; }
+        public Nullable<decimal> latitud { get; set; }
+        public Nullable<decimal> longitud { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direcciones> Direcciones { get; set; }
