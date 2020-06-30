@@ -25,25 +25,36 @@ namespace AliyavaCliente.Controllers
         }
         public ActionResult CarritoV(int id)
         {
-            List<DtoProducto> colProducto = new List<DtoProducto>();
+            List<DtoProducto> colProducto = null;
+            if (Session["colProductos"] == null)
+            {
+                colProducto = new List<DtoProducto>();
+            }
+            else {
+                colProducto = (List<DtoProducto>)Session["colProductos"];
+
+            }
+
             DtoProducto producto = new DtoProducto();
             producto = HProducto.getInstace().GetProductoCarrito(id);
-
             colProducto.Add(producto);
-
-            //ViewBag.colPro = colProducto;
             Session["colProductos"] = colProducto;
 
-            return View(colProducto);
+
+            return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult RealizarPedido(List<DtoProducto> colProductosPedidos, bool urgente)
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult RealizarPedido(FormCollection form, bool ChkUrgente)
         {
+            ViewData["ChkUrgente"] = ChkUrgente;
+        
             //Alta pedido, detalle pedido, reserva y baja del stock, cambio del estado y ver historico de estados.
             string NombreUsu = Session["NombreDeUsuario"].ToString();
             string password = Session["Contraseña"].ToString();
-     
-            HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, urgente);
+            List<DtoProducto> colProductosPedidos = (List<DtoProducto>)Session["colProductos"];
+
+            HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
 
             return View();

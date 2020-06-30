@@ -12,7 +12,7 @@ namespace DataAccess.Persistencia
 {
     public class PPedido
     {
-        public void AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool urgente)
+        public void AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
         {
 
             using (AliyavaEntities context = new AliyavaEntities())
@@ -40,7 +40,7 @@ namespace DataAccess.Persistencia
                             }
 
                             //Validación de si es urgente o no.
-                            if (urgente == true)
+                            if (ChkUrgente == true)
                             {
                                 precioTotal = precioTotal + 10;
                                 nuevoPedido.Urgente = "Si";
@@ -57,6 +57,7 @@ namespace DataAccess.Persistencia
                             context.SaveChanges();
 
                             //Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
+                            //Session tal vez.
                             int Numero = context.Pedido.LastOrDefault(w => w.Usuario == NombreUsu).Numero;
 
                             //DetallePedidoAdd

@@ -20,7 +20,7 @@
         <EntityTypeShape EntityType="AliyavaModel.Empleado" Width="1.5" PointX="4.75" PointY="0.5" FillColor="192, 0, 0" />
         <AssociationConnector Association="AliyavaModel.FKHistStock_Empleado" />
         <EntityTypeShape EntityType="AliyavaModel.Stock" Width="1.5" PointX="8.875" PointY="5.375" />
-        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="11.125" PointY="3.375" />
+        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="11.125" PointY="2.875" />
         <AssociationConnector Association="AliyavaModel.FKProducto_Categoria" />
         <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
         <AssociationConnector Association="AliyavaModel.FKStock_Producto" />

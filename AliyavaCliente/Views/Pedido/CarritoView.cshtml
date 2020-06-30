@@ -63,13 +63,24 @@
 
 <div>
 
-    @Html.CheckBox("check")
-    <label for="check" style="display:inline">Urgente</label>
-    <br />
 
-    @Html.ActionLink("Realizar pedido", "RealizarPedido", "Pedido", new { colProductosPedidos = Model, urgente = "check" },
-                                  new { @class = "btn btn-primary" })
+    @using (@Html.BeginForm("RealizarPedido", "Pedido"))
+    {
+        @*@Html.CheckBox("ChkUrgente")
+        <label for="check" style="display:inline">Urgente</label>*@
+
+    <label for="ChkUrgente">
+        Urgente
+        @Html.CheckBox("ChkUrgente", ViewData["ChkUrgente"])
+
+    </label>
 
 
-</div>
+            <br />
+
+            <input type="submit" value="Realizar Pedido" class="btn btn-primary" />
+    }
+
+
+    </div>
 
