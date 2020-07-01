@@ -17,6 +17,7 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Categoria Cat = new Categoria();
+                Cat.idCategoria = dto.idCategoria;
                 Cat.Nombre = dto.Nombre;
                 Cat.idProducto = dto.idProducto;
 
@@ -45,13 +46,12 @@ namespace DataAccess.Persistencia
         }
 
 
-        public void RemoveCategoria(DtoCategoria dto)
+        public void RemoveCategoria(int id)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
-                Categoria cat = MCategoria.MapToEntity(dto);
-
+                Categoria cat = context.Categoria.FirstOrDefault(f => f.idCategoria == id);
                 context.Categoria.Remove(cat);
                 context.SaveChanges();
 
@@ -73,6 +73,18 @@ namespace DataAccess.Persistencia
             }
         }
 
+
+        public DtoCategoria GetCategoriaM(int id)
+        {
+            DtoCategoria dto = new DtoCategoria();
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Categoria cat = context.Categoria.FirstOrDefault(f => f.idCategoria == id);
+
+                dto = MCategoria.MapToDto(cat);
+            }
+            return dto;
+        }
 
 
     }

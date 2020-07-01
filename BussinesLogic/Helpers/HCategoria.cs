@@ -34,16 +34,22 @@ namespace BussinesLogic.Helpers
             return pc.GetCategoria();
         }
 
-        public void RemoveCategoria(DtoCategoria dto)
+        public void RemoveCategoria(int id)
         {
             PCategoria ps = new PCategoria();
-            ps.RemoveCategoria(dto);
+            ps.RemoveCategoria(id);
         }
 
         public void ModificarCategoria(DtoCategoria dto)
         {
             PCategoria pc = new PCategoria();
             pc.ModificarCategoria(dto);
+        }
+
+        public DtoCategoria GetCategoriaM(int id)
+        {
+            PCategoria pc = new PCategoria();
+            return pc.GetCategoriaM(id);
         }
 
     }
