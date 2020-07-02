@@ -38,10 +38,10 @@ namespace Aliyava.Controllers
             return View(colCategoria);
         }
 
-        public ActionResult RemoveProducto(DtoCategoria dto)
+        public ActionResult RemoveCategoria(int id)
         {
-            HCategoria.getInstace().RemoveCategoria(dto);
-            return RedirectToAction("RemoveProducto");
+            HCategoria.getInstace().RemoveCategoria(id);
+            return RedirectToAction("ListarCategoria");
         }
 
 
@@ -50,6 +50,17 @@ namespace Aliyava.Controllers
             HCategoria.getInstace().ModificarCategoria(dtoCat);
             return RedirectToAction("ListarCategoria");
 
+        }
+
+
+        //Vista formulario a modificar.
+        public ActionResult ModificarCategoria(int id)
+        {
+            DtoCategoria cateFB = new DtoCategoria();
+
+            cateFB = HCategoria.getInstace().GetCategoriaM(id);
+
+            return View(cateFB);
         }
 
     }

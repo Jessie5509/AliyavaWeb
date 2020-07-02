@@ -35,8 +35,8 @@
         @Html.DisplayFor(modelItem => item.idProducto)
     </td>
     <td>
-        @Html.ActionLink("Eliminar", "RemoveCategoria", new { idCategoria = item.idCategoria }, new { @class = "btn btn-danger" })
-        @Html.ActionLink("Modificar", "ModificarCategoria", new { idCategoria = item.idCategoria }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Eliminar", "RemoveCategoria", new { id = item.idCategoria }, new { @class = "btn btn-danger" })
+        @Html.ActionLink("Modificar", "ModificarCategoria", new { id = item.idCategoria }, new { @class = "btn btn-primary" })
     </td>
 </tr>
 }

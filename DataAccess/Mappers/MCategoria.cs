@@ -14,6 +14,7 @@ namespace DataAccess.Mappers
         public static DtoCategoria MapToDto(Categoria entity)
         {
             DtoCategoria dto = new DtoCategoria();
+            dto.idCategoria = entity.idCategoria;
             dto.Nombre = entity.Nombre;
             dto.idProducto = entity.idProducto;
 
@@ -23,6 +24,7 @@ namespace DataAccess.Mappers
         public static Categoria MapToEntity(DtoCategoria dto)
         {
             Categoria entity = new Categoria();
+            entity.idCategoria = dto.idCategoria;
             entity.Nombre = dto.Nombre;
             entity.idProducto = dto.idProducto;
 

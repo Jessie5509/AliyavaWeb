@@ -19,33 +19,63 @@
 
 </style>
 
+<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js">
+
+    $(function () {
+        $('#searchable-container').searchable({
+            searchField: '#container-search',
+            selector: '.panel',
+            childSelector: '.col-xs-4',
+            show: function (elem) {
+                elem.slideDown(100);
+            },
+            hide: function (elem) {
+                elem.slideUp(100);
+            }
+        })
+    });
+
+
+
+</script>
+
 <div class="row">
-    <div >
+    <div>
         <h2>Productos</h2>
     </div>
-    
-    <div >
+
+    <div class="row">
+        <div class="col-lg-4 col-lg-offset-4">
+            <input type="search" id="container-search" value="" class="form-control" placeholder="Search...">
+        </div>
+    </div>
+
+    <div>
         <div class="row" style="height:5000px; background-color: rgba(255,0,0,0.1);">
-            <div class="container">
+            <div class="container" id="searchable-container">
                 @foreach (Common.DTO.DtoProducto item in Model)
                 {
-                <div class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
-                    <div class="panel-heading">@Html.DisplayFor(modelItem => item.Descripcion)</div>
-                    <div class="panel-body">
-                        <img class="img-responsive" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
+                    <div class="panel panel-default "  style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
+                        <div class="col-xs-4">
+                            <div class="panel-heading" >@Html.DisplayFor(modelItem => item.Descripcion)</div>
+                        </div>
+                        <div class="panel-body">
+                            <img class="img-responsive" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
+
+                        </div>
+                        <div class="panel-footer">
+                            <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                            <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
+                            <p>
+                                @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
+                                        new { @class = "btn btn-primary" })
+                            </p>
+
+                            @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
+                        </div>
+
 
                     </div>
-                    <div class="panel-footer">
-                        <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
-                        <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
-                        <p>@Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
-                                       new { @class = "btn btn-primary"})</p>
-                      
-                        @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
-                    </div>
-
-                 
-                </div>
                 }
 
             </div>
