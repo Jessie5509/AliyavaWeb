@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Common.DTO.DtoStock>
+
+@{
+    ViewBag.Title = "ListarStock";
+}
+
+<h2>Listado stock</h2>
+
+<p>
+    @Html.ActionLink("Gestionar stock", "AddStock", "Stock", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Ubicación
+            </th>
+            <th>
+                Motivo
+            </th>
+            <th>
+                Cantidad
+            </th>
+
+            <th>
+                Código producto
+            </th>
+            <th>
+                Usuario
+            </th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ubicacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Motivo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.idProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombreUsuEmpleado)
+                </td>
+
+            </tr>
+        }
+    </tbody>
+
+</table>

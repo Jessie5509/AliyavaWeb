@@ -8,31 +8,32 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Mappers
 {
-    public class MStock
+    public class MHisStock
     {
-        public static DtoStock MapToDto(Stock entity)
+        public static DtoHistoricoStock MapToDto(HistoricoStock entity)
         {
-            DtoStock dto = new DtoStock();
+            DtoHistoricoStock dto = new DtoHistoricoStock();
             dto.Ubicacion = entity.Ubicacion;
             dto.Cantidad = entity.Cantidad;
             dto.Motivo = entity.Motivo;
-            dto.nombreUsuEmpleado = entity.nombreUsuEmpleado;
-            dto.idProducto = entity.idProducto;
+            dto.idEmpleado = entity.idEmpleado;
+            dto.CantidadAddOBaja = entity.CantidadAddOBaja;
 
             return dto;
         }
 
-        public static Stock MapToEntity(DtoStock dto)
+        public static HistoricoStock MapToEntity(DtoHistoricoStock dto)
         {
-            Stock entity = new Stock();
+            HistoricoStock entity = new HistoricoStock();
             entity.Ubicacion = dto.Ubicacion;
             entity.Cantidad = dto.Cantidad;
             entity.Motivo = dto.Motivo;
-            entity.nombreUsuEmpleado = dto.nombreUsuEmpleado;
-            entity.idProducto = dto.idProducto;
- 
+            entity.idEmpleado = dto.idEmpleado;
+            entity.CantidadAddOBaja = dto.CantidadAddOBaja;
+
             return entity;
         }
+
 
     }
 }

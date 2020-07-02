@@ -48,8 +48,7 @@ namespace DataAccess.Persistencia
             double cantidadAlta = (double)dto.Cantidad;
             double cantResto = 0;
             Stock stock = new Stock();
-            
-            //Validación: Depende que motivo lo que se hace con la cantidad.
+            int idEmpl;
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -61,11 +60,32 @@ namespace DataAccess.Persistencia
                     {
                         stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
 
-                        //stock = MStock.MapToEntity(dto);
-                        cantResto = (double)(cantidadAlta + stock.Cantidad);
-                        stock.Cantidad = cantResto;
+                        if (cantidadAlta > 0)
+                        {
+                            //stock = MStock.MapToEntity(dto);
+                            cantResto = (double)(cantidadAlta + stock.Cantidad);
+                            stock.Cantidad = cantResto;
 
-                        context.SaveChanges();
+                            HistoricoStock hisStock = new HistoricoStock();
+                            hisStock.Cantidad = (double)stock.Cantidad;
+                            hisStock.Ubicacion = stock.Ubicacion;
+                            hisStock.Motivo = dto.Motivo;
+                            hisStock.CantidadAddOBaja = (double)cantidadAlta;
+
+                            idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == stock.nombreUsuEmpleado).idEmpleado;
+
+                            hisStock.idEmpleado = idEmpl;
+                            context.HistoricoStock.Add(hisStock);
+                            context.SaveChanges();
+
+                        }
+                        else if(cantidadAlta < 0)
+                        {
+                            DeleteStock(dto);
+
+                        }
+
+
                     }
                     else
                     {
@@ -76,15 +96,37 @@ namespace DataAccess.Persistencia
                             
                             try
                             {
-                                Stock nuevoStock = new Stock();
-                                nuevoStock.Producto = pro;
-                                nuevoStock.Ubicacion = dto.Ubicacion;
-                                nuevoStock.Motivo = dto.Motivo;
-                                nuevoStock.Cantidad = dto.Cantidad;
-                                nuevoStock.nombreUsuEmpleado = NombreUsu;
 
-                                context.Stock.Add(nuevoStock);
-                                context.SaveChanges();
+                                if (cantidadAlta > 0)
+                                {
+                                    Stock nuevoStock = new Stock();
+                                    nuevoStock.Producto = pro;
+                                    nuevoStock.Ubicacion = dto.Ubicacion;
+                                    nuevoStock.Motivo = dto.Motivo;
+                                    nuevoStock.Cantidad = dto.Cantidad;
+                                    nuevoStock.nombreUsuEmpleado = NombreUsu;
+
+                                    context.Stock.Add(nuevoStock);
+                                    context.SaveChanges();
+
+                                    HistoricoStock hisStock = new HistoricoStock();
+                                    hisStock.Cantidad = (double)nuevoStock.Cantidad;
+                                    hisStock.Ubicacion = nuevoStock.Ubicacion;
+                                    hisStock.Motivo = nuevoStock.Motivo;
+                                    hisStock.CantidadAddOBaja = (double)cantidadAlta;
+
+                                    idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == nuevoStock.nombreUsuEmpleado).idEmpleado;
+
+                                    hisStock.idEmpleado = idEmpl;
+                                    context.HistoricoStock.Add(hisStock);
+
+                                    context.SaveChanges();
+                                }
+                                else
+                                {
+                                    //Error estas tratando de dar de baja cant de producto que no tiene stock.
+                                    //El producto no tiene stock.
+                                }
 
                                 scope.Complete();
                             }
@@ -106,6 +148,7 @@ namespace DataAccess.Persistencia
             double cantidadBaja = (double)dto.Cantidad;
             double cantResto = 0;
             Stock stock = new Stock();
+            int idEmpl;
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -117,8 +160,21 @@ namespace DataAccess.Persistencia
                 {
                     stock = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == dto.codigoBarras);
 
-                    cantResto = (double)(cantidadBaja - stock.Cantidad);
+                    stock.Cantidad = (-stock.Cantidad);
+                    cantResto = (double)(cantidadBaja - (stock.Cantidad));
                     stock.Cantidad = cantResto;
+
+                    HistoricoStock hisStock = new HistoricoStock();
+                    hisStock.Cantidad = (double)stock.Cantidad;
+                    hisStock.Ubicacion = stock.Ubicacion;
+                    hisStock.Motivo = dto.Motivo;
+                    hisStock.CantidadAddOBaja = cantidadBaja;
+
+                    idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == stock.nombreUsuEmpleado).idEmpleado;
+
+                    hisStock.idEmpleado = idEmpl;
+                    context.HistoricoStock.Add(hisStock);
+                    context.SaveChanges();
 
                     if (stock.Cantidad == 0)
                     {
@@ -130,6 +186,8 @@ namespace DataAccess.Persistencia
                         context.SaveChanges();
                     }
 
+
+
                   
                 }
                 else
@@ -138,43 +196,42 @@ namespace DataAccess.Persistencia
 
                 }
 
+
+
             }
 
         }
 
-        public List<DtoHistoricoStock> GetStockHis()
+        public List<DtoStock> getAllStock()
         {
-            List<DtoHistoricoStock> colHis = new List<DtoHistoricoStock>();
-            List<DtoStock> coldto = new List<DtoStock>();
-
+            List<DtoStock> colDtoStock = new List<DtoStock>();
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 List<Stock> colStock = context.Stock.Select(s => s).ToList();
-                int idEmpl;
 
-                foreach (Stock stock in colStock)
+                foreach (Stock s in colStock)
                 {
-                    DtoStock dtoTo = MStock.MapToDto(stock);
-                    coldto.Add(dtoTo);
+                    DtoStock dto = MStock.MapToDto(s);
+                    colDtoStock.Add(dto);
+                }
+            }
+            return colDtoStock;
+        }
+        public List<DtoHistoricoStock> GetStockHis()
+        {
+            List<DtoHistoricoStock> colHis = new List<DtoHistoricoStock>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<HistoricoStock> colHisDB = context.HistoricoStock.Select(s => s).ToList();
+
+                foreach (HistoricoStock hisstock in colHisDB)
+                {
+                    DtoHistoricoStock dtoTo = MHisStock.MapToDto(hisstock);
+                    colHis.Add(dtoTo);
                 }
 
-                foreach (DtoStock dtoStock in coldto)
-                {
-                    DtoHistoricoStock dtoHis = new DtoHistoricoStock();
-                    dtoHis.Ubicacion = dtoStock.Ubicacion;
-                    dtoHis.Cantidad = (double)dtoStock.Cantidad;
-                    dtoHis.Motivo = dtoStock.Motivo;
-                   
-                    idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == dtoStock.nombreUsuEmpleado).idEmpleado;
-
-                    dtoHis.idEmpleado = idEmpl;
-                
-                    colHis.Add(dtoHis);
-     
-                }
-                
-
-
+    
             }
 
             return colHis;

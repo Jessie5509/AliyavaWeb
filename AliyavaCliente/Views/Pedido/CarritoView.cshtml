@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "CarritoView";
-    
+
 }
 
 <h2>Carrito</h2>
@@ -31,8 +31,11 @@
     </thead>
 
     <tbody>
+        
+        @if (Model != null)
+        {
 
-        @foreach (Common.DTO.DtoProducto item in Model)
+        foreach (Common.DTO.DtoProducto item in Model)
         {
             <tr>
 
@@ -50,12 +53,13 @@
                 </td>
                 <td>
 
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })
-                    @Html.ActionLink("Eliminar", "RemoveProducto", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Ver", "ProductoInfo", "Producto", new { Codigo = item.Codigo }, new { @class = "btn btn-info" })
+                    @Html.ActionLink("Eliminar", "EliminarProCarrito", "Pedido", new { Codigo = item.Codigo }, new { @class = "btn btn-danger" })
 
 
                 </td>
             </tr>
+        }
         }
     </tbody>
 

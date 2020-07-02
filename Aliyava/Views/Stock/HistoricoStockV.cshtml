@@ -20,6 +20,9 @@
                 Cantidad
             </th>
             <th>
+                Cantidad agregada o quitada
+            </th>
+            <th>
                 Código empleado
             </th>
             <th></th>
@@ -38,6 +41,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.Cantidad)
+    </td>
+         <td>
+        @Html.DisplayFor(modelItem => item.CantidadAddOBaja)
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.idEmpleado)

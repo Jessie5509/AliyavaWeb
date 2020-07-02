@@ -25,11 +25,11 @@ namespace Common.DTO
         public Nullable<double> Cantidad { get; set; }
 
         [DisplayName("Código de barras")]
-        [Required(ErrorMessage = "El {0} es requerido!")]
+    
         public string codigoBarras { get; set; }
 
         [DisplayName("Código de producto")]
-        [Required(ErrorMessage = "El {0} es requerido!")]
+
         public int idProducto { get; set; }
 
         public string nombreUsuEmpleado { get; set; }

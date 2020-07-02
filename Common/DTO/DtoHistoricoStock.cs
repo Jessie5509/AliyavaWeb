@@ -13,5 +13,6 @@ namespace Common.DTO
         public string Motivo { get; set; }
         public double Cantidad { get; set; }
         public int idEmpleado { get; set; }
+        public Nullable<double> CantidadAddOBaja { get; set; }
     }
 }

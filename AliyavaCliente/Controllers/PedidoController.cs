@@ -60,5 +60,21 @@ namespace AliyavaCliente.Controllers
             return View();
         }
 
+        public ActionResult EliminarProCarrito(int cod)
+        {
+            List<DtoProducto> colPro = (List<DtoProducto>)Session["colProductos"];
+       
+            foreach (DtoProducto item in colPro)
+            {
+                if (item.Codigo == cod)
+                {
+                    colPro.Remove(item);
+                }
+
+            }
+
+            return View("CarritoView");
+        }
+
     }
 }
