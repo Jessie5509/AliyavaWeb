@@ -57,8 +57,22 @@ namespace AliyavaCliente.Controllers
             HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
 
+            return View("PedidoRealizado");
+        }
+
+        public ActionResult PedidoRealizado()
+        {
+
+            //Col prod o pedido o lo que sea la view.
             return View();
         }
+
+        //public ActionResult PedidoDetalleByPro(int codPro)
+        //{
+
+   
+        //    return View();
+        //}
 
         public ActionResult EliminarProCarrito(int cod)
         {

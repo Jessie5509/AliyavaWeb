@@ -1,0 +1,74 @@
+﻿@model List<Common.DTO.DtoDetallePedido>
+
+@{
+    ViewBag.Title = "PedidoDetalleByPro";
+}
+
+<h2>Pedido, detalle de sus productos</h2>
+
+<div>
+   
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadPreparar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CantidadPreparar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idDetallePedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idDetallePedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PrecioU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UbicacionPro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UbicacionPro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idPedido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPedido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idProducto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idProducto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

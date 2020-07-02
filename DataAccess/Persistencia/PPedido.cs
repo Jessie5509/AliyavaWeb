@@ -58,23 +58,31 @@ namespace DataAccess.Persistencia
 
                             //Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
                             //Session tal vez.
-                            int Numero = context.Pedido.LastOrDefault(w => w.Usuario == NombreUsu).Numero;
+                            int Numero = context.Pedido.FirstOrDefault(w => w.Usuario == NombreUsu).Numero;
 
                             //DetallePedidoAdd
-        
+                            int contador = 0;
+                            int cod;
+
                             foreach (DtoProducto dto in colProductosPedidos)
                             {
                                 DetallePedido ingresoDetallePedido = new DetallePedido();
                                 ingresoDetallePedido.PrecioU = (double)dto.PrecioVenta;
                                 ingresoDetallePedido.idProducto = dto.Codigo;
                                 ingresoDetallePedido.idPedido = Numero;//Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
-                                ingresoDetallePedido.Pedido = nuevoPedido;//??
+                                /*ingresoDetallePedido.Pedido = nuevoPedido;*///??
 
                                 Producto pro = context.Producto.Include("Stock").FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
                                 string ubicacionP = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
 
                                 ingresoDetallePedido.UbicacionPro = ubicacionP;
 
+                                cod = dto.Codigo;
+
+                                if (dto.Codigo)
+                                {
+
+                                }
                                 //Contar cant productos.
                                 ingresoDetallePedido.CantidadPreparar = dto.Descripcion.Count();
 
