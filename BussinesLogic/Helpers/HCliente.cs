@@ -34,6 +34,18 @@ namespace BussinesLogic.Helpers
             
         }
 
+        public List<DtoDirecciones> GetDirecciones(string password)
+        {
+            PCliente pc = new PCliente();
+            return pc.getDataDire(password);
+
+        }
+
+        public void AddDireccion(DtoDirecciones nuevaDireccion, string password)
+        {
+            PCliente pc = new PCliente();
+            pc.addDire(nuevaDireccion, password);
+        }
         public void ModificarPerfil(DtoCliente dto)
         {
             PCliente pc = new PCliente();

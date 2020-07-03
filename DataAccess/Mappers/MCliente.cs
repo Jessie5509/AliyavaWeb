@@ -20,6 +20,8 @@ namespace DataAccess.Mappers
             dto.Direccion = entity.Direccion;
             dto.email = entity.email;
             dto.Telefono = entity.Telefono;
+            dto.latitud = entity.latitud;
+            dto.longitud = entity.longitud;
      
             return dto;
         }
@@ -34,6 +36,8 @@ namespace DataAccess.Mappers
             entity.Direccion = dto.Direccion;
             entity.email = dto.email;
             entity.Telefono = dto.Telefono;
+            entity.latitud = dto.latitud;
+            entity.longitud = dto.longitud;
 
             return entity;
         }

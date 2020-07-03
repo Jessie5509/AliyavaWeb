@@ -278,7 +278,8 @@
     <Content Include="Views\Pedido\CarritoView.cshtml" />
     <Content Include="Views\Home\ProductoInfo.cshtml" />
     <Content Include="Views\Pedido\PedidoRealizado.cshtml" />
-    <Content Include="Views\Pedido\PedidoDetalleByPro.cshtml" />
+    <Content Include="Views\Cliente\ListarDirecciones.cshtml" />
+    <Content Include="Views\Cliente\DireccionForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -36,7 +36,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.NombreUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.NombreUsuario, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
             </div>
@@ -44,7 +44,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
             </div>
@@ -52,7 +52,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.contraseña, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.contraseña, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.contraseña, "", new { @class = "text-danger" })
             </div>
@@ -60,7 +60,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
             </div>
@@ -68,7 +68,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
             </div>
@@ -76,7 +76,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Telefono, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.Telefono, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Telefono, "", new { @class = "text-danger" })
             </div>
@@ -85,7 +85,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Direccion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-2">
                 @Html.EditorFor(model => model.Direccion, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
             </div>
@@ -93,23 +93,23 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.latitud, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control", @id = "lat" } })
                 @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.longitud, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control" } })
+            <div class="col-md-2">
+                @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control", @id = "long" } })
                 @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-2">
                 <input type="submit" value="Registrarse" class="btn btn-primary" />
             </div>
         </div>
@@ -131,6 +131,9 @@
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
         var map, infoWindow;
+        var latc = null;
+        var longc = null;
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 center: { lat: -34.397, lng: 150.644 },
@@ -157,8 +160,64 @@
                 // Browser doesn't support Geolocation
                 handleLocationError(false, infoWindow, map.getCenter());
             }
-        }
 
+            var marker;
+
+            function addMarker(location, map) {
+
+                if (marker) {
+                    marker.setPosition(location);
+                    map: map;
+
+                    // Create a new InfoWindow.
+                    infoWindow = new google.maps.InfoWindow({ position: location });
+                    infoWindow.setContent(location.toString());
+                    infoWindow.open(map);
+
+                    var latc = location.lat();
+                    var longc = location.lng();
+
+
+                    document.getElementById('lat').value = latc;
+                    document.getElementById('long').value = longc;
+
+
+                } else {
+                    marker = new google.maps.Marker({
+                        position: location,
+                        map: map
+
+                    });
+                    // Create a new InfoWindow.
+                    infoWindow = new google.maps.InfoWindow({ position: location });
+                    infoWindow.setContent(location.toString());
+                    infoWindow.open(map);
+
+                    var latc = location.lat();
+                    var longc = location.lng();
+                 
+                    document.getElementById('lat').value = latc;
+                    document.getElementById('long').value = longc;
+
+                
+
+                }
+
+            }
+
+            google.maps.event.addListener(map, "click", function (event) {
+             
+                infoWindow.close();
+                addMarker(event.latLng, map);
+               
+             
+            });
+
+     
+
+        }
+    
+               
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
