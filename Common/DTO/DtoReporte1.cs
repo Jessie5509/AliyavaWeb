@@ -11,11 +11,9 @@ namespace Common.DTO
     {
 
        
-        public int Codigo { get; set; }
+        public int idProducto { get; set; }
 
-        public string Descripcion { get; set; }
-
-        public string Familia { get; set; }
+        public double cantidad { get; set; }
 
     }
 }

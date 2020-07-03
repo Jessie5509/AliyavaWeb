@@ -39,6 +39,7 @@ namespace DataAccess.Persistencia
             List<DtoProducto> colDtoProducto = new List<DtoProducto>();
             using (AliyavaEntities context = new AliyavaEntities())
             {
+                
                 List<Producto> colProducto = context.Producto.Select(s => s).ToList();
 
                 foreach (Producto pro in colProducto)
@@ -66,6 +67,9 @@ namespace DataAccess.Persistencia
       
         }
 
+
+
+
         public DtoProducto GetProductoInfo(int id)
         {
             DtoProducto dto = new DtoProducto();
@@ -82,6 +86,8 @@ namespace DataAccess.Persistencia
         }
 
 
+
+
         public void RemoveProducto(int Codigo)
         {
             using (AliyavaEntities context = new AliyavaEntities())
@@ -95,6 +101,10 @@ namespace DataAccess.Persistencia
 
 
         }
+
+
+
+
 
         public DtoProducto GetProductoM(int Codigo)
         {

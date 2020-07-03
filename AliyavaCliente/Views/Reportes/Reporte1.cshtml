@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Common.DTO.DtoReporte1>
+
+@{
+    ViewBag.Title = "Reporte1";
+}
+
+<h2>Reporte1</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idProducto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (Common.DTO.DtoReporte1 item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idProducto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+    </tr>
+}
+
+</table>

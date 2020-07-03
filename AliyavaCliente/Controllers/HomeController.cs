@@ -18,6 +18,15 @@ namespace AliyavaCliente.Controllers
             return View(colProducto);
         }
 
+
+        public ActionResult Filtrado(string familia)
+        {
+            List<DtoProducto> colProducto = new List<DtoProducto>();
+            colProducto = HProducto.getInstace().GetProducto();
+
+            return View(colProducto);
+        }
+
         public ActionResult ProductoInfo(int id)
         {
             DtoProducto producto = new DtoProducto();

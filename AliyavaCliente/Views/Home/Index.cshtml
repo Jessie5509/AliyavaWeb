@@ -8,56 +8,39 @@
 
 </div>
 
-<style type="text/css">
-    #contenido {
-        width: 80%;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
 
-
-</style>
-
-<script src="//rawgithub.com/stidges/jquery-searchable/master/dist/jquery.searchable-1.0.0.min.js">
-
-    $(function () {
-        $('#searchable-container').searchable({
-            searchField: '#container-search',
-            selector: '.panel',
-            childSelector: '.col-xs-4',
-            show: function (elem) {
-                elem.slideDown(100);
-            },
-            hide: function (elem) {
-                elem.slideUp(100);
-            }
-        })
-    });
-
-
-
-</script>
 
 <div class="row">
     <div>
         <h2>Productos</h2>
+
     </div>
 
-    <div class="row">
-        <div class="col-lg-4 col-lg-offset-4">
-            <input type="search" id="container-search" value="" class="form-control" placeholder="Search...">
-        </div>
-    </div>
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown"
+           asp-area="" asp-controller="Staffs" asp-action="Index">
+            Familia
+            <span class="caret"></span>
+        </a>
+        @foreach (Common.DTO.DtoProducto item in Model)
+        {
+            <ul class="dropdown-menu">
+                <li><a asp-area="" asp-controller="Home" asp-action="Filtrado">@Html.DisplayFor(modelItem => item.Familia)</a> </li>
+            </ul>
+
+        }
+
+
+    </li>
 
     <div>
         <div class="row" style="height:5000px; background-color: rgba(255,0,0,0.1);">
             <div class="container" id="searchable-container">
                 @foreach (Common.DTO.DtoProducto item in Model)
                 {
-                    <div class="panel panel-default "  style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
+                    <div class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
                         <div class="col-xs-4">
-                            <div class="panel-heading" >@Html.DisplayFor(modelItem => item.Descripcion)</div>
+                            <div id="card-title" class="panel-heading">@Html.DisplayFor(modelItem => item.Descripcion)</div>
                         </div>
                         <div class="panel-body">
                             <img class="img-responsive" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
