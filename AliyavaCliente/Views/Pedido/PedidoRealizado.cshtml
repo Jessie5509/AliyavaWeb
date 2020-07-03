@@ -26,13 +26,6 @@
             @Html.DisplayFor(model => model.PrecioTotal)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Numero)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Numero)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Usuario)
@@ -66,33 +59,10 @@
             @Html.DisplayFor(model => model.Urgente)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.idCliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.idCliente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.idReserva)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.idReserva)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.idReparto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.idReparto)
-        </dd>
-
+     
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Detalle", "PedidoDetalleByPro", "Pedido", new { Codigo = Model.Numero }, new { @class = "btn btn-info" })
+    @*@Html.ActionLink("Detalle", "PedidoDetalleByPro", "Pedido", new { Codigo = Model.Numero }, new { @class = "btn btn-info" })*@
     @Html.ActionLink("Back to List", "Index")
 </p>

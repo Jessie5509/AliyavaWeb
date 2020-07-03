@@ -50,32 +50,6 @@ namespace AliyavaCliente.Controllers
 
 
 
-        //public void AddReserva(DtoReserva nuevaReserva)
-        //{
-        //    using (HotelEntities context = new HotelEntities())
-        //    {
-        //        Reserva ingresoReserva = new Reserva();
-        //        ingresoReserva.cantidadDias = nuevaReserva.cantDias;
-        //        ingresoReserva.fechaIngreso = nuevaReserva.fechaIngreso;
-        //        ingresoReserva.nombreCliente = nuevaReserva.nombreCliente;
-        //        ingresoReserva.documentoCliente = nuevaReserva.documentoCliente;
-
-        //        context.Reserva.Add(ingresoReserva);
-        //        context.SaveChanges();
-
-        //        foreach (DtoDetalleReserva dto in nuevaReserva.colDetalle)
-        //        {
-        //            DetalleReserva ingresoDetalleReserva = new DetalleReserva();
-        //            ingresoDetalleReserva.idHabitacion = dto.idHabitacion;
-        //            ingresoDetalleReserva.observaciones = dto.observaciones;
-        //            ingresoDetalleReserva.numReserva = ingresoReserva.numReserva;
-
-        //            context.DetalleReserva.Add(ingresoDetalleReserva);
-        //            context.SaveChanges();
-        //        }
-
-        //    }
-        //}
 
 
     }

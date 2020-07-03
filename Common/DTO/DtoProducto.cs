@@ -36,7 +36,7 @@ namespace Common.DTO
         [DisplayName("Descripción del producto ")]
         public string ProDescripcion { get; set; }
 
-        public bool check { get; set; }
+        public Nullable<int> CantidadPreparar { get; set; }
 
 
     }
