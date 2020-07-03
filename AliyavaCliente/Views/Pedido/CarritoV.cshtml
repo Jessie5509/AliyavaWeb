@@ -24,6 +24,9 @@
                 Precio de venta
             </th>
             <th>
+                Cantidad a preparar
+            </th>
+            <th>
                 Acciones
             </th>
         </tr>
@@ -47,11 +50,10 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.PrecioVenta)
                 </td>
-                <td>
-
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                  <td>
+                    @Html.DisplayFor(modelItem => item.CantidadPreparar)
                 </td>
+            
             </tr>
         }
     </tbody>

@@ -3,6 +3,7 @@ using BussinesLogic.Helpers;
 using Common.DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,7 +38,32 @@ namespace AliyavaCliente.Controllers
 
             DtoProducto producto = new DtoProducto();
             producto = HProducto.getInstace().GetProductoCarrito(id);
-            colProducto.Add(producto);
+
+            if (colProducto.Count == 0)
+            {
+                colProducto.Add(producto);
+            }
+            else
+            {
+                bool existe = false;
+
+                foreach (DtoProducto item in colProducto)
+                {
+                    if (item.Codigo == producto.Codigo)
+                    {
+                        item.CantidadPreparar++;
+                        existe = true;
+                        break;
+                    }
+             
+                }
+
+                if (existe == false)
+                {
+                    colProducto.Add(producto);
+                }
+            }
+
             Session["colProductos"] = colProducto;
 
 
@@ -57,7 +83,50 @@ namespace AliyavaCliente.Controllers
             HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
 
+            return View("PedidoRealizado");
+        }
+
+        public ActionResult PedidoRealizado()
+        {
+
+            //Col prod o pedido o lo que sea la view.
             return View();
+        }
+
+        public ActionResult EliminarProCarrito(int cod)
+        {
+            List<DtoProducto> colPro = (List<DtoProducto>)Session["colProductos"];
+            DtoProducto pro = null;
+            bool existe = false;
+
+            foreach (DtoProducto item in colPro)
+            {
+                if (item.Codigo == cod)
+                {
+                    if (item.CantidadPreparar > 1)
+                    {
+                        item.CantidadPreparar--;
+
+                    }
+                    else
+                    {
+                        existe = true;
+                        pro = item;
+                       
+                    }
+                
+
+                }
+
+            }
+
+            if (existe)
+            {
+                colPro.Remove(pro);
+
+            }
+
+            return RedirectToAction("CarritoView");
         }
 
     }

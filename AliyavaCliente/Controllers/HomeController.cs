@@ -14,7 +14,7 @@ namespace AliyavaCliente.Controllers
         public ActionResult Index()
         {
             List<DtoProducto> colProducto = new List<DtoProducto>();
-            colProducto = HProducto.getInstace().GetProducto();    
+            colProducto = HProducto.getInstace().GetProducto();
             return View(colProducto);
         }
 
@@ -34,7 +34,6 @@ namespace AliyavaCliente.Controllers
 
             return View(producto);
         }
-
 
 
 

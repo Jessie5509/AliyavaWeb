@@ -48,12 +48,13 @@ namespace Aliyava.Controllers
             return RedirectToAction("AddStock");
         }
 
-        //Quita cantidad de stock.
-        public ActionResult BajaStock(DtoStock stock)
+        public ActionResult ListarStock()
         {
-            HStock.getInstace().BajaStock(stock);
-            return RedirectToAction("AddStock");
+            List<DtoStock> colStock = new List<DtoStock>();
+            colStock = HStock.getInstace().GetAllStock();
+            return View(colStock);
         }
+
 
         public ActionResult HistoricoStockV()
         { 

@@ -33,12 +33,19 @@ namespace BussinesLogic.Helpers
             ps.SumarStock(dto, NombreUsu);
         }
 
-        public void BajaStock(DtoStock dto)
-        {
-            PStock ps = new PStock();
-            ps.DeleteStock(dto);
-        }
+        //public void BajaStock(DtoStock dto)
+        //{
+        //    PStock ps = new PStock();
+        //    ps.DeleteStock(dto);
+        //}
 
+        public List<DtoStock> GetAllStock()
+        {
+        
+            PStock ps = new PStock();
+            return ps.getAllStock();
+          
+        }
         public List<DtoHistoricoStock> GetStock()
         {
             PStock ps = new PStock();

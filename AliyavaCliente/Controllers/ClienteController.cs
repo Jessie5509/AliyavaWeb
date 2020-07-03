@@ -41,6 +41,26 @@ namespace AliyavaCliente.Controllers
        
         }
 
+        public ActionResult DireccionForm()
+        {
+
+            return View();
+        }
+
+        public ActionResult AddDireccion(DtoDirecciones nuevaDireccion)
+        {
+            string password = Session["Contraseña"].ToString();
+            HCliente.getInstace().AddDireccion(nuevaDireccion, password);
+            return RedirectToAction("DireccionForm");
+        }
+        public ActionResult ListarDirecciones()
+        {
+            string password = Session["Contraseña"].ToString();
+            List<DtoDirecciones> colDirecciones = new List<DtoDirecciones>();
+            colDirecciones = HCliente.getInstace().GetDirecciones(password);
+            return View(colDirecciones);
+        }
+
         public ActionResult ConfirmarCambios(DtoCliente dtoCli)
         {
             HCliente.getInstace().ModificarPerfil(dtoCli);
@@ -50,32 +70,6 @@ namespace AliyavaCliente.Controllers
 
 
 
-        //public void AddReserva(DtoReserva nuevaReserva)
-        //{
-        //    using (HotelEntities context = new HotelEntities())
-        //    {
-        //        Reserva ingresoReserva = new Reserva();
-        //        ingresoReserva.cantidadDias = nuevaReserva.cantDias;
-        //        ingresoReserva.fechaIngreso = nuevaReserva.fechaIngreso;
-        //        ingresoReserva.nombreCliente = nuevaReserva.nombreCliente;
-        //        ingresoReserva.documentoCliente = nuevaReserva.documentoCliente;
-
-        //        context.Reserva.Add(ingresoReserva);
-        //        context.SaveChanges();
-
-        //        foreach (DtoDetalleReserva dto in nuevaReserva.colDetalle)
-        //        {
-        //            DetalleReserva ingresoDetalleReserva = new DetalleReserva();
-        //            ingresoDetalleReserva.idHabitacion = dto.idHabitacion;
-        //            ingresoDetalleReserva.observaciones = dto.observaciones;
-        //            ingresoDetalleReserva.numReserva = ingresoReserva.numReserva;
-
-        //            context.DetalleReserva.Add(ingresoDetalleReserva);
-        //            context.SaveChanges();
-        //        }
-
-        //    }
-        //}
 
 
     }

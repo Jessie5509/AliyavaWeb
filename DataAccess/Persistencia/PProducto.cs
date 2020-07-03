@@ -58,6 +58,7 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Producto Producto = context.Producto.FirstOrDefault(f => f.Codigo == id);
+                Producto.CantidadPreparar = 1;
                 dto = MProducto.MapToDto(Producto);
                  
                 

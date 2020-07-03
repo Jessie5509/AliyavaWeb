@@ -1,0 +1,67 @@
+﻿@model List<Common.DTO.DtoDirecciones>
+
+@{
+    ViewBag.Title = "ListarDirecciones";
+}
+
+<h2>Lista de direcciones</h2>
+
+<p>
+ 
+    @Html.ActionLink("Agregar dirección", "AddDireccion", "Cliente", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ciudad
+            </th>
+            <th>
+               Barrio
+            </th>
+            <th>
+                Número
+            </th>
+            <th>
+                Apartamento
+            </th>
+            <th>
+                Edificio
+            </th>
+            <th>
+                Código cliente
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ciudad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Barrio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apartamento)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edificio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idCliente)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

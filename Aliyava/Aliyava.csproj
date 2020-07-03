@@ -285,6 +285,7 @@
     <Content Include="Views\Categoria\ListarCategoria.cshtml" />
     <Content Include="Views\Categoria\ModificarCategoria.cshtml" />
     <Content Include="Views\Stock\HistoricoStockV.cshtml" />
+    <Content Include="Views\Stock\ListarStock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

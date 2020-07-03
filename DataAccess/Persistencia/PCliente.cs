@@ -28,6 +28,8 @@ namespace DataAccess.Persistencia
                         nuevoCliente.NombreUsuario = dto.NombreUsuario;
                         nuevoCliente.Telefono = dto.Telefono;
                         nuevoCliente.contraseña = dto.contraseña;
+                        nuevoCliente.latitud = dto.latitud;
+                        nuevoCliente.longitud = dto.longitud;
 
                         context.Cliente.Add(nuevoCliente);
                         context.SaveChanges();
@@ -57,6 +59,60 @@ namespace DataAccess.Persistencia
                 return dtoCli;
         }
 
+        public List<DtoDirecciones> getDataDire(string password)
+        {
+            List<DtoDirecciones> colDtoDire = new List<DtoDirecciones>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Cliente cli = context.Cliente.FirstOrDefault(f => f.contraseña == password);
+                List<Direcciones> colDireDB = context.Direcciones.Where(w => w.idCliente == cli.idCliente).ToList();
+
+                foreach (Direcciones dir in colDireDB)
+                {
+                    DtoDirecciones dto = MDirecciones.MapToDto(dir);
+                    colDtoDire.Add(dto);
+                }
+
+        
+            }
+
+            return colDtoDire;
+        }
+
+        public void addDire(DtoDirecciones nuevaDireccion, string password)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Direcciones dire = new Direcciones();
+                        dire.Ciudad = nuevaDireccion.Ciudad;
+                        dire.Barrio = nuevaDireccion.Barrio;
+                        dire.Apartamento = nuevaDireccion.Apartamento;
+                        dire.Edificio = nuevaDireccion.Edificio;
+                        dire.Numero = nuevaDireccion.Numero;
+
+                        int idCli = context.Cliente.FirstOrDefault(f => f.contraseña == password).idCliente;
+
+                        dire.idCliente = idCli;
+             
+                        context.Direcciones.Add(dire);
+                        context.SaveChanges();
+
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                    }
+                }
+
+            }
+
+        }
         public void UpdateCliente(DtoCliente dtoCliente)
         {
             using (AliyavaEntities context = new AliyavaEntities())
