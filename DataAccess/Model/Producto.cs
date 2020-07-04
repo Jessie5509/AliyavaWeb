@@ -29,7 +29,9 @@ namespace DataAccess.Model
         public string codigo_barras { get; set; }
         public string ProDescripcion { get; set; }
         public Nullable<int> CantidadPreparar { get; set; }
+        public string ImagenPro { get; set; }
     
+        public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePedido> DetallePedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

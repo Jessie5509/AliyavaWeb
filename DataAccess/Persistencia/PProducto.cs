@@ -26,6 +26,7 @@ namespace DataAccess.Persistencia
                 nProducto.PrecioVenta = dto.PrecioVenta;
                 nProducto.codigo_barras = dto.codigoBarras;
                 nProducto.ProDescripcion = dto.ProDescripcion;
+                nProducto.ImagenPro = dto.ImagenPro;
 
                 context.Producto.Add(nProducto);
                 context.SaveChanges();
@@ -128,6 +129,7 @@ namespace DataAccess.Persistencia
                 updatePro.Familia = DtoProdu.Familia;
                 updatePro.PrecioVenta = DtoProdu.PrecioVenta;
                 updatePro.ProDescripcion = DtoProdu.ProDescripcion;
+                updatePro.ImagenPro = DtoProdu.ImagenPro;
         
                 context.SaveChanges();
             }

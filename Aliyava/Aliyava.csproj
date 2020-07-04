@@ -134,6 +134,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\StockController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -286,6 +287,7 @@
     <Content Include="Views\Categoria\ModificarCategoria.cshtml" />
     <Content Include="Views\Stock\HistoricoStockV.cshtml" />
     <Content Include="Views\Stock\ListarStock.cshtml" />
+    <Content Include="Views\Reporte\ReproteProMasVendido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

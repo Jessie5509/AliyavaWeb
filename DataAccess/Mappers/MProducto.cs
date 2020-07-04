@@ -21,7 +21,8 @@ namespace DataAccess.Mappers
             dto.codigoBarras = entity.codigo_barras;
             dto.ProDescripcion = entity.ProDescripcion;
             dto.CantidadPreparar = entity.CantidadPreparar;
- 
+            dto.ImagenPro = entity.ImagenPro;
+
             return dto;
         }
 
@@ -37,6 +38,7 @@ namespace DataAccess.Mappers
             entity.codigo_barras = dto.codigoBarras;
             entity.ProDescripcion = dto.ProDescripcion;
             entity.CantidadPreparar = dto.CantidadPreparar;
+            entity.ImagenPro = dto.ImagenPro;
 
             return entity;
         }

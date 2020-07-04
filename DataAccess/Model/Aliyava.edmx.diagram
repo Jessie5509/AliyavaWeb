@@ -18,14 +18,15 @@
         <EntityTypeShape EntityType="AliyavaModel.Stock" Width="1.5" PointX="8.875" PointY="5.375" />
         <EntityTypeShape EntityType="AliyavaModel.HistoricoStock" Width="1.5" PointX="7" PointY="0.5" />
         <AssociationConnector Association="AliyavaModel.FKHistStock_Empleado" />
-        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="6.875" PointY="3.375" />
-        <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
-        <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
         <EntityTypeShape EntityType="AliyavaModel.Categoria" Width="1.5" PointX="9.125" PointY="2.875" />
         <EntityTypeShape EntityType="AliyavaModel.Cliente" Width="1.5" PointX="2.75" PointY="0.875" FillColor="192, 0, 0" />
         <AssociationConnector Association="AliyavaModel.FKPedidoCliente" />
         <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="6.875" />
         <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
+        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="11.375" PointY="4.125" />
+        <AssociationConnector Association="AliyavaModel.FKProducto_Categoria" />
+        <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
+        <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

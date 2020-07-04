@@ -8,6 +8,30 @@
 
 </div>
 
+<script>
+
+    $(document).ready(function () {
+
+        $("#id_DropDownList").change(function () {
+            var familiaSelect = $("#id_DropDownList").val();
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:50850/Home/Index1?familia=" + familiaSelect,
+
+                data: data,
+                success: function (data) {
+
+                    $('#id_div_contiene_productos').html(data);
+                }
+            });
+        });
+    });
+
+
+    
+   
+</script>
 
 
 <div class="row">
@@ -16,48 +40,46 @@
 
     </div>
 
-    <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown"
-           asp-area="" asp-controller="Staffs" asp-action="Index">
-            Familia
-            <span class="caret"></span>
-        </a>
-        @foreach (Common.DTO.DtoProducto item in Model)
-        {
-            <ul class="dropdown-menu">
-                <li><a asp-area="" asp-controller="Home" asp-action="Filtrado">@Html.DisplayFor(modelItem => item.Familia)</a> </li>
-            </ul>
 
-        }
-
-
-    </li>
-
+    @using (Html.BeginForm())
+    {
+        
+                
+        <p>
+            Buscar:@Html.TextBox("SearchString", null, new { @class = "search_input" })
+            <input type="submit" value="Search" />
+        </p>
+        <p>
+            @Html.ActionLink("Precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter })
+        </p>
+    }
     <div>
         <div class="row" style="height:5000px; background-color: rgba(255,0,0,0.1);">
             <div class="container" id="searchable-container">
                 @foreach (Common.DTO.DtoProducto item in Model)
                 {
-                    <div class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
-                        <div class="col-xs-4">
-                            <div id="card-title" class="panel-heading">@Html.DisplayFor(modelItem => item.Descripcion)</div>
-                        </div>
-                        <div class="panel-body">
-                            <img class="img-responsive" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
+                    <div class="card">
+                        <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
+
+                            <div id="portada" class="card-title">@Html.DisplayFor(modelItem => item.Descripcion)</div>
+
+                            <div class="panel-body" style="width: 200px; height: 200px;">
+                                <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImagenPro)" style="width:auto; height: 175px;">
+
+                            </div>
+                            <div class="panel-footer">
+                                <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                                <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
+                                <p>
+                                    @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
+                                            new { @class = "btn btn-primary" })
+                                </p>
+
+                                @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
+                            </div>
+
 
                         </div>
-                        <div class="panel-footer">
-                            <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
-                            <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
-                            <p>
-                                @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
-                                        new { @class = "btn btn-primary" })
-                            </p>
-
-                            @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
-                        </div>
-
-
                     </div>
                 }
 

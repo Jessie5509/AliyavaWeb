@@ -46,13 +46,14 @@ namespace AliyavaCliente.Controllers
 
             return View(nombreD);
         }
-
+/*
         public ActionResult AddDireccion(DtoDirecciones nuevaDireccion, string nombreD)
         {
             string password = Session["Contraseña"].ToString();
             HCliente.getInstace().AddDireccion(nuevaDireccion, password, nombreD);
             return RedirectToAction("DireccionForm");
         }
+*/
         public ActionResult ListarDirecciones()
         {
             string password = Session["Contraseña"].ToString();

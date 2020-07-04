@@ -23,7 +23,7 @@ namespace BussinesLogic.Helpers
         }
 
 
-        public List<DtoReporte1> GetReporte1()
+        public List<DtoReporteMasVendido> GetReporte1()
         {
             PReporte pc = new PReporte();
             return pc.Reporte1();

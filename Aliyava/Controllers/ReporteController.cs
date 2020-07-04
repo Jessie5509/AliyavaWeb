@@ -6,22 +6,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace AliyavaCliente.Controllers
+namespace Aliyava.Controllers
 {
-    public class ReportesController : Controller
+    public class ReporteController : Controller
     {
-        // GET: Reportes
+        // GET: Reporte
         public ActionResult Index()
         {
 
-            List<DtoReporte1> colProd1 = new List<DtoReporte1>();
+            List<DtoReporteMasVendido> colProd1 = new List<DtoReporteMasVendido>();
             colProd1 = HReporte.getInstace().GetReporte1();
             return View(colProd1);
-            
+
         }
-
-
-
 
     }
 }

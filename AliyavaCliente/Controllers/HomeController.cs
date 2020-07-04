@@ -11,11 +11,54 @@ namespace AliyavaCliente.Controllers
 
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
+
+            ViewBag.PriceSort = sortOrder == "Price" ? "price_desc" : "Price";
+
             List<DtoProducto> colProducto = new List<DtoProducto>();
+            
+
             colProducto = HProducto.getInstace().GetProducto();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                colProducto = colProducto.Where(s => s.Descripcion.Contains(searchString)).ToList();
+            }
+
+            switch (sortOrder)
+            {
+
+                case "Price":
+                    colProducto = colProducto.OrderBy(s => s.PrecioVenta).ToList();
+                    break;
+                default:
+                    colProducto = colProducto.OrderBy(s => s.Descripcion).ToList();
+                    break;
+            }
+            
+
             return View(colProducto);
+        }
+
+
+        public ActionResult Index1(string familia)
+        {
+            List<DtoCategoria> colTipos = HCategoria.getInstace().getTipoCat(familia);
+
+            List<SelectListItem> colSelectItems = new List<SelectListItem>();
+
+            foreach (DtoCategoria item in colTipos)
+            {
+                SelectListItem opcion = new SelectListItem();
+                opcion.Text = item.Nombre;
+                opcion.Value = item.Nombre;
+                colSelectItems.Add(opcion);
+            }
+
+            ViewBag.colTiposCategoria = colSelectItems;
+
+            return View();
         }
 
 

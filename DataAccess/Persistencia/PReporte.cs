@@ -12,15 +12,15 @@ namespace DataAccess.Persistencia
     {
 
         
-        public List<DtoReporte1> Reporte1()
+        public List<DtoReporteMasVendido> Reporte1()
         {
-            List<DtoReporte1> coldto = null;
+            List<DtoReporteMasVendido> coldto = null;
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
                 coldto = (from detped in context.DetallePedido
                           group detped by detped.idProducto into detgrp
-                          select new DtoReporte1
+                          select new DtoReporteMasVendido
                           {
                               idProducto = detgrp.Key,
                               cantidad = detgrp.Sum(s => s.Cantidad)

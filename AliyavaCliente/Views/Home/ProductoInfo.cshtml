@@ -12,22 +12,12 @@
 
 <head>
     <style>
-        /*********************************************
-    			Call Bootstrap
-*********************************************/
 
-
-/*********************************************
-        		Theme Elements
-*********************************************/
 
 .gold{
 	color: #FFBF00;
 }
 
-/*********************************************
-					PRODUCTS
-*********************************************/
 
 .product{
 	border: 1px solid #dddddd;
@@ -140,7 +130,7 @@
         .img-fluid {
             max-width: 100%;
             height: auto;
-        } 
+        }
 
         .service-image-left {
             padding-right: 50px;
@@ -153,6 +143,17 @@
 .service-image-left > center > img,.service-image-right > center > img{
 	max-height: 155px;
 }
+
+
+        #portada {
+             background: url( @Html.DisplayFor(model => model.ImagenPro) );
+            background-size: cover;
+            height: 400px;
+            width: 400px;
+            background-position: center;
+            margin:auto;
+        }
+
     </style>
 </head>
 
@@ -161,11 +162,9 @@
         <div class="item-container">
             <div class="container">
                 <div class="col-md-15">
-                    <div class="product col-md-3">
+                    <div class="product col-md-3" id="portada">
 
-                        <center>
-                            <img class="img-fluid" alt="Responsive image" src="https://previews.123rf.com/images/koya79/koya791709/koya79170900152/89097333-servicio-de-inform%C3%A1tica-computadora-port%C3%A1til-con-engranajes-de-representaci%C3%B3n-3d.jpg">
-                        </center>
+                        
                     </div>
 
                 </div>

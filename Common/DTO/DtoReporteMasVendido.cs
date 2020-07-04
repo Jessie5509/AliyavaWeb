@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Common.DTO
 {
-    public class DtoReporte1
+    public class DtoReporteMasVendido
     {
 
        

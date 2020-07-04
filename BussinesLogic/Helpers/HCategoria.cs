@@ -52,5 +52,11 @@ namespace BussinesLogic.Helpers
             return pc.GetCategoriaM(id);
         }
 
+        public List<DtoCategoria> getTipoCat(string familia)
+        {
+            PCategoria ptd = new PCategoria();
+            return ptd.getCat(familia);
+        }
+
     }
 }

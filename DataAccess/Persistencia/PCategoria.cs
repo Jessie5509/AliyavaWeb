@@ -87,5 +87,25 @@ namespace DataAccess.Persistencia
         }
 
 
+        public List<DtoCategoria> getCat(string familia)
+        {
+            List<DtoCategoria> colCatego = new List<DtoCategoria>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Categoria> colCat = context.Categoria.Where(w=> w.Nombre == familia).ToList();
+
+                foreach (Categoria item in colCat)
+                {
+                    DtoCategoria dto = MCategoria.MapToDto(item);
+                    colCatego.Add(dto);
+                }
+            }
+
+            return colCatego;
+        }
+
+
+
     }
 }

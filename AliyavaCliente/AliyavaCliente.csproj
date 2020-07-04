@@ -132,7 +132,6 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PedidoController.cs" />
-    <Compile Include="Controllers\ReportesController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -278,7 +277,6 @@
     <Content Include="Views\Pedido\CarritoV.cshtml" />
     <Content Include="Views\Pedido\CarritoView.cshtml" />
     <Content Include="Views\Home\ProductoInfo.cshtml" />
-    <Content Include="Views\Reportes\Reporte1.cshtml" />
     <Content Include="Views\Cliente\ListarDirecciones.cshtml" />
     <Content Include="Views\Cliente\DireccionForm.cshtml" />
   </ItemGroup>
