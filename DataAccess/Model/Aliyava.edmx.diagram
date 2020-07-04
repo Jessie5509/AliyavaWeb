@@ -6,7 +6,6 @@
     <edmx:Diagrams>
       <Diagram DiagramId="ff5516cd6d6643719cf95bd2c061d096" Name="Diagram1" ZoomLevel="94">
         <EntityTypeShape EntityType="AliyavaModel.DetallePedido" Width="1.5" PointX="4.5" PointY="3.875" />
-        <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="7" />
         <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="11" PointY="0.5" />
         <EntityTypeShape EntityType="AliyavaModel.Pedido" Width="1.5" PointX="0.625" PointY="3.625" FillColor="192, 64, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Reparto" Width="1.5" PointX="0.75" PointY="0.75" />
@@ -24,8 +23,9 @@
         <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
         <EntityTypeShape EntityType="AliyavaModel.Categoria" Width="1.5" PointX="9.125" PointY="2.875" />
         <EntityTypeShape EntityType="AliyavaModel.Cliente" Width="1.5" PointX="2.75" PointY="0.875" FillColor="192, 0, 0" />
-        <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
         <AssociationConnector Association="AliyavaModel.FKPedidoCliente" />
+        <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="6.875" />
+        <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

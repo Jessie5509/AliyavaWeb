@@ -21,6 +21,7 @@ namespace DataAccess.Model
         public int Apartamento { get; set; }
         public string Edificio { get; set; }
         public int idCliente { get; set; }
+        public string nombreDir { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }
