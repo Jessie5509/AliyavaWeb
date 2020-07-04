@@ -41,16 +41,16 @@ namespace AliyavaCliente.Controllers
        
         }
 
-        public ActionResult DireccionForm()
+        public ActionResult DireccionForm(string nombreD)
         {
 
-            return View();
+            return View(nombreD);
         }
 
-        public ActionResult AddDireccion(DtoDirecciones nuevaDireccion)
+        public ActionResult AddDireccion(DtoDirecciones nuevaDireccion, string nombreD)
         {
             string password = Session["Contraseña"].ToString();
-            HCliente.getInstace().AddDireccion(nuevaDireccion, password);
+            HCliente.getInstace().AddDireccion(nuevaDireccion, password, nombreD);
             return RedirectToAction("DireccionForm");
         }
         public ActionResult ListarDirecciones()
@@ -60,6 +60,8 @@ namespace AliyavaCliente.Controllers
             colDirecciones = HCliente.getInstace().GetDirecciones(password);
             return View(colDirecciones);
         }
+
+  
 
         public ActionResult ConfirmarCambios(DtoCliente dtoCli)
         {

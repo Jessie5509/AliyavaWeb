@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,5 +15,7 @@ namespace Common.DTO
         public int Apartamento { get; set; }
         public string Edificio { get; set; }
         public int idCliente { get; set; }
+        [DisplayName("Nombre dirección")]
+        public string nombreDir { get; set; }
     }
 }

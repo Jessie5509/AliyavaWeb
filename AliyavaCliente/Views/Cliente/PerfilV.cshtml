@@ -98,16 +98,16 @@
     </div>
 
     <div class="row form-group">
-        @Html.ActionLink("Direcciones", "ListarDirecciones", "Cliente", new { @class = "btn btn-info" })
+        @Html.ActionLink("Direcciones", "ListarDirecciones", "Cliente", new { @class = "btn btn-default" })
         @{
             if (Model.Direccion != null)
             {
-                @Html.ActionLink("Completar dirección", "CompletarDireccion", "Cliente", new { @class = "btn btn-info" })
+                @Html.ActionLink("Completar dirección", "DireccionForm", "Cliente", new { nombreD = Model.Direccion }, new { @class = "btn btn-default" })
 
             }
             else
             {
-                @Html.ActionLink("Agregar dirección", "AddDireccion", "Cliente", new { @class = "btn btn-info" })
+                @Html.ActionLink("Agregar dirección", "AddDireccion", "Cliente", new { @class = "btn btn-default" })
             }
         }
 

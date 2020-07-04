@@ -19,6 +19,7 @@ namespace DataAccess.Mappers
             dto.Barrio = entity.Barrio;
             dto.Apartamento = entity.Apartamento;
             dto.Edificio = entity.Edificio;
+            dto.nombreDir = entity.nombreDir;
      
             return dto;
         }
@@ -32,6 +33,7 @@ namespace DataAccess.Mappers
             entity.Barrio = dto.Barrio;
             entity.Apartamento = dto.Apartamento;
             entity.Edificio = dto.Edificio;
+            entity.nombreDir = dto.nombreDir;
 
             return entity;
         }
