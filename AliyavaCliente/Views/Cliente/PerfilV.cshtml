@@ -99,6 +99,21 @@
 
     <div class="row form-group">
         @Html.ActionLink("Direcciones", "ListarDirecciones", "Cliente", new { @class = "btn btn-info" })
+        @{
+            if (Model.Direccion != null)
+            {
+                @Html.ActionLink("Completar dirección", "CompletarDireccion", "Cliente", new { @class = "btn btn-info" })
+
+            }
+            else
+            {
+                @Html.ActionLink("Agregar dirección", "CompletarDireccion", "Cliente", new { @class = "btn btn-info" })
+            }
+        }
+
+
+
+
     </div>
 
 

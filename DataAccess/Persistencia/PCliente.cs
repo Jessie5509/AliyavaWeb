@@ -121,7 +121,7 @@ namespace DataAccess.Persistencia
                 {
                     try
                     {
-                        Cliente updateCliente = context.Cliente.FirstOrDefault(f => f.contraseña == dtoCliente.contraseña && f.idCliente == dtoCliente.idCliente);
+                        Cliente updateCliente = context.Cliente.FirstOrDefault(f => f.contraseña == dtoCliente.contraseña);
                         updateCliente.Nombre = dtoCliente.Nombre;
                         updateCliente.Apellido = dtoCliente.Apellido;
                         updateCliente.NombreUsuario = dtoCliente.NombreUsuario;
@@ -129,6 +129,8 @@ namespace DataAccess.Persistencia
                         updateCliente.Telefono = dtoCliente.Telefono;
                         updateCliente.email = dtoCliente.email;
                         updateCliente.contraseña = dtoCliente.contraseña;
+                        updateCliente.latitud = dtoCliente.latitud;
+                        updateCliente.longitud = dtoCliente.longitud;
 
                         context.SaveChanges();
                         scope.Complete();
