@@ -25,13 +25,31 @@ namespace Aliyava.Controllers
 
         }
 
-        //public ActionResult PrepararPedidosV(int id)
-        //{
-        //    List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
-        //    return View();
+        public ActionResult PrepararPedidosV(int id)
+        {
+            List<DtoProducto> colProPreparar = HProducto.getInstace().GetProPreparar(id);
+            Session["colProPreparar"] = colProPreparar;
+            return View(colProPreparar);
 
-        //}
+        }
 
+        public ActionResult ConfirmarPreparación(int id)
+        {
+            //List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
+
+            //bool confirmado = true;
+            
+
+            return RedirectToAction("PrepararPedidosV");
+
+        }
+
+        public ActionResult ConfirmarPedido()
+        {
+            List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
+            HPedido.getInstace().CambiarEstadoPedido(colProPreparar);
+            return View("ListarPedidoUrgente");
+        }
 
         public ActionResult ListarPedidoUrgente()
         { 

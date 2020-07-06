@@ -147,7 +147,32 @@ namespace DataAccess.Persistencia
 
         }
 
-   
+        public void cambiarEstadoPedido(List<DtoProducto> colProPreparar)
+        {
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<DetallePedido> coldet = context.DetallePedido.Select(s => s).ToList();
+                int numPedido = 0;
+
+                foreach (DetallePedido det in coldet)
+                {
+                    foreach (DtoProducto item in colProPreparar)
+                    {
+                        if (item.Codigo == det.idProducto)
+                        {
+                            numPedido = det.idPedido;
+                        }
+                       
+                    }
+                }
+
+                Pedido pedido = context.Pedido.FirstOrDefault(f => f.Numero == numPedido);
+                pedido.Estado = "En preparación";
+                context.SaveChanges();
+
+            }
+        }
         public List<DtoPedido> getPedidoUrg()
         {
             List<Pedido> colPedidosDB = new List<Pedido>();
@@ -155,7 +180,7 @@ namespace DataAccess.Persistencia
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                colPedidosDB = context.Pedido.Where(w => w.Urgente == "Si").ToList();
+                colPedidosDB = context.Pedido.Where(w => w.Urgente == "Si" && w.Estado == "Pendiente").ToList();
 
                 foreach (Pedido item in colPedidosDB)
                 {
@@ -176,7 +201,7 @@ namespace DataAccess.Persistencia
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                colPedidosDB = context.Pedido.Where(w => w.Urgente == "No").ToList();
+                colPedidosDB = context.Pedido.Where(w => w.Urgente == "No" && w.Estado == "Pendiente").ToList();
 
                 foreach (Pedido item in colPedidosDB)
                 {

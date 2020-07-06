@@ -47,6 +47,13 @@ namespace BussinesLogic.Helpers
             return pp.GetProductoInfo(id);
         }
 
+        public List<DtoProducto> GetProPreparar(int id)
+        {
+            PProducto pp = new PProducto();
+            return pp.getProPreparar(id);
+        }
+        
+
         public void RemoveProducto(int Codigo)
         {
             PProducto ps = new PProducto();

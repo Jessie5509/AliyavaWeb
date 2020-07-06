@@ -25,7 +25,11 @@ namespace BussinesLogic.Helpers
             PPedido pp = new PPedido();
             pp.AgregarPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
         }
-
+        public void CambiarEstadoPedido(List<DtoProducto> colProPreparar)
+        {
+            PPedido pp = new PPedido();
+            pp.cambiarEstadoPedido(colProPreparar);
+        }
         public List<DtoPedido> GetPedidoUrg()
         {
             PPedido pp = new PPedido();
@@ -44,6 +48,6 @@ namespace BussinesLogic.Helpers
             return pp.GetDetalle(id);
         }
 
-
+    
     }
 }

@@ -38,6 +38,7 @@ namespace Common.DTO
 
         [DisplayName("Imagen del producto ")]
         public string ImagenPro { get; set; }
+        public string UbicacionPro { get; set; }
 
         public Nullable<int> CantidadPreparar { get; set; }
 

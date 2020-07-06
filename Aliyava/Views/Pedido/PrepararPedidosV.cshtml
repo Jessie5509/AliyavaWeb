@@ -1,0 +1,61 @@
+﻿@model List<Common.DTO.DtoProducto>
+
+@{
+    ViewBag.Title = "PrepararPedidosV";
+
+}
+
+<h2>Preparar pedido</h2>
+<h3>Productos</h3>
+
+<p>
+    @Html.ActionLink("Volver", "ListarPedidoUrgente", "Pedido", new { @class = "btn btn-primary" })
+
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código
+            </th>
+       
+            <th>
+                Cantidad a preparar
+            </th>
+            <th>
+                Ubicación
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+      
+            <td>
+                @Html.DisplayFor(modelItem => item.CantidadPreparar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UbicacionPro)
+            </td>
+            <td>
+                @Html.ActionLink("Confirmar", "ConfirmarPreparación", new {  id = item.Codigo }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+
+    
+
+    </tbody>
+
+</table>
+
+<div>
+    @Html.ActionLink("Confirmar pedido", "ConfirmarPedido", new { @class = "btn btn-primary" })
+</div>

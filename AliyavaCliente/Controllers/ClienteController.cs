@@ -31,7 +31,7 @@ namespace AliyavaCliente.Controllers
             return RedirectToAction("RegistroCliente");
         }
 
-        public ActionResult PerfilV(decimal lat, decimal lng)
+        public ActionResult PerfilV()
         {
             string password = Session["Contraseña"].ToString();
             DtoCliente clienteDB = new DtoCliente();

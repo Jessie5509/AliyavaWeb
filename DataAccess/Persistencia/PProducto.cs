@@ -70,7 +70,29 @@ namespace DataAccess.Persistencia
         }
 
 
+        public List<DtoProducto> getProPreparar(int id)
+        {
+            List<DtoProducto> colDtoProducto = new List<DtoProducto>();
+       
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<DetallePedido> colDet = context.DetallePedido.Where(w => w.idPedido == id).ToList();
 
+                foreach (DetallePedido det in colDet)
+                {
+                    DtoProducto dto = new DtoProducto();
+                    dto.Codigo = det.idProducto;
+                    dto.CantidadPreparar = (int?)det.CantidadPreparar;
+                    dto.UbicacionPro = det.UbicacionPro;
+
+                    colDtoProducto.Add(dto);
+                }
+
+         
+            }
+            return colDtoProducto;
+
+        }
 
         public DtoProducto GetProductoInfo(int id)
         {

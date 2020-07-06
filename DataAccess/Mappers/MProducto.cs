@@ -22,6 +22,7 @@ namespace DataAccess.Mappers
             dto.ProDescripcion = entity.ProDescripcion;
             dto.CantidadPreparar = entity.CantidadPreparar;
             dto.ImagenPro = entity.ImagenPro;
+ 
 
             return dto;
         }
