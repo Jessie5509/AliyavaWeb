@@ -31,31 +31,34 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Codigo)
-            </td>
-      
-            <td>
-                @Html.DisplayFor(modelItem => item.CantidadPreparar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UbicacionPro)
-            </td>
-            <td>
-                @Html.ActionLink("Confirmar", "ConfirmarPreparación", new {  id = item.Codigo }, new { @class = "btn btn-danger" })
-            </td>
-        </tr>
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Codigo)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CantidadPreparar)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UbicacionPro)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Confirmar", "ConfirmarPreparación", "Pedido", new { id = item.Codigo }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
         }
 
-    
 
     </tbody>
 
 </table>
 
 <div>
-    @Html.ActionLink("Confirmar pedido", "ConfirmarPedido", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Confirmar pedido", "ConfirmarPedido", "Pedido", new { @class = "btn btn-success" })
 </div>
