@@ -36,7 +36,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Familia, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Familia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.Familia, (ICollection<SelectListItem>)ViewBag.colCategorias, "-- Categoria --", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Familia, "", new { @class = "text-danger" })
         </div>
     </div>

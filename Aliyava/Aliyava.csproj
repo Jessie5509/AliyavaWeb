@@ -288,7 +288,7 @@
     <Content Include="Views\Categoria\ModificarCategoria.cshtml" />
     <Content Include="Views\Stock\HistoricoStockV.cshtml" />
     <Content Include="Views\Stock\ListarStock.cshtml" />
-    <Content Include="Views\Reporte\ReproteProMasVendido.cshtml" />
+    <Content Include="Views\Reporte\ReporteProMasVendido.cshtml" />
     <Content Include="Views\Pedido\ListarPedidosNoUrgentes.cshtml" />
     <Content Include="Views\Pedido\ListarPedidoUrgente.cshtml" />
     <Content Include="Views\Pedido\DetallePedidos.cshtml" />

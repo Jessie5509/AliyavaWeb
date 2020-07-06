@@ -30,9 +30,9 @@ namespace DataAccess.Persistencia
             return coldto;
         }
 
-/*
+
         //devolver 
-        public void Reporte3()
+        public void Reporte3(DateTime dia)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -42,7 +42,7 @@ namespace DataAccess.Persistencia
             }
 
         }
-      */
+      
 
     }
 }

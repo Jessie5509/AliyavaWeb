@@ -15,7 +15,7 @@ namespace Aliyava.Controllers
         // GET: Producto
         public ActionResult Index(string dato)
         {
-
+            
 
             return View();
         }
@@ -26,10 +26,27 @@ namespace Aliyava.Controllers
         public ActionResult RegistrarProducto()
         {
 
+            List<DtoCategoria> colTipos = HCategoria.getInstace().GetCategoria();
+
+            List<SelectListItem> colSelectItems = new List<SelectListItem>();
+
+            foreach (DtoCategoria item in colTipos)
+            {
+                SelectListItem opcion = new SelectListItem();
+                opcion.Text = item.Nombre;
+                opcion.Value = item.Nombre;
+                colSelectItems.Add(opcion);
+            }
+
+            ViewBag.colCategorias = colSelectItems;
+
+
             return View();
         }
 
-        [HttpPost]
+
+
+            [HttpPost]
         public ActionResult AddProducto(DtoProducto nuevoproducto)
         {
             HProducto.getInstace().AddProducto(nuevoproducto);
@@ -65,6 +82,22 @@ namespace Aliyava.Controllers
 
             productoFB = HProducto.getInstace().GetProductoM(Codigo);
 
+            List<DtoCategoria> colTipos = HCategoria.getInstace().GetCategoria();
+
+            List<SelectListItem> colSelectItems = new List<SelectListItem>();
+
+            foreach (DtoCategoria item in colTipos)
+            {
+                SelectListItem opcion = new SelectListItem();
+                opcion.Text = item.Nombre;
+                opcion.Value = item.Nombre;
+                colSelectItems.Add(opcion);
+            }
+
+            ViewBag.colCategorias = colSelectItems;
+
+
+           
             return View(productoFB);
         }
 

@@ -49,9 +49,9 @@ namespace AliyavaCliente.Controllers
         }
 
 
-        public ActionResult Index1(string familia)
+        public ActionResult Index1()
         {
-            List<DtoCategoria> colTipos = HCategoria.getInstace().getTipoCat(familia);
+            List<DtoCategoria> colTipos = HCategoria.getInstace().GetCategoria();
 
             List<SelectListItem> colSelectItems = new List<SelectListItem>();
 
