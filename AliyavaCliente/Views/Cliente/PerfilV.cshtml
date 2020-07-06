@@ -122,7 +122,7 @@
             @Html.LabelFor(model => model.latitud)
         </div>
         <div class="col-md-5">
-            @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control", @id = "lat" } })
+            @Html.EditorFor(model => model.latitud, new { htmlAttributes = new { @class = "form-control", @lat = "lat" } })
             @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -133,7 +133,7 @@
             @Html.LabelFor(model => model.longitud)
         </div>
         <div class="col-md-5">
-            @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control", @id = "long" } })
+            @Html.EditorFor(model => model.longitud, new { htmlAttributes = new { @class = "form-control", @lng = "long" } })
             @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
         </div>
     </div>

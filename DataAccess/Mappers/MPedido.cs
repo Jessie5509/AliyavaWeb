@@ -13,6 +13,7 @@ namespace DataAccess.Mappers
         public static DtoPedido MapToDto(Pedido entity)
         {
             DtoPedido dto = new DtoPedido();
+            dto.Numero = entity.Numero;
             dto.Usuario = entity.Usuario;
             dto.PrecioTotal = entity.PrecioTotal;
             dto.FechaIngreso = entity.FechaIngreso;
@@ -27,6 +28,7 @@ namespace DataAccess.Mappers
         {
             Pedido entity = new Pedido();
             entity.Usuario = dto.Usuario;
+            entity.Numero = dto.Numero;
             entity.PrecioTotal = dto.PrecioTotal;
             entity.FechaIngreso = dto.FechaIngreso;
             entity.Estado = dto.Estado;

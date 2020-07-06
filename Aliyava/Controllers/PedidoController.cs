@@ -25,6 +25,13 @@ namespace Aliyava.Controllers
 
         }
 
+        //public ActionResult PrepararPedidosV(int id)
+        //{
+        //    List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
+        //    return View();
+
+        //}
+
 
         public ActionResult ListarPedidoUrgente()
         { 

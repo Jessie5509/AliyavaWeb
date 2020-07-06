@@ -21,12 +21,11 @@
         <AssociationConnector Association="AliyavaModel.FKPedidoCliente" />
         <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="6.875" />
         <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
-        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="9.25" PointY="3.75" />
-        <AssociationConnector Association="AliyavaModel.FKProducto_Categoria" />
-        <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
         <EntityTypeShape EntityType="AliyavaModel.DetallePedido" Width="1.5" PointX="4.625" PointY="4" />
         <AssociationConnector Association="AliyavaModel.FKDetalle_Pedido" />
+        <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="9" PointY="3.625" />
         <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
+        <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
