@@ -80,6 +80,7 @@ namespace DataAccess.Persistencia
             {
                 Producto Producto = context.Producto.FirstOrDefault(f => f.Codigo == id);
                 dto = MProducto.MapToDto(Producto);
+                
 
             }
 

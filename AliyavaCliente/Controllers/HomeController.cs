@@ -25,6 +25,11 @@ namespace AliyavaCliente.Controllers
             {
                 colProducto = colProducto.Where(s => s.Descripcion.Contains(searchString)).ToList();
             }
+            else 
+            {
+
+                colProducto = HProducto.getInstace().GetProducto();
+            }
 
             switch (sortOrder)
             {
@@ -36,7 +41,9 @@ namespace AliyavaCliente.Controllers
                     colProducto = colProducto.OrderBy(s => s.Descripcion).ToList();
                     break;
             }
-            
+
+          
+
 
             return View(colProducto);
         }

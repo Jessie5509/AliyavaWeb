@@ -29,8 +29,8 @@
     });
 
 
-    
-   
+
+
 </script>
 
 
@@ -43,12 +43,14 @@
 
     @using (Html.BeginForm())
     {
-        
-                
-        <p>
-            Buscar:@Html.TextBox("SearchString", null, new { @class = "search_input" })
-            <input type="submit" value="Search" />
-        </p>
+        <div class="navbar  navbar-fixed-top" style="top:10px; left:1650px">
+            <p>
+                @Html.TextBox("SearchString", null, new { @class = "search_input" })
+                <input type="submit" value="Search" />
+            </p>
+        </div>
+
+
         <p>
             @Html.ActionLink("Precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter })
         </p>
