@@ -46,6 +46,7 @@
     <Compile Include="Helpers\HEmpleado.cs" />
     <Compile Include="Helpers\HPedido.cs" />
     <Compile Include="Helpers\HProducto.cs" />
+    <Compile Include="Helpers\HReparto.cs" />
     <Compile Include="Helpers\HReporte.cs" />
     <Compile Include="Helpers\HStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

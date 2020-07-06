@@ -55,6 +55,7 @@
     <Compile Include="DTO\DtoLogin.cs" />
     <Compile Include="DTO\DtoPedido.cs" />
     <Compile Include="DTO\DtoProducto.cs" />
+    <Compile Include="DTO\DtoReparto.cs" />
     <Compile Include="DTO\DtoReporteMasVendido.cs" />
     <Compile Include="DTO\DtoStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

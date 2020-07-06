@@ -61,6 +61,7 @@
     <Compile Include="Mappers\MHisStock.cs" />
     <Compile Include="Mappers\MPedido.cs" />
     <Compile Include="Mappers\MProducto.cs" />
+    <Compile Include="Mappers\MReparto.cs" />
     <Compile Include="Mappers\MStock.cs" />
     <Compile Include="Model\Aliyava.Context.cs">
       <AutoGen>True</AutoGen>
@@ -121,6 +122,7 @@
     <Compile Include="Persistencia\PEmpleado.cs" />
     <Compile Include="Persistencia\PPedido.cs" />
     <Compile Include="Persistencia\PProducto.cs" />
+    <Compile Include="Persistencia\PReparto.cs" />
     <Compile Include="Persistencia\PReporte.cs" />
     <Compile Include="Persistencia\PStock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
