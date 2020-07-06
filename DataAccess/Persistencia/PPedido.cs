@@ -148,14 +148,14 @@ namespace DataAccess.Persistencia
         }
 
    
-        public List<DtoPedido> GetPedidos(DtoPedido dto)
+        public List<DtoPedido> getPedidoUrg()
         {
             List<Pedido> colPedidosDB = new List<Pedido>();
             List<DtoPedido> colPedidos = new List<DtoPedido>();
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                colPedidosDB = context.Pedido.Where(w => w.Usuario == dto.Usuario).ToList();
+                colPedidosDB = context.Pedido.Where(w => w.Urgente == "Si").ToList();
 
                 foreach (Pedido item in colPedidosDB)
                 {
@@ -168,5 +168,49 @@ namespace DataAccess.Persistencia
 
             return colPedidos;
         }
+
+        public List<DtoPedido> GetPedidos()
+        {
+            List<Pedido> colPedidosDB = new List<Pedido>();
+            List<DtoPedido> colPedidos = new List<DtoPedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colPedidosDB = context.Pedido.Where(w => w.Urgente == "No").ToList();
+
+                foreach (Pedido item in colPedidosDB)
+                {
+                    DtoPedido pedido = MPedido.MapToDto(item);
+                    colPedidos.Add(pedido);
+                }
+
+
+            }
+
+            return colPedidos;
+        }
+
+        public List<DtoDetallePedido> GetDetalle(int id)
+        {
+            List<DtoDetallePedido> colDtoDetalle = new List<DtoDetallePedido>();
+            List<DetallePedido> colDetalleDB = new List<DetallePedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colDetalleDB = context.DetallePedido.Where(w => w.idPedido == id).ToList();
+
+                foreach (DetallePedido item in colDetalleDB)
+                {
+                    DtoDetallePedido detalle = MDetalle.MapToDto(item);
+                    colDtoDetalle.Add(detalle);
+                }
+
+
+            }
+
+
+            return colDtoDetalle;
+        }
+
     }
 }

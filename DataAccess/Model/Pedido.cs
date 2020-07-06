@@ -31,10 +31,10 @@ namespace DataAccess.Model
         public int idReserva { get; set; }
         public Nullable<int> idReparto { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
         public virtual Reparto Reparto { get; set; }
         public virtual Reserva Reserva { get; set; }
         public virtual Cliente Cliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetallePedido> DetallePedido { get; set; }
     }
 }

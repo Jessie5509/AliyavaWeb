@@ -34,7 +34,6 @@
           </Key>
           <Property Name="CantidadPreparar" Type="float" Nullable="false" />
           <Property Name="idDetallePedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Cantidad" Type="float" Nullable="false" />
           <Property Name="PrecioU" Type="float" Nullable="false" />
           <Property Name="UbicacionPro" Type="varchar" MaxLength="50" />
           <Property Name="idPedido" Type="int" Nullable="false" />
@@ -110,7 +109,6 @@
           <Property Name="codigo_barras" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProDescripcion" Type="varchar" MaxLength="250" />
           <Property Name="CantidadPreparar" Type="int" />
-          <Property Name="ImagenPro" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Reparto">
           <Key>
@@ -140,7 +138,7 @@
           <Property Name="Motivo" Type="varchar" MaxLength="75" />
           <Property Name="Cantidad" Type="float" />
           <Property Name="idProducto" Type="int" Nullable="false" />
-          <Property Name="nombreUsuEmpleado" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="nombreUsuEmpleado" Type="varchar" MaxLength="75" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -171,6 +169,18 @@
             </Principal>
             <Dependent Role="DetallePedido">
               <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDireccionesCliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="idCliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,18 +232,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKProducto_Categoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Categoria">
-              <PropertyRef Name="idCategoria" />
-            </Principal>
-            <Dependent Role="Producto">
-              <PropertyRef Name="idCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKStock_Producto">
           <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
@@ -268,6 +266,10 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="DetallePedido" EntitySet="DetallePedido" />
           </AssociationSet>
+          <AssociationSet Name="FKDireccionesCliente" Association="Self.FKDireccionesCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
           <AssociationSet Name="FKHistStock_Empleado" Association="Self.FKHistStock_Empleado">
             <End Role="Empleado" EntitySet="Empleado" />
             <End Role="HistoricoStock" EntitySet="HistoricoStock" />
@@ -284,10 +286,6 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FKProducto_Categoria" Association="Self.FKProducto_Categoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
           <AssociationSet Name="FKStock_Producto" Association="Self.FKStock_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Stock" EntitySet="Stock" />
@@ -298,16 +296,11 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AliyavaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AliyavaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DetallePedido" EntityType="AliyavaModel.DetallePedido" />
           <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
           <EntitySet Name="Pedido" EntityType="AliyavaModel.Pedido" />
           <EntitySet Name="Reparto" EntityType="AliyavaModel.Reparto" />
           <EntitySet Name="Reserva" EntityType="AliyavaModel.Reserva" />
           <EntitySet Name="Usuario" EntityType="AliyavaModel.Usuario" />
-          <AssociationSet Name="FKDetalle_Pedido" Association="AliyavaModel.FKDetalle_Pedido">
-            <End Role="Pedido" EntitySet="Pedido" />
-            <End Role="DetallePedido" EntitySet="DetallePedido" />
-          </AssociationSet>
           <AssociationSet Name="FKPedido_Reparto" Association="AliyavaModel.FKPedido_Reparto">
             <End Role="Reparto" EntitySet="Reparto" />
             <End Role="Pedido" EntitySet="Pedido" />
@@ -339,29 +332,20 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
-          <AssociationSet Name="FKDetalle_Producto" Association="AliyavaModel.FKDetalle_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="DetallePedido" EntitySet="DetallePedido" />
-          </AssociationSet>
           <AssociationSet Name="FKStock_Producto" Association="AliyavaModel.FKStock_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
+          <EntitySet Name="DetallePedido" EntityType="AliyavaModel.DetallePedido" />
+          <AssociationSet Name="FKDetalle_Pedido" Association="AliyavaModel.FKDetalle_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalle_Producto" Association="AliyavaModel.FKDetalle_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
           </EntityContainer>
-        <EntityType Name="DetallePedido">
-          <Key>
-            <PropertyRef Name="idDetallePedido" />
-          </Key>
-          <Property Name="CantidadPreparar" Type="Double" Nullable="false" />
-          <Property Name="idDetallePedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Cantidad" Type="Double" Nullable="false" />
-          <Property Name="PrecioU" Type="Double" Nullable="false" />
-          <Property Name="UbicacionPro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="idPedido" Type="Int32" Nullable="false" />
-          <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
-          <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKDetalle_Producto" FromRole="DetallePedido" ToRole="Producto" />
-        </EntityType>
         <EntityType Name="Historico_de_Cambio_de_estados">
           <Key>
             <PropertyRef Name="idHistorico" />
@@ -386,10 +370,10 @@
           <Property Name="idCliente" Type="Int32" Nullable="false" />
           <Property Name="idReserva" Type="Int32" Nullable="false" />
           <Property Name="idReparto" Type="Int32" />
-          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
           <NavigationProperty Name="Reparto" Relationship="AliyavaModel.FKPedido_Reparto" FromRole="Pedido" ToRole="Reparto" />
           <NavigationProperty Name="Reserva" Relationship="AliyavaModel.FKPedido_Reserva" FromRole="Pedido" ToRole="Reserva" />
           <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
         </EntityType>
         <EntityType Name="Reparto">
           <Key>
@@ -420,18 +404,6 @@
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <Association Name="FKDetalle_Pedido">
-          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="1" />
-          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pedido">
-              <PropertyRef Name="Numero" />
-            </Principal>
-            <Dependent Role="DetallePedido">
-              <PropertyRef Name="idPedido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKPedido_Reparto">
           <End Type="AliyavaModel.Reparto" Role="Reparto" Multiplicity="0..1" />
           <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
@@ -475,7 +447,7 @@
           <Property Name="Motivo" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <Property Name="Cantidad" Type="Double" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <Property Name="nombreUsuEmpleado" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombreUsuEmpleado" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKStock_Producto" FromRole="Stock" ToRole="Producto" />
         </EntityType>
         <EntityType Name="HistoricoStock">
@@ -580,8 +552,8 @@
           <Property Name="CantidadPreparar" Type="Int32" />
           <Property Name="ImagenPro" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Categoria" Relationship="AliyavaModel.FKProducto_Categoria" FromRole="Producto" ToRole="Categoria" />
-          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Producto" FromRole="Producto" ToRole="DetallePedido" />
           <NavigationProperty Name="Stock" Relationship="AliyavaModel.FKStock_Producto" FromRole="Producto" ToRole="Stock" />
+          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Producto" FromRole="Producto" ToRole="DetallePedido" />
         </EntityType>
         <Association Name="FKProducto_Categoria">
           <End Type="AliyavaModel.Categoria" Role="Categoria" Multiplicity="1" />
@@ -592,18 +564,6 @@
             </Principal>
             <Dependent Role="Producto">
               <PropertyRef Name="idCategoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKDetalle_Producto">
-          <End Type="AliyavaModel.Producto" Role="Producto" Multiplicity="1" />
-          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Producto">
-              <PropertyRef Name="Codigo" />
-            </Principal>
-            <Dependent Role="DetallePedido">
-              <PropertyRef Name="idProducto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -619,25 +579,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="DetallePedido">
+          <Key>
+            <PropertyRef Name="idDetallePedido" />
+          </Key>
+          <Property Name="CantidadPreparar" Type="Double" Nullable="false" />
+          <Property Name="idDetallePedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrecioU" Type="Double" Nullable="false" />
+          <Property Name="UbicacionPro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <Property Name="idProducto" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
+          <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKDetalle_Producto" FromRole="DetallePedido" ToRole="Producto" />
+        </EntityType>
+        <Association Name="FKDetalle_Pedido">
+          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalle_Producto">
+          <End Type="AliyavaModel.Producto" Role="Producto" Multiplicity="1" />
+          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="Codigo" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AliyavaModelStoreContainer" CdmEntityContainer="AliyavaEntities">
-          <EntitySetMapping Name="DetallePedido">
-            <EntityTypeMapping TypeName="AliyavaModel.DetallePedido">
-              <MappingFragment StoreEntitySet="DetallePedido">
-                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
-                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
-                <ScalarProperty Name="UbicacionPro" ColumnName="UbicacionPro" />
-                <ScalarProperty Name="PrecioU" ColumnName="PrecioU" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="idDetallePedido" ColumnName="idDetallePedido" />
-                <ScalarProperty Name="CantidadPreparar" ColumnName="CantidadPreparar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Historico_de_Cambio_de_estados">
             <EntityTypeMapping TypeName="AliyavaModel.Historico_de_Cambio_de_estados">
               <MappingFragment StoreEntitySet="Historico de Cambio de estados">
@@ -771,7 +755,6 @@
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="AliyavaModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="ImagenPro" ColumnName="ImagenPro" />
                 <ScalarProperty Name="CantidadPreparar" ColumnName="CantidadPreparar" />
                 <ScalarProperty Name="ProDescripcion" ColumnName="ProDescripcion" />
                 <ScalarProperty Name="codigo_barras" ColumnName="codigo_barras" />
@@ -780,6 +763,18 @@
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetallePedido">
+            <EntityTypeMapping TypeName="AliyavaModel.DetallePedido">
+              <MappingFragment StoreEntitySet="DetallePedido">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="UbicacionPro" ColumnName="UbicacionPro" />
+                <ScalarProperty Name="PrecioU" ColumnName="PrecioU" />
+                <ScalarProperty Name="idDetallePedido" ColumnName="idDetallePedido" />
+                <ScalarProperty Name="CantidadPreparar" ColumnName="CantidadPreparar" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

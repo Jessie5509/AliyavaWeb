@@ -18,6 +18,7 @@ namespace DataAccess.Mappers
             dto.FechaIngreso = entity.FechaIngreso;
             dto.Estado = entity.Estado;
             dto.Direccion = entity.Direccion;
+            dto.Urgente = entity.Urgente;
 
             return dto;
         }
@@ -30,6 +31,7 @@ namespace DataAccess.Mappers
             entity.FechaIngreso = dto.FechaIngreso;
             entity.Estado = dto.Estado;
             entity.Direccion = dto.Direccion;
+            entity.Urgente = dto.Urgente;
 
             return entity;
         }

@@ -23,7 +23,7 @@ namespace DataAccess.Persistencia
                           select new DtoReporteMasVendido
                           {
                               idProducto = detgrp.Key,
-                              cantidad = detgrp.Sum(s => s.Cantidad)
+                              cantidad = detgrp.Sum(s => s.CantidadPreparar)
                           }).OrderByDescending(o => o.cantidad).ToList();
 
             }

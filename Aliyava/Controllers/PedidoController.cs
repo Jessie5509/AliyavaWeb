@@ -18,25 +18,24 @@ namespace Aliyava.Controllers
             return View();
         }
 
-        public ActionResult AddPedidoV()
+        public ActionResult DetallePedidos(int id)
         {
+            List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
+            return View(colDetallesByPedido);
 
-            return View();
         }
 
-        //[HttpPost]
-        //public ActionResult AddPedido(DtoPedido nuevoPedido)
-        //{
-        //    HPedido.getInstace().AgregarPedido(nuevoPedido);
-        //    return RedirectToAction("AddPedidoV");
-        //}
 
-
-
-        public ActionResult ListarPedidosCarrito(DtoPedido dto)
+        public ActionResult ListarPedidoUrgente()
         { 
-            List<DtoPedido> colPedidos = HPedido.getInstace().GetPedido(dto);
-            return View(colPedidos);   
+            List<DtoPedido> colPedidosUrg = HPedido.getInstace().GetPedidoUrg();
+            return View(colPedidosUrg);   
+        }
+
+        public ActionResult ListarPedidosNoUrgentes()
+        {
+            List<DtoPedido> colPedidos = HPedido.getInstace().GetPedido();
+            return View(colPedidos);
         }
 
 

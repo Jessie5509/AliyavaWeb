@@ -26,13 +26,24 @@ namespace BussinesLogic.Helpers
             pp.AgregarPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
         }
 
-        public List<DtoPedido> GetPedido(DtoPedido dto)
+        public List<DtoPedido> GetPedidoUrg()
         {
             PPedido pp = new PPedido();
-            return pp.GetPedidos(dto);
+            return pp.getPedidoUrg();
         }
 
-    
+        public List<DtoPedido> GetPedido()
+        {
+            PPedido pp = new PPedido();
+            return pp.GetPedidos();
+        }
+        
+        public List<DtoDetallePedido> GetDetallePedido(int id)
+        {
+            PPedido pp = new PPedido();
+            return pp.GetDetalle(id);
+        }
+
 
     }
 }
