@@ -14,18 +14,12 @@ namespace DataAccess.Model
     
     public partial class Reserva
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Reserva()
-        {
-            this.Pedido = new HashSet<Pedido>();
-        }
-    
         public int idReserva { get; set; }
         public string Ubicacion { get; set; }
         public Nullable<double> Cantidad { get; set; }
         public string Estado { get; set; }
+        public int idPedido { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
+        public virtual Pedido Pedido { get; set; }
     }
 }

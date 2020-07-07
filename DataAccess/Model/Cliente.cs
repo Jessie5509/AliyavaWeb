@@ -17,8 +17,8 @@ namespace DataAccess.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()
         {
-            this.Pedido = new HashSet<Pedido>();
             this.Direcciones = new HashSet<Direcciones>();
+            this.Pedido = new HashSet<Pedido>();
         }
     
         public int idCliente { get; set; }
@@ -33,8 +33,8 @@ namespace DataAccess.Model
         public Nullable<decimal> longitud { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pedido> Pedido { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Direcciones> Direcciones { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pedido> Pedido { get; set; }
     }
 }

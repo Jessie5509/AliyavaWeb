@@ -18,7 +18,7 @@ namespace Aliyava.Controllers
 
         public ActionResult RegistroEmpleado()
         {
-            ViewBag.Message = "Empleado registrado satisfactoriamente!";
+            //ViewBag.Message = null;
             return View();
         }
 
@@ -26,6 +26,7 @@ namespace Aliyava.Controllers
         public ActionResult AddEmpleado(DtoEmpleado nuevoEmpleado)
         {
             HEmpleado.getInstace().AddEmpleado(nuevoEmpleado);
+            ViewBag.Message = "Empleado registrado satisfactoriamente!";
             return RedirectToAction("RegistroEmpleado");
         }
 

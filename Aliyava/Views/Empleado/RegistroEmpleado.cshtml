@@ -45,20 +45,17 @@
 
 
                 <input type="submit" value="Registrarse" class="btn btn-success" />
+
+                @if (ViewBag.Message != null)
+                {
+                    @Html.Label("", (string)ViewBag.Message)
+                }
+
+
+
             </div>
         </div>
     </div>
 }
 
-@if (ViewBag.Message != null)
-{
-    <script type="text/javascript">
-        window.onload = function() {
-            alert(@ViewBag.Message);
-        }
-
-
-    </script>
-
-}
 

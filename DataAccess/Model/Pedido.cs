@@ -18,6 +18,7 @@ namespace DataAccess.Model
         public Pedido()
         {
             this.DetallePedido = new HashSet<DetallePedido>();
+            this.Reserva = new HashSet<Reserva>();
         }
     
         public string Estado { get; set; }
@@ -28,13 +29,13 @@ namespace DataAccess.Model
         public System.DateTime FechaIngreso { get; set; }
         public string Urgente { get; set; }
         public int idCliente { get; set; }
-        public int idReserva { get; set; }
         public Nullable<int> idReparto { get; set; }
     
-        public virtual Reparto Reparto { get; set; }
-        public virtual Reserva Reserva { get; set; }
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePedido> DetallePedido { get; set; }
+        public virtual Reparto Reparto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Reserva> Reserva { get; set; }
     }
 }

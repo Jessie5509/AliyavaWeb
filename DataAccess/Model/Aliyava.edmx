@@ -94,7 +94,6 @@
           <Property Name="FechaIngreso" Type="datetime" Nullable="false" />
           <Property Name="Urgente" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
-          <Property Name="idReserva" Type="int" Nullable="false" />
           <Property Name="idReparto" Type="int" />
         </EntityType>
         <EntityType Name="Producto">
@@ -129,6 +128,7 @@
           <Property Name="Ubicacion" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Cantidad" Type="float" />
           <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="idPedido" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -209,18 +209,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FKPedido_Reserva">
-          <End Role="Reserva" Type="Self.Reserva" Multiplicity="1" />
-          <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reserva">
-              <PropertyRef Name="idReserva" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="idReserva" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FKPedidoCliente">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
@@ -230,6 +218,18 @@
             </Principal>
             <Dependent Role="Pedido">
               <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReserva_Pedido">
+          <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+          <End Role="Reserva" Type="Self.Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idPedido" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -279,13 +279,13 @@
             <End Role="Reparto" EntitySet="Reparto" />
             <End Role="Pedido" EntitySet="Pedido" />
           </AssociationSet>
-          <AssociationSet Name="FKPedido_Reserva" Association="Self.FKPedido_Reserva">
-            <End Role="Reserva" EntitySet="Reserva" />
-            <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
           <AssociationSet Name="FKPedidoCliente" Association="Self.FKPedidoCliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FKReserva_Pedido" Association="Self.FKReserva_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           <AssociationSet Name="FKStock_Producto" Association="Self.FKStock_Producto">
             <End Role="Producto" EntitySet="Producto" />
@@ -298,18 +298,8 @@
       <Schema Namespace="AliyavaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AliyavaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
-          <EntitySet Name="Pedido" EntityType="AliyavaModel.Pedido" />
           <EntitySet Name="Reparto" EntityType="AliyavaModel.Reparto" />
-          <EntitySet Name="Reserva" EntityType="AliyavaModel.Reserva" />
           <EntitySet Name="Usuario" EntityType="AliyavaModel.Usuario" />
-          <AssociationSet Name="FKPedido_Reparto" Association="AliyavaModel.FKPedido_Reparto">
-            <End Role="Reparto" EntitySet="Reparto" />
-            <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
-          <AssociationSet Name="FKPedido_Reserva" Association="AliyavaModel.FKPedido_Reserva">
-            <End Role="Reserva" EntitySet="Reserva" />
-            <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
           <EntitySet Name="Empleado" EntityType="AliyavaModel.Empleado" />
           <EntitySet Name="Stock" EntityType="AliyavaModel.Stock" />
           <EntitySet Name="HistoricoStock" EntityType="AliyavaModel.HistoricoStock" />
@@ -319,20 +309,12 @@
           </AssociationSet>
           <EntitySet Name="Categoria" EntityType="AliyavaModel.Categoria" />
           <EntitySet Name="Cliente" EntityType="AliyavaModel.Cliente" />
-          <AssociationSet Name="FKPedidoCliente" Association="AliyavaModel.FKPedidoCliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Pedido" EntitySet="Pedido" />
-          </AssociationSet>
           <EntitySet Name="Direcciones" EntityType="AliyavaModel.Direcciones" />
           <AssociationSet Name="FKDireccionesCliente" Association="AliyavaModel.FKDireccionesCliente">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Direcciones" EntitySet="Direcciones" />
           </AssociationSet>
           <EntitySet Name="DetallePedido" EntityType="AliyavaModel.DetallePedido" />
-          <AssociationSet Name="FKDetalle_Pedido" Association="AliyavaModel.FKDetalle_Pedido">
-            <End Role="Pedido" EntitySet="Pedido" />
-            <End Role="DetallePedido" EntitySet="DetallePedido" />
-          </AssociationSet>
           <EntitySet Name="Producto" EntityType="AliyavaModel.Producto" />
           <AssociationSet Name="FKDetalle_Producto" Association="AliyavaModel.FKDetalle_Producto">
             <End Role="Producto" EntitySet="Producto" />
@@ -341,6 +323,24 @@
           <AssociationSet Name="FKStock_Producto" Association="AliyavaModel.FKStock_Producto">
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Stock" EntitySet="Stock" />
+          </AssociationSet>
+          <EntitySet Name="Pedido" EntityType="AliyavaModel.Pedido" />
+          <EntitySet Name="Reserva" EntityType="AliyavaModel.Reserva" />
+          <AssociationSet Name="FKPedidoCliente" Association="AliyavaModel.FKPedidoCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FKDetalle_Pedido" Association="AliyavaModel.FKDetalle_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="DetallePedido" EntitySet="DetallePedido" />
+          </AssociationSet>
+          <AssociationSet Name="FKPedido_Reparto" Association="AliyavaModel.FKPedido_Reparto">
+            <End Role="Reparto" EntitySet="Reparto" />
+            <End Role="Pedido" EntitySet="Pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FKReserva_Pedido" Association="AliyavaModel.FKReserva_Pedido">
+            <End Role="Pedido" EntitySet="Pedido" />
+            <End Role="Reserva" EntitySet="Reserva" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Historico_de_Cambio_de_estados">
@@ -353,25 +353,6 @@
           <Property Name="Estados" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="FechaCambio" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <EntityType Name="Pedido">
-          <Key>
-            <PropertyRef Name="Numero" />
-          </Key>
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="PrecioTotal" Type="Double" Nullable="false" />
-          <Property Name="Numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Urgente" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
-          <Property Name="idReserva" Type="Int32" Nullable="false" />
-          <Property Name="idReparto" Type="Int32" />
-          <NavigationProperty Name="Reparto" Relationship="AliyavaModel.FKPedido_Reparto" FromRole="Pedido" ToRole="Reparto" />
-          <NavigationProperty Name="Reserva" Relationship="AliyavaModel.FKPedido_Reserva" FromRole="Pedido" ToRole="Reserva" />
-          <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Pedido" ToRole="Cliente" />
-          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
-        </EntityType>
         <EntityType Name="Reparto">
           <Key>
             <PropertyRef Name="idReparto" />
@@ -383,16 +364,6 @@
           <Property Name="FechaSalida" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKPedido_Reparto" FromRole="Reparto" ToRole="Pedido" />
         </EntityType>
-        <EntityType Name="Reserva">
-          <Key>
-            <PropertyRef Name="idReserva" />
-          </Key>
-          <Property Name="idReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Cantidad" Type="Double" />
-          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKPedido_Reserva" FromRole="Reserva" ToRole="Pedido" />
-        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
@@ -401,30 +372,6 @@
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
-        <Association Name="FKPedido_Reparto">
-          <End Type="AliyavaModel.Reparto" Role="Reparto" Multiplicity="0..1" />
-          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reparto">
-              <PropertyRef Name="idReparto" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="idReparto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FKPedido_Reserva">
-          <End Type="AliyavaModel.Reserva" Role="Reserva" Multiplicity="1" />
-          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Reserva">
-              <PropertyRef Name="idReserva" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="idReserva" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="idEmpleado" />
@@ -493,21 +440,9 @@
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="latitud" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="longitud" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Cliente" ToRole="Pedido" />
           <NavigationProperty Name="Direcciones" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Cliente" ToRole="Direcciones" />
+          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Cliente" ToRole="Pedido" />
         </EntityType>
-        <Association Name="FKPedidoCliente">
-          <End Type="AliyavaModel.Cliente" Role="Cliente" Multiplicity="1" />
-          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="idCliente" />
-            </Principal>
-            <Dependent Role="Pedido">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Direcciones">
           <Key>
             <PropertyRef Name="idDireccion" />
@@ -544,21 +479,9 @@
           <Property Name="UbicacionPro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="idPedido" Type="Int32" Nullable="false" />
           <Property Name="idProducto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
           <NavigationProperty Name="Producto" Relationship="AliyavaModel.FKDetalle_Producto" FromRole="DetallePedido" ToRole="Producto" />
+          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
         </EntityType>
-        <Association Name="FKDetalle_Pedido">
-          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="1" />
-          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pedido">
-              <PropertyRef Name="Numero" />
-            </Principal>
-            <Dependent Role="DetallePedido">
-              <PropertyRef Name="idPedido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Codigo" />
@@ -599,6 +522,83 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="Numero" />
+          </Key>
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrecioTotal" Type="Double" Nullable="false" />
+          <Property Name="Numero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaIngreso" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Urgente" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="idReparto" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Pedido" ToRole="Cliente" />
+          <NavigationProperty Name="DetallePedido" Relationship="AliyavaModel.FKDetalle_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
+          <NavigationProperty Name="Reparto" Relationship="AliyavaModel.FKPedido_Reparto" FromRole="Pedido" ToRole="Reparto" />
+          <NavigationProperty Name="Reserva" Relationship="AliyavaModel.FKReserva_Pedido" FromRole="Pedido" ToRole="Reserva" />
+        </EntityType>
+        <EntityType Name="Reserva">
+          <Key>
+            <PropertyRef Name="idReserva" />
+          </Key>
+          <Property Name="idReserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ubicacion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Double" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="idPedido" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKReserva_Pedido" FromRole="Reserva" ToRole="Pedido" />
+        </EntityType>
+        <Association Name="FKPedidoCliente">
+          <End Type="AliyavaModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKDetalle_Pedido">
+          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="AliyavaModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="DetallePedido">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKPedido_Reparto">
+          <End Type="AliyavaModel.Reparto" Role="Reparto" Multiplicity="0..1" />
+          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Reparto">
+              <PropertyRef Name="idReparto" />
+            </Principal>
+            <Dependent Role="Pedido">
+              <PropertyRef Name="idReparto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKReserva_Pedido">
+          <End Type="AliyavaModel.Pedido" Role="Pedido" Multiplicity="1" />
+          <End Type="AliyavaModel.Reserva" Role="Reserva" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pedido">
+              <PropertyRef Name="Numero" />
+            </Principal>
+            <Dependent Role="Reserva">
+              <PropertyRef Name="idPedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -616,22 +616,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Pedido">
-            <EntityTypeMapping TypeName="AliyavaModel.Pedido">
-              <MappingFragment StoreEntitySet="Pedido">
-                <ScalarProperty Name="idReparto" ColumnName="idReparto" />
-                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="Urgente" ColumnName="Urgente" />
-                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reparto">
             <EntityTypeMapping TypeName="AliyavaModel.Reparto">
               <MappingFragment StoreEntitySet="Reparto">
@@ -640,16 +624,6 @@
                 <ScalarProperty Name="Estado" ColumnName="Estado" />
                 <ScalarProperty Name="MatriculaVehiculo" ColumnName="MatriculaVehiculo" />
                 <ScalarProperty Name="idReparto" ColumnName="idReparto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Reserva">
-            <EntityTypeMapping TypeName="AliyavaModel.Reserva">
-              <MappingFragment StoreEntitySet="Reserva">
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
-                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
-                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -759,6 +733,32 @@
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="AliyavaModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="idReparto" ColumnName="idReparto" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="Urgente" ColumnName="Urgente" />
+                <ScalarProperty Name="FechaIngreso" ColumnName="FechaIngreso" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="PrecioTotal" ColumnName="PrecioTotal" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reserva">
+            <EntityTypeMapping TypeName="AliyavaModel.Reserva">
+              <MappingFragment StoreEntitySet="Reserva">
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Ubicacion" ColumnName="Ubicacion" />
+                <ScalarProperty Name="idReserva" ColumnName="idReserva" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

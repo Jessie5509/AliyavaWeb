@@ -47,13 +47,13 @@
         <div class="navbar  navbar-fixed-top" style="top:10px; left:1650px">
             <p>
                 @Html.TextBox("SearchString", null, new { @class = "search_input" })
-                <input type="submit" value="Search" />
+                <input type="submit" value="Buscar" />
             </p>
         </div>
         
 
         <p>
-            @Html.ActionLink("Precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter })
+            @Html.ActionLink("Ordenar precios", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary" })
         </p>
 
 

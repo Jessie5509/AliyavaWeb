@@ -53,15 +53,7 @@ namespace DataAccess.Persistencia
                             nuevoPedido.PrecioTotal = precioTotal;
                             nuevoPedido.Usuario = cli.NombreUsuario;
                             nuevoPedido.idCliente = cli.idCliente;
-                            nuevoPedido.idReserva = 1;
-                   
-                            context.Pedido.Add(nuevoPedido);
-                          
-
-                            //Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
-                            //Session tal vez.
-                            //int Numero = context.Pedido.FirstOrDefault(w => w.Usuario == NombreUsu).Numero;
-
+                            
                             //DetallePedidoAdd
                       
                             foreach (DtoProducto dto in colProductosPedidos)
@@ -69,8 +61,6 @@ namespace DataAccess.Persistencia
                                 DetallePedido ingresoDetallePedido = new DetallePedido();
                                 ingresoDetallePedido.PrecioU = (double)dto.PrecioVenta;
                                 ingresoDetallePedido.idProducto = dto.Codigo;
-                                ingresoDetallePedido.idPedido = 1;//Checkear el tema de como obtener el número del pedido qeu se acaba de ingresar.
-                                /*ingresoDetallePedido.Pedido = nuevoPedido;*///??
 
                                 Producto pro = context.Producto.Include("Stock").FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
                                 string ubicacionP = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
@@ -79,17 +69,22 @@ namespace DataAccess.Persistencia
 
                                 ingresoDetallePedido.CantidadPreparar = (double)dto.CantidadPreparar;
 
-                                context.DetallePedido.Add(ingresoDetallePedido);
+                                nuevoPedido.DetallePedido.Add(ingresoDetallePedido);
                                
                             }
 
-                            context.SaveChanges();
-
                             //Dar de alta la reserva.
 
-                            AddReserva(colProductosPedidos);
+                            AddReserva(colProductosPedidos, nuevoPedido, context);
 
+                            int idre = context.Reserva.Include("Pedido").FirstOrDefault(f => f.Pedido == nuevoPedido).idReserva;
 
+                            nuevoPedido.idReserva = idre;
+
+                            context.Pedido.Add(nuevoPedido);
+                            context.SaveChanges();
+
+                         
                             scope.Complete();
                         }
                         catch (Exception ex)
@@ -108,36 +103,43 @@ namespace DataAccess.Persistencia
             }
         }
 
-        public void AddReserva(List<DtoProducto> colProductosPedidos)
+        public void AddReserva(List<DtoProducto> colProductosPedidos, Pedido nuevoPedido, AliyavaEntities context)
         {
             Stock stockByPro = new Stock();
-
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                foreach (DtoProducto dto in colProductosPedidos)
+                using (TransactionScope scope = new TransactionScope())
                 {
-                    Reserva nuevaReserva = new Reserva();
+                    try
+                    {
+                        foreach (DtoProducto dto in colProductosPedidos)
+                        {
+                            Reserva nuevaReserva = new Reserva();
 
-                    Producto pro = context.Producto.FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
-                    string ubicacionP = context.Stock.FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
+                            Producto pro = context.Producto.FirstOrDefault(f => f.codigo_barras == dto.codigoBarras);
+                            string ubicacionP = context.Stock.Include("Producto").FirstOrDefault(f => f.Producto.codigo_barras == pro.codigo_barras).Ubicacion;
 
-                    nuevaReserva.Ubicacion = ubicacionP;
-                    nuevaReserva.Estado = "Activo";
+                            nuevaReserva.Ubicacion = ubicacionP;
+                            nuevaReserva.Estado = "Activo";
+                            nuevaReserva.Cantidad = dto.CantidadPreparar;
+                            //Reservar stock por cada producto de la lista.
+                            stockByPro = context.Stock.FirstOrDefault(f => f.idProducto == dto.Codigo);
+                            stockByPro.Cantidad = stockByPro.Cantidad - dto.CantidadPreparar;
 
-                    //int cant = colProductosPedidos.Count(c => c.Codigo == dto.Codigo);
+                            nuevaReserva.Pedido.Add(nuevoPedido);
 
-                    nuevaReserva.Cantidad = dto.CantidadPreparar;
-                    //Reservar stock por cada producto de la lista.
-                    stockByPro = context.Stock.FirstOrDefault(f => f.idProducto == dto.Codigo);
-                    stockByPro.Cantidad = stockByPro.Cantidad - dto.CantidadPreparar;
+                            context.Reserva.Add(nuevaReserva);
+                            context.SaveChanges();
 
-                    context.Reserva.Add(nuevaReserva);
-                    context.SaveChanges();
+                        }
 
+
+                        scope.Complete();
+                    }
+                    catch(Exception ex)
+                    {
+                        scope.Dispose();
+                    }
                 }
-
-
-            }
+            
 
 
         }
