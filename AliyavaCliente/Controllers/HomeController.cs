@@ -90,9 +90,35 @@ namespace AliyavaCliente.Controllers
 
         public ActionResult ProductoInfo(int id)
         {
-           
             DtoProducto producto = new DtoProducto();
             producto = HProducto.getInstace().GetProductoInfo(id);
+
+            string stock = "no entro¿";
+            List<DtoStock> colstock = new List<DtoStock>();
+            colstock = HStock.getInstace().GetAllStock();
+
+            colstock = colstock.Where(s => s.idProducto == id).ToList();
+            
+            foreach (DtoStock item in colstock)
+            {
+
+                if (id == item.idProducto && item.Cantidad > 0)
+                {
+
+                    stock = "In Stock";
+
+                }
+                else
+                {
+
+                    stock = "Out of Stock";
+
+                }
+
+            }
+            ViewBag.Stock = stock;
+
+            
 
             return View(producto);
         }
