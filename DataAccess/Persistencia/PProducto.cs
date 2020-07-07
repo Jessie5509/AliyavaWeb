@@ -104,13 +104,42 @@ namespace DataAccess.Persistencia
                 dto = MProducto.MapToDto(Producto);
                 
 
+
+
             }
 
             return dto;
 
         }
 
+        public List<DtoProducto> GetProductoFamilia(string familia)
+        {
+            List<DtoProducto> colProducto = new List<DtoProducto>();
 
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Producto> colProd = context.Producto.Where(f => f.Familia == familia).ToList();
+
+                foreach (Producto item in colProd)
+                {
+                    DtoProducto dto = new DtoProducto();
+                    dto.Codigo = item.Codigo;
+                    dto.Descripcion = item.Descripcion;
+                    dto.Familia = item.Familia;
+                    dto.PrecioVenta = item.PrecioVenta;
+                    dto.codigoBarras = item.codigo_barras;
+                    dto.ProDescripcion = item.ProDescripcion;
+                    dto.CantidadPreparar = item.CantidadPreparar;
+                    dto.ImagenPro = item.ImagenPro;
+
+                    colProducto.Add(dto);
+                }
+
+            }
+
+            return colProducto;
+
+        }
 
 
         public void RemoveProducto(int Codigo)

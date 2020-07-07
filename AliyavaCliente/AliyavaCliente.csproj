@@ -279,6 +279,7 @@
     <Content Include="Views\Home\ProductoInfo.cshtml" />
     <Content Include="Views\Cliente\ListarDirecciones.cshtml" />
     <Content Include="Views\Cliente\DireccionForm.cshtml" />
+    <Content Include="Views\Shared\_listaProductos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

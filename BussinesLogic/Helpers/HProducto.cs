@@ -60,6 +60,12 @@ namespace BussinesLogic.Helpers
             ps.RemoveProducto(Codigo);
         }
 
+        public List<DtoProducto> GetProductoFamilia(string familia)
+        {
+            PProducto pc = new PProducto();
+            return pc.GetProductoFamilia(familia);
+        }
+
         public DtoProducto GetProductoM(int Codigo)
         {
             PProducto pc = new PProducto();

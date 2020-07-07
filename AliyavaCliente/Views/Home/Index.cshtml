@@ -7,7 +7,7 @@
     <h1>Aliyava Clientes</h1>
 
 </div>
-
+<script src="~/Scripts/jquery-3.5.1.js"></script>
 <script>
 
     $(document).ready(function () {
@@ -16,13 +16,11 @@
             var familiaSelect = $("#id_DropDownList").val();
 
             $.ajax({
-                type: "GET",
-                url: "http://localhost:50850/Home/Index1?familia=" + familiaSelect,
-
-                data: data,
+                type: "POST",
+                url: "https://localhost:44377/Home/FiltrarFamilia?familia=" + familiaSelect,
                 success: function (data) {
 
-                    $('#id_div_contiene_productos').html(data);
+                    $('#searchable-container').html(data);
                 }
             });
         });
@@ -44,54 +42,36 @@
 
     @using (Html.BeginForm())
     {
-        <div class="navbar  navbar-fixed-top" style="top:10px; left:1650px">
-            <p>
-                @Html.TextBox("SearchString", null, new { @class = "search_input" })
-                <input type="submit" value="Search" />
-            </p>
+        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:0.8%; margin-left:80%">
+            <ul class="nav navbar-nav">
+                <li>@Html.TextBox("SearchString", null, new { @class = "search_input" })</li>
+                <li><input type="submit" value="Search" /></li>
+            </ul>
         </div>
-        
+
+        <div id="FamiliS">
+            <div class="col-md-10">
+                @Html.DropDownList("id_DropDownList", (ICollection<SelectListItem>)ViewBag.colFamilias, "-- Familia --", new { @class = "form-control" })
+            </div>
+
+        </div>
 
         <p>
             @Html.ActionLink("Precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter })
         </p>
 
 
-        
 
-        
+
+
     }
 
     <div>
         <div class="row" style="height:5000px; background-color: rgba(255,0,0,0.1);">
             <div class="container" id="searchable-container">
-                @foreach (Common.DTO.DtoProducto item in Model)
-                {
+               @{
+                   Html.RenderPartial("_listaProductos");
 
-               
-                    <div class="card">
-                        <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
-
-                            <div id="portada" class="card-title">@Html.DisplayFor(modelItem => item.Descripcion)</div>
-
-                            <div class="panel-body" style="width: 200px; height: 200px;">
-                                <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImagenPro)" style="width:auto; height: 175px;">
-
-                            </div>
-                            <div class="panel-footer">
-                                <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
-                                <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
-                                <p>
-                                    @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
-                                            new { @class = "btn btn-primary" })
-                                </p>
-
-                                @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
-                            </div>
-
-
-                        </div>
-                    </div>
                 }
 
             </div>
@@ -99,3 +79,5 @@
     </div>
 
 </div>
+
+
