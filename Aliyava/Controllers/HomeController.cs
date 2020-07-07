@@ -19,7 +19,7 @@ namespace Aliyava.Controllers
 
 
             colProducto = HProducto.getInstace().GetProducto();
-
+            //Buscador por nombre de producto
             if (!String.IsNullOrEmpty(searchString))
             {
                 colProducto = colProducto.Where(s => s.Descripcion.Contains(searchString)).ToList();
@@ -29,7 +29,7 @@ namespace Aliyava.Controllers
 
                 colProducto = HProducto.getInstace().GetProducto();
             }
-
+            //Filtrado por precio
             switch (sortOrder)
             {
 
@@ -37,19 +37,11 @@ namespace Aliyava.Controllers
                     colProducto = colProducto.OrderBy(s => s.PrecioVenta).ToList();
                     break;
                 default:
-                    colProducto = colProducto.OrderBy(s => s.Descripcion).ToList();
+                    colProducto = colProducto.OrderByDescending(s => s.PrecioVenta).ToList();
                     break;
             }
 
-
-
-
-            return View(colProducto);
-        }
-
-
-        public ActionResult Index1()
-        {
+            //Cargar viebag de familia
             List<DtoCategoria> colTipos = HCategoria.getInstace().GetCategoria();
 
             List<SelectListItem> colSelectItems = new List<SelectListItem>();
@@ -62,9 +54,29 @@ namespace Aliyava.Controllers
                 colSelectItems.Add(opcion);
             }
 
-            ViewBag.colTiposCategoria = colSelectItems;
+            ViewBag.colFamilias = colSelectItems;
 
-            return View();
+
+
+            return View(colProducto);
+        }
+
+        [HttpPost]
+        public ActionResult FiltrarFamilia(string familia)
+        {
+            List<DtoProducto> ProdFam = new List<DtoProducto>();
+            if (familia == "")
+            {
+                ProdFam = HProducto.getInstace().GetProducto();
+            }
+            else
+            {
+
+                ProdFam = HProducto.getInstace().GetProductoFamilia(familia);
+            }
+
+
+            return PartialView("_listaProductos", ProdFam);
         }
 
 

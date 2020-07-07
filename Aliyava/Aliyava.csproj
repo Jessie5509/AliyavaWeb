@@ -293,6 +293,8 @@
     <Content Include="Views\Pedido\ListarPedidoUrgente.cshtml" />
     <Content Include="Views\Pedido\DetallePedidos.cshtml" />
     <Content Include="Views\Pedido\PrepararPedidosV.cshtml" />
+    <Content Include="Views\Home\_listaProductos.cshtml" />
+    <Content Include="Views\Home\ProductoInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

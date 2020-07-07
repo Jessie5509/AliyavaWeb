@@ -1,0 +1,31 @@
+﻿@model List<Common.DTO.DtoProducto>
+
+
+@foreach (Common.DTO.DtoProducto item in Model)
+{
+
+
+    <div class="card">
+        <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin:10px; background-color: rgba(0,0,255,.1)">
+
+            <div id="portada" class="card-title">@Html.DisplayFor(modelItem => item.Descripcion)</div>
+
+            <div class="panel-body" style="width: 200px; height: 200px;">
+                <img class="img-responsive" src="@Html.DisplayFor(modelItem => item.ImagenPro)" style="width:auto; height: 175px;">
+
+            </div>
+            <div class="panel-footer">
+                <p>$ @Html.DisplayFor(modelItem => item.PrecioVenta)</p>
+                <p id="contenido">@Html.DisplayFor(modelItem => item.ProDescripcion)</p>
+                <p>
+                    @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = item.Codigo },
+                            new { @class = "btn btn-primary" })
+                </p>
+
+                @Html.ActionLink("Ver", "ProductoInfo", "Home", new { id = item.Codigo }, new { @class = "btn btn-info" })
+            </div>
+
+
+        </div>
+    </div>
+}
