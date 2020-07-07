@@ -42,18 +42,15 @@
 
 
     <div class="row">
-        <div>
-            <h2>Productos</h2>
-
-        </div>
+      
 
 
         @using (Html.BeginForm())
         {
-            <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:0.8%; margin-left:80%">
+            <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:0.8%; margin-left:75%">
                 <ul class="nav navbar-nav">
-                    <li>@Html.TextBox("SearchString", null, new { @class = "search_input" })</li>
-                    <li><input type="submit" value="Search" /></li>
+                    <li>@Html.TextBox("SearchString", null, new { @class = "search_input form-control" })</li>
+                    <li><input type="submit" value="Buscar" class="btn btn-primary" placeholder="Buscar" /></li>
                 </ul>
             </div>
 
@@ -61,11 +58,12 @@
                 <div class="col-md-10">
                     @Html.DropDownList("id_DropDownList", (ICollection<SelectListItem>)ViewBag.colFamilias, "-- Familia --", new { @class = "form-control" })
                 </div>
+                <br />
 
             </div>
 
             <p>
-                @Html.ActionLink("Precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter })
+                @Html.ActionLink("Ordenar por precio", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary"})
             </p>
 
 
@@ -87,3 +85,4 @@
         </div>
 
     </div>
+    <br />
