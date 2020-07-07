@@ -12,6 +12,7 @@ namespace DataAccess.Persistencia
 {
     public class PPedido
     {
+        //Clientes
         public void AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
         {
             using (AliyavaEntities context = new AliyavaEntities())
@@ -126,6 +127,33 @@ namespace DataAccess.Persistencia
 
         }
 
+        public List<DtoPedido> getPedidoCli(string NombreUsu)
+        {
+            List<Pedido> colPedidosDB = new List<Pedido>();
+            List<DtoPedido> colPedidos = new List<DtoPedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colPedidosDB = context.Pedido.Where(w => w.Usuario == NombreUsu).ToList();
+
+                foreach (Pedido item in colPedidosDB)
+                {
+                    DtoPedido pedido = MPedido.MapToDto(item);
+                    colPedidos.Add(pedido);
+                }
+
+
+            }
+
+            return colPedidos;
+        }
+
+
+        //-----------------------------------------------------------------------------------------------------------
+
+
+
+        //Empleados
         public void cambiarEstadoPedido(List<DtoProducto> colProPreparar)
         {
 
@@ -194,6 +222,7 @@ namespace DataAccess.Persistencia
             return colPedidos;
         }
 
+        //Cliente/Empleado
         public List<DtoDetallePedido> GetDetalle(int id)
         {
             List<DtoDetallePedido> colDtoDetalle = new List<DtoDetallePedido>();
@@ -215,6 +244,6 @@ namespace DataAccess.Persistencia
 
             return colDtoDetalle;
         }
-
+        //-------------------------------------------------------------
     }
 }

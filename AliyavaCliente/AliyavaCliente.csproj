@@ -280,6 +280,8 @@
     <Content Include="Views\Cliente\ListarDirecciones.cshtml" />
     <Content Include="Views\Cliente\DireccionForm.cshtml" />
     <Content Include="Views\Shared\_listaProductos.cshtml" />
+    <Content Include="Views\Pedido\ListadoPedidosCli.cshtml" />
+    <Content Include="Views\Pedido\DetallePedidosCli.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

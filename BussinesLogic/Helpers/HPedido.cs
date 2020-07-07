@@ -20,16 +20,28 @@ namespace BussinesLogic.Helpers
 
             return _instance;
         }
+
+        //Clientes
         public void AddPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
         {
             PPedido pp = new PPedido();
             pp.AgregarPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
         }
-        public void CambiarEstadoPedido(List<DtoProducto> colProPreparar)
+
+        public List<DtoPedido> GetPedidoCli(string NombreUsu)
         {
             PPedido pp = new PPedido();
-            pp.cambiarEstadoPedido(colProPreparar);
+            return pp.getPedidoCli(NombreUsu);
         }
+
+
+
+      //-------------------------------------------------------------------------------------------------------
+
+
+
+
+        //Empleados
         public List<DtoPedido> GetPedidoUrg()
         {
             PPedido pp = new PPedido();
@@ -42,12 +54,19 @@ namespace BussinesLogic.Helpers
             return pp.GetPedidos();
         }
         
+        //Cliente/Empleado
         public List<DtoDetallePedido> GetDetallePedido(int id)
         {
             PPedido pp = new PPedido();
             return pp.GetDetalle(id);
         }
+        //----------------
 
-    
+        public void CambiarEstadoPedido(List<DtoProducto> colProPreparar)
+        {
+            PPedido pp = new PPedido();
+            pp.cambiarEstadoPedido(colProPreparar);
+        }
+
     }
 }

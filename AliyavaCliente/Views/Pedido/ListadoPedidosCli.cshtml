@@ -1,0 +1,68 @@
+﻿@model List<Common.DTO.DtoPedido>
+
+@{
+    ViewBag.Title = "ListadoPedidosCli";
+}
+
+<h2>Pedidos realizados</h2>
+
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Estado
+            </th>
+            <th>
+                Precio total
+            </th>
+            <th>
+                Número
+            </th>
+       
+            <th>
+                Dirección
+            </th>
+            <th>
+                Fecha del pedido
+            </th>
+            <th>
+                Urgente
+            </th>
+      
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrecioTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaIngreso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Urgente)
+                </td>
+               
+                <td>
+                    @Html.ActionLink("Detalle", "DetallePedidosCli", new { id = item.Numero  }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Cancelar pedido", "Details", new { id = item.Numero }, new { @class = "btn btn-danger" }) 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

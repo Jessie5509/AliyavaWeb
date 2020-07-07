@@ -83,15 +83,27 @@ namespace AliyavaCliente.Controllers
             HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
 
-            return View("PedidoRealizado");
+            return View("ListadoPedidosCli");
         }
 
-        public ActionResult PedidoRealizado()
+        public ActionResult ListadoPedidosCli()
         {
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            List<DtoPedido> colPedidosCli = HPedido.getInstace().GetPedidoCli(NombreUsu);
+            return View(colPedidosCli);
 
-            //Col prod o pedido o lo que sea la view.
-            return View();
         }
+
+        public ActionResult DetallePedidosCli(int id)
+        {
+            List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
+            return View(colDetallesByPedido);
+        }
+
+        //public ActionResult CancelarPedido()
+        //{
+        //    return View("ListadoPedidosCli");
+        //}
 
         public ActionResult EliminarProCarrito(int cod)
         {
