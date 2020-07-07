@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Common.DTO;
+using DataAccess.Persistencia;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +21,11 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
+        public void AddReparto(DtoReparto nuevoReparto)
+        {
+            PReparto pr = new PReparto();
+            pr.RegistrarReparto(nuevoReparto);
+
+        }
     }
 }

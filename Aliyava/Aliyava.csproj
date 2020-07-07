@@ -295,11 +295,11 @@
     <Content Include="Views\Pedido\PrepararPedidosV.cshtml" />
     <Content Include="Views\Home\_listaProductos.cshtml" />
     <Content Include="Views\Home\ProductoInfo.cshtml" />
+    <Content Include="Views\Reparto\RegistroReparto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Reparto\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

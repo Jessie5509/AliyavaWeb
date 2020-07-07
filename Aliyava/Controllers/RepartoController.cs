@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BussinesLogic.Helpers;
+using Common.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,5 +15,21 @@ namespace Aliyava.Controllers
         {
             return View();
         }
+
+        public ActionResult RegistroReparto()
+        {
+       
+            return View();
+        }
+
+        //Agregar el listado de pedidos en despacho y que se puedan asignar al reparto.
+        [HttpPost]
+        public ActionResult AddReparto(DtoReparto nuevoReparto)
+        {
+            HReparto.getInstace().AddReparto(nuevoReparto);
+            ViewBag.Message = "Reparto agregado satisfactoriamente!";
+            return RedirectToAction("RegistroReparto");
+        }
+
     }
 }
