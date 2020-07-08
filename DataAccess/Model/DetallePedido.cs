@@ -21,7 +21,7 @@ namespace DataAccess.Model
         public int idPedido { get; set; }
         public int idProducto { get; set; }
     
-        public virtual Producto Producto { get; set; }
         public virtual Pedido Pedido { get; set; }
+        public virtual Producto Producto { get; set; }
     }
 }

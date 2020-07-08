@@ -25,12 +25,13 @@ namespace DataAccess.Model
         public string Descripcion { get; set; }
         public string Familia { get; set; }
         public Nullable<double> PrecioVenta { get; set; }
-        public int idCategoria { get; set; }
         public string codigo_barras { get; set; }
         public string ProDescripcion { get; set; }
         public Nullable<int> CantidadPreparar { get; set; }
         public string ImagenPro { get; set; }
+        public Nullable<int> idCategoria { get; set; }
     
+        public virtual Categoria Categoria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePedido> DetallePedido { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
