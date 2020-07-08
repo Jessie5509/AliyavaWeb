@@ -14,10 +14,15 @@ namespace Aliyava.Controllers
         public ActionResult Index()
         {
 
+            return View();
+        }
+
+        public ActionResult ReporteProMasVendido()
+        {
             List<DtoReporteMasVendido> colProd1 = new List<DtoReporteMasVendido>();
             colProd1 = HReporte.getInstace().GetReporte1();
-            return View(colProd1);
 
+            return View(colProd1);
         }
 
 
