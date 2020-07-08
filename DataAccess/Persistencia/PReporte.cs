@@ -32,15 +32,22 @@ namespace DataAccess.Persistencia
 
 
         //devolver 
-        public void Reporte3(DateTime dia)
+        public List<DtoReporteVolumenPedidodia> Reporte3(DateTime dia)
         {
+            List<DtoReporteVolumenPedidodia> coldto = null;
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
-
+                coldto = (from detped in context.DetallePedido
+                          group detped by detped.idProducto into detgrp
+                          select new DtoReporteVolumenPedidodia
+                          {
+                              idProducto = detgrp.Key,
+                              cantidad = detgrp.Sum(s => s.CantidadPreparar)
+                          }).OrderByDescending(o => o.cantidad).ToList();
 
             }
-
+            return coldto;
         }
       
 
