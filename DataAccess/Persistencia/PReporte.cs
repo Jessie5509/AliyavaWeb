@@ -32,6 +32,7 @@ namespace DataAccess.Persistencia
 
 
         //devolver 
+        //Revisalo porque daban error los dos campos.
         public List<DtoReporteVolumenPedidodia> Reporte3(DateTime dia)
         {
             List<DtoReporteVolumenPedidodia> coldto = null;
@@ -42,9 +43,9 @@ namespace DataAccess.Persistencia
                           group detped by detped.idProducto into detgrp
                           select new DtoReporteVolumenPedidodia
                           {
-                              idProducto = detgrp.Key,
-                              cantidad = detgrp.Sum(s => s.CantidadPreparar)
-                          }).OrderByDescending(o => o.cantidad).ToList();
+                              Volumen = detgrp.Key,
+                              cantPedidos = (float)detgrp.Sum(s => s.CantidadPreparar)
+                          }).OrderByDescending(o => o.cantPedidos).ToList();
 
             }
             return coldto;

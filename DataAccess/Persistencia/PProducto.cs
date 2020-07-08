@@ -23,11 +23,11 @@ namespace DataAccess.Persistencia
                 {
                     try
                     {
-                        int idcat = context.Categoria.FirstOrDefault(f => f.Nombre == dto.Familia).idCategoria;
+                        int idcat = context.Categoria.Include("Producto").FirstOrDefault(f => f.Nombre == dto.Familia).idCategoria;
+                        Categoria cat = context.Categoria.Include("Producto").FirstOrDefault(f => f.idCategoria == idcat);
 
                         Producto nProducto = new Producto();
-                        nProducto.Codigo = dto.Codigo;
-                        nProducto.idCategoria = idcat;
+                        nProducto.Categoria = cat;
                         nProducto.Descripcion = dto.Descripcion;
                         nProducto.Familia = dto.Familia;
                         nProducto.PrecioVenta = dto.PrecioVenta;

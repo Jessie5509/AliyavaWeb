@@ -17,11 +17,8 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Categoria Cat = new Categoria();
-                Cat.idCategoria = dto.idCategoria;
                 Cat.Nombre = dto.Nombre;
-                Cat.idProducto = dto.idProducto;
-
-
+         
                 context.Categoria.Add(Cat);
                 context.SaveChanges();
 
@@ -66,9 +63,7 @@ namespace DataAccess.Persistencia
             {
                 Categoria updatecat = context.Categoria.FirstOrDefault(f => f.idCategoria == DtoCat.idCategoria);
                 updatecat.Nombre = DtoCat.Nombre;
-                updatecat.idProducto = DtoCat.idProducto;
-                
-
+         
                 context.SaveChanges();
             }
         }

@@ -4,7 +4,7 @@
     ViewBag.Title = "ModificarCategoria";
 }
 
-<h2>ModificarCategoria</h2>
+<h2>Modificar categoía</h2>
 
 
 @using (Html.BeginForm("ConfirmarCambios","Categoria"))
@@ -12,30 +12,16 @@
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>DtoCategoria</h4>
+
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.idCategoria, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.idCategoria, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-            @Html.ValidationMessageFor(model => model.idCategoria, "", new { @class = "text-danger" })
-        </div>
-    </div>
+ 
 
     <div class="form-group">
         @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.idProducto, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.idProducto, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.idProducto, "", new { @class = "text-danger" })
         </div>
     </div>
 

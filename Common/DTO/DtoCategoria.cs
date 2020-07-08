@@ -19,9 +19,6 @@ namespace Common.DTO
         [StringLength(50, ErrorMessage = "El {0}  no debe superar los {1} caracteres")]
         public string Nombre { get; set; }
 
-        [DisplayName("idProducto")]
-        [Required(ErrorMessage = "La {0} del producto es requerido!")]
-        public int idProducto { get; set; }
 
     }
 }
