@@ -31,5 +31,33 @@ namespace Aliyava.Controllers
             return RedirectToAction("RegistroReparto");
         }
 
+        public ActionResult ListadoRepartos()
+        {
+            List<DtoReparto> colDtoReparto = new List<DtoReparto>();
+            colDtoReparto = HReparto.getInstace().GetRepartosEnDefinición();
+            return View(colDtoReparto);
+        }
+
+        public ActionResult EliminarReparto(int id)
+        {
+            HReparto.getInstace().EliminarRepartoById(id);
+            return RedirectToAction("ListadoRepartos");
+        }
+
+        public ActionResult PedidosEnDespacho(int id)
+        {
+            Session["IdReparto"] = id;
+            List<DtoPedido> colDtoPedido = new List<DtoPedido>();
+            colDtoPedido = HReparto.getInstace().GetPedidosEnDespacho(id);
+            return View(colDtoPedido);
+        }
+
+        public ActionResult AsignarPedido(int idP)
+        {
+            int idR = (int)Session["IdReparto"];
+            HReparto.getInstace().AsignarPedido(idP, idR);
+            return RedirectToAction("ListadoRepartos");
+        }
+
     }
 }

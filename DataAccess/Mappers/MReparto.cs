@@ -13,9 +13,10 @@ namespace DataAccess.Mappers
         public static DtoReparto MapToDto(Reparto entity)
         {
             DtoReparto dto = new DtoReparto();
+            dto.idReparto = entity.idReparto;
             dto.Chofer = entity.Chofer;
-            dto.MatriculaVehiculo = entity.MatriculaVehiculo;
-            dto.Estado = entity.Estado;
+            dto.MatriculaVehiculo = entity.MatriculaVehiculo;   
+            dto.Estado = entity.Estado;   
             dto.FechaSalida = entity.FechaSalida;
      
             return dto;
@@ -24,6 +25,7 @@ namespace DataAccess.Mappers
         public static Reparto MapToEntity(DtoReparto dto)
         {
             Reparto entity = new Reparto();
+            entity.idReparto = dto.idReparto;
             entity.Chofer = dto.Chofer;
             entity.MatriculaVehiculo = dto.MatriculaVehiculo;
             entity.Estado = dto.Estado;

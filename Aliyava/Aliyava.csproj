@@ -296,6 +296,9 @@
     <Content Include="Views\Home\_listaProductos.cshtml" />
     <Content Include="Views\Home\ProductoInfo.cshtml" />
     <Content Include="Views\Reparto\RegistroReparto.cshtml" />
+    <Content Include="Views\Reparto\ListadoRepartos.cshtml" />
+    <Content Include="Views\Reparto\PedidosEnDespacho.cshtml" />
+    <Content Include="Views\Producto\MsgModificar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,9 +20,6 @@ namespace Aliyava.Controllers
             return View();
         }
 
- 
-
-
         public ActionResult RegistrarProducto()
         {
 
@@ -41,15 +38,30 @@ namespace Aliyava.Controllers
             ViewBag.colCategorias = colSelectItems;
 
 
+            if (TempData["MessageP"] != null)
+            {
+                ViewBag.MessageP = TempData["MessageP"].ToString();
+
+            }
+
+
             return View();
         }
 
-
-
-            [HttpPost]
+        [HttpPost]
         public ActionResult AddProducto(DtoProducto nuevoproducto)
         {
-            HProducto.getInstace().AddProducto(nuevoproducto);
+            bool msg = HProducto.getInstace().AddProducto(nuevoproducto);
+
+            if (msg == true)
+            {
+                TempData["MessageP"] = "Producto agregado satisfactoriamente!";
+            }
+            else
+            {
+                TempData["MessageP"] = "Error, verifique los datos por favor!";
+            }
+
             return RedirectToAction("RegistrarProducto");
         }
 
@@ -63,16 +75,39 @@ namespace Aliyava.Controllers
 
         public ActionResult RemoveProducto(int Codigo)
         {
-            HProducto.getInstace().RemoveProducto(Codigo);
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            HProducto.getInstace().RemoveProducto(Codigo, NombreUsu);
             return RedirectToAction("ListarProducto");
         }
 
         //Modifica el producto.
         public ActionResult ConfirmarCambios(DtoProducto dtoPro)
         {
-            HProducto.getInstace().ModificarProducto(dtoPro);
-            return RedirectToAction("ListarProducto");
+            bool msg = HProducto.getInstace().ModificarProducto(dtoPro);
 
+            if (msg == true)
+            {
+                TempData["Message"] = "Cambios modificados correctamente!";
+
+            }
+            else
+            {
+                TempData["Message"] = "Error, verifique los datos por favor!";
+            }
+
+            return View("MsgModificar");
+
+
+        }
+        public ActionResult MsgModificar()
+        {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
+
+            return View();
         }
 
         //Vista formulario a modificar.
@@ -97,7 +132,7 @@ namespace Aliyava.Controllers
             ViewBag.colCategorias = colSelectItems;
 
 
-           
+
             return View(productoFB);
         }
 

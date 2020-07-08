@@ -23,10 +23,10 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void AddProducto(DtoProducto dto)
+        public bool AddProducto(DtoProducto dto)
 {
             PProducto pc = new PProducto();
-            pc.RegistarProducto(dto);
+            return pc.RegistarProducto(dto);
         }
 
         public List<DtoProducto> GetProducto()
@@ -54,10 +54,10 @@ namespace BussinesLogic.Helpers
         }
         
 
-        public void RemoveProducto(int Codigo)
+        public void RemoveProducto(int Codigo, string NombreUsu)
         {
             PProducto ps = new PProducto();
-            ps.RemoveProducto(Codigo);
+            ps.RemoveProducto(Codigo, NombreUsu);
         }
 
         public List<DtoProducto> GetProductoFamilia(string familia)
@@ -72,10 +72,10 @@ namespace BussinesLogic.Helpers
             return pc.GetProductoM(Codigo);
         }
 
-        public void ModificarProducto(DtoProducto dto)
+        public bool ModificarProducto(DtoProducto dto)
         {
             PProducto pc = new PProducto();
-            pc.ModificarProducto(dto);
+            return pc.ModificarProducto(dto);
         }
 
     }

@@ -18,15 +18,29 @@ namespace Aliyava.Controllers
 
         public ActionResult RegistroEmpleado()
         {
-            //ViewBag.Message = null;
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
+            
             return View();
         }
 
         [HttpPost]
         public ActionResult AddEmpleado(DtoEmpleado nuevoEmpleado)
         {
-            HEmpleado.getInstace().AddEmpleado(nuevoEmpleado);
-            ViewBag.Message = "Empleado registrado satisfactoriamente!";
+            bool msg = HEmpleado.getInstace().AddEmpleado(nuevoEmpleado);
+
+            if (msg == true)
+            {
+                TempData["Message"] = "Empleado registrado satisfactoriamente!";
+            }
+            else
+            {
+                TempData["Message"] = "Completa todos los campos por favor!";
+            }
+
             return RedirectToAction("RegistroEmpleado");
         }
 

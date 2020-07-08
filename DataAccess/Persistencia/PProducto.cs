@@ -6,30 +6,51 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace DataAccess.Persistencia
 {
     public class PProducto
     {
 
-        public void RegistarProducto(DtoProducto dto)
+        public bool RegistarProducto(DtoProducto dto)
         {
+            bool msg;
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                int idcat = context.Categoria.FirstOrDefault(f => f.Nombre == dto.Familia).idCategoria;
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        int idcat = context.Categoria.FirstOrDefault(f => f.Nombre == dto.Familia).idCategoria;
 
-                Producto nProducto = new Producto();
-                nProducto.Codigo = dto.Codigo;
-                nProducto.idCategoria = idcat;
-                nProducto.Descripcion = dto.Descripcion;
-                nProducto.Familia = dto.Familia;
-                nProducto.PrecioVenta = dto.PrecioVenta;
-                nProducto.codigo_barras = dto.codigoBarras;
-                nProducto.ProDescripcion = dto.ProDescripcion;
-                nProducto.ImagenPro = dto.ImagenPro;
+                        Producto nProducto = new Producto();
+                        nProducto.Codigo = dto.Codigo;
+                        nProducto.idCategoria = idcat;
+                        nProducto.Descripcion = dto.Descripcion;
+                        nProducto.Familia = dto.Familia;
+                        nProducto.PrecioVenta = dto.PrecioVenta;
+                        nProducto.codigo_barras = dto.codigoBarras;
+                        nProducto.ProDescripcion = dto.ProDescripcion;
+                        nProducto.ImagenPro = dto.ImagenPro;
 
-                context.Producto.Add(nProducto);
-                context.SaveChanges();
+                        context.Producto.Add(nProducto);
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                        return msg = false;
+                    }
+
+                    return msg = true;
+
+
+                }
 
             }
         }
@@ -142,14 +163,32 @@ namespace DataAccess.Persistencia
         }
 
 
-        public void RemoveProducto(int Codigo)
+        public void RemoveProducto(int Codigo, string NombreUsu)
         {
+            int idEmpl = 0;
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
-
                 Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo );
+                Stock stock = context.Stock.Include("Producto").FirstOrDefault(f => f.idProducto == Codigo);
+
+                HistoricoStock hisStock = new HistoricoStock();
+                hisStock.Cantidad = (double)stock.Cantidad;
+                hisStock.Ubicacion = stock.Ubicacion;
+                hisStock.Motivo = "Eliminación de producto";
+                hisStock.CantidadAddOBaja = -(double)stock.Cantidad;
+
+                idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == NombreUsu).idEmpleado;
+
+                hisStock.idEmpleado = idEmpl;
+
+                context.Stock.Remove(stock);
                 context.Producto.Remove(prod);
+
+                context.HistoricoStock.Add(hisStock);
+
                 context.SaveChanges();
+
 
             }
 
@@ -172,18 +211,38 @@ namespace DataAccess.Persistencia
             return dto;
         }
 
-        public void ModificarProducto(DtoProducto DtoProdu)
+        public bool ModificarProducto(DtoProducto DtoProdu)
         {
+            bool msg;
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Producto updatePro = context.Producto.FirstOrDefault(f => f.Codigo == DtoProdu.Codigo);
-                updatePro.Descripcion = DtoProdu.Descripcion;
-                updatePro.Familia = DtoProdu.Familia;
-                updatePro.PrecioVenta = DtoProdu.PrecioVenta;
-                updatePro.ProDescripcion = DtoProdu.ProDescripcion;
-                updatePro.ImagenPro = DtoProdu.ImagenPro;
-        
-                context.SaveChanges();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Producto updatePro = context.Producto.FirstOrDefault(f => f.Codigo == DtoProdu.Codigo);
+                        updatePro.Descripcion = DtoProdu.Descripcion;
+                        updatePro.Familia = DtoProdu.Familia;
+                        updatePro.PrecioVenta = DtoProdu.PrecioVenta;
+                        updatePro.ProDescripcion = DtoProdu.ProDescripcion;
+                        updatePro.ImagenPro = DtoProdu.ImagenPro;
+
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                        return msg = false;
+                    }
+
+                    return msg = true;
+
+                }
+
             }
         }
 

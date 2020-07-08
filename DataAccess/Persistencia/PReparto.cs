@@ -1,4 +1,5 @@
 ﻿using Common.DTO;
+using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
@@ -21,20 +22,10 @@ namespace DataAccess.Persistencia
                     {
                         Reparto nuevoR = new Reparto();
                         nuevoR.MatriculaVehiculo = nuevoReparto.MatriculaVehiculo;
-                        nuevoR.Estado = nuevoReparto.Estado;
+                        nuevoR.Estado = "En definición";
                         nuevoR.Chofer = nuevoReparto.Chofer;
                         nuevoR.FechaSalida = DateTime.Today;
 
-                        //Asignar pedidos.
-                        List<Pedido> colPed = context.Pedido.Include("Reparto").Where(w => w.Estado == "En despacho").Take(3).ToList();
-
-                        foreach (Pedido item in colPed)
-                        {
-                            nuevoR.Pedido.Add(item);
-                            item.Reparto = nuevoR;
-                    
-                        }
-              
                         context.Reparto.Add(nuevoR);
                         context.SaveChanges();
 
@@ -48,5 +39,81 @@ namespace DataAccess.Persistencia
 
             }
         }
+
+        public void asignarPedido(int idP, int idR)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                //Asignar pedidos.
+                Pedido Ped = context.Pedido.Include("Reparto").FirstOrDefault(f => f.Numero == idP);
+                Reparto rep = context.Reparto.Include("Pedido").FirstOrDefault(f => f.idReparto == idR);
+
+                Ped.Reparto = rep;
+                rep.Pedido.Add(Ped);
+
+                Ped.Estado = "En viaje";
+                rep.Estado = "En viaje";
+
+                context.SaveChanges();
+            }
+       
+
+
+        }
+
+
+        public List<DtoReparto> getRepartoDefinición()
+        {
+            List<DtoReparto> colDtoRe = new List<DtoReparto>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Reparto> colRepDB = context.Reparto.Where(w => w.Estado == "En definición").ToList();
+
+                foreach (Reparto item in colRepDB)
+                {
+                    DtoReparto dto = MReparto.MapToDto(item);
+                    colDtoRe.Add(dto);
+                }
+
+            }
+
+           return colDtoRe;
+        }
+
+        public void eliminarRepartoById(int id)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Reparto reparto = context.Reparto.FirstOrDefault(f => f.idReparto == id);
+
+                context.Reparto.Remove(reparto);
+                context.SaveChanges();
+            }
+
+
+        }
+
+        public List<DtoPedido> getPedidosEnDespacho(int id)
+        {
+            List<DtoPedido> colDtoP = new List<DtoPedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Pedido> colPedDB = context.Pedido.Where(w => w.Estado == "En despacho").ToList();
+
+                foreach (Pedido item in colPedDB)
+                {
+                    DtoPedido dto = MPedido.MapToDto(item);
+                    colDtoP.Add(dto);
+                }
+
+            }
+
+            return colDtoP;
+        }
+
+      
+
     }
 }

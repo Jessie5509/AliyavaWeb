@@ -24,8 +24,10 @@ namespace DataAccess.Persistencia
             return existe;
         }
 
-        public void RegistrarEmpleado(DtoEmpleado dto)
+        public bool RegistrarEmpleado(DtoEmpleado dto)
         {
+            bool msg;
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -41,11 +43,17 @@ namespace DataAccess.Persistencia
                         context.SaveChanges();
 
                         scope.Complete();
+
+                        
                     }
                     catch (Exception ex)
                     {
                         scope.Dispose();
+                        return msg = false;
+                        
                     }
+
+                    return msg = true;
                 }
 
             }

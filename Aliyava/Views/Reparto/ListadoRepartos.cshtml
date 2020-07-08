@@ -1,0 +1,64 @@
+﻿@model List<Common.DTO.DtoReparto>
+
+@{
+    ViewBag.Title = "ListadoRepartos";
+}
+
+<h2>Repartos en definición</h2>
+
+<p>
+    @Html.ActionLink("Volver", "RegistroReparto", "Reparto", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Código reparto
+            </th>
+            <th>
+                Matrícula del vehículo
+            </th>
+            <th>
+                Estado
+            </th>
+            <th>
+                Chofer
+            </th>
+            <th>
+                Fecha de salida
+            </th>
+            <th>
+                Acciones
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idReparto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MatriculaVehiculo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Chofer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaSalida)
+                </td>
+                <td>
+                    @Html.ActionLink("Asignar pedidos", "PedidosEnDespacho", new { id = item.idReparto }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Eliminar", "EliminarReparto", new { id = item.idReparto }, new { @class = "btn btn-danger" })
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

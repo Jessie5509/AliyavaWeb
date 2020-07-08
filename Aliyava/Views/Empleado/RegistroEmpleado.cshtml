@@ -45,10 +45,11 @@
 
 
                 <input type="submit" value="Registrarse" class="btn btn-success" />
-
+               <br />
+               <br />
                 @if (ViewBag.Message != null)
                 {
-                    @Html.Label("", (string)ViewBag.Message)
+                    <h4>@Html.Label("", (string)ViewBag.Message, new { @class = "label label-primary" })</h4>
                 }
 
 

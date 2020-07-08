@@ -27,5 +27,31 @@ namespace BussinesLogic.Helpers
             pr.RegistrarReparto(nuevoReparto);
 
         }
+
+        public List<DtoReparto> GetRepartosEnDefinición()
+        {
+            PReparto pr = new PReparto();
+            return pr.getRepartoDefinición();
+            
+        }
+
+        public void EliminarRepartoById(int id)
+        {
+            PReparto pr = new PReparto();
+            pr.eliminarRepartoById(id);
+        }
+
+        public List<DtoPedido> GetPedidosEnDespacho(int id)
+        {
+            PReparto pr = new PReparto();
+            return pr.getPedidosEnDespacho(id);
+        }
+
+        public void AsignarPedido(int idP, int idR)
+        {
+            PReparto pr = new PReparto();
+            pr.asignarPedido(idP, idR);
+        }
+
     }
 }
