@@ -1,34 +1,38 @@
-﻿@model IEnumerable<Common.DTO.DtoReporteMasVendido>
+﻿@model List<Common.DTO.DtoReporteMasVendido>
 
 @{
     ViewBag.Title = "ReporteProMasVendido";
 }
 
-    <h2>Reporte productos mas vendidos</h2>
+    <h2>Reporte productos más vendidos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idProducto)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.cantidad)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                Código de producto
+            </th>
+            <th>
+                Cantidad
+            </th>
 
-@foreach (Common.DTO.DtoReporteMasVendido item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idProducto)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.cantidad)
-        </td>
-    </tr>
-}
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Common.DTO.DtoReporteMasVendido item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.idProducto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cantidad)
+                </td>
+            </tr>
+        }
+    </tbody>
 
 </table>
