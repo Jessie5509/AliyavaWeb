@@ -5,20 +5,18 @@
 
 
 @Html.AntiForgeryToken()
-    <div class="text-center, form-horizontal">
+    <div class="text-center form-horizontal">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <br />
-   
         <div class="form-group">
 
             @if (ViewBag.Message != null)
             {
-                <h2>@Html.Label("", (string)ViewBag.Message, new { @class = "label label-primary" })</h2>
+                <h3>@Html.Label("", (string)ViewBag.Message, new { @class = "label label-primary" })</h3>
             }
-
+            <br />
             @Html.ActionLink("Todos los productos", "ListarProducto", "Producto", new { @class = "btn btn-info" })
 
         </div>

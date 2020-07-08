@@ -51,6 +51,12 @@
 	margin-top: 10px;
 }
 
+.product-stockR{
+	color: #ff0000;
+	font-size: 20px;
+	margin-top: 10px;
+}
+
 .product-info{
 		margin-top: 50px;
 }
@@ -170,12 +176,23 @@
                 </div>
 
                 <div class="col-md-7">
-                    
+
                     <div class="product-title">@Html.DisplayFor(model => model.Descripcion)</div>
                     <div class="product-rating"><i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star gold"></i> <i class="fa fa-star-o"></i> </div>
                     <hr>
                     <div class="product-price"> $ @Html.DisplayFor(model => model.PrecioVenta)</div>
-                    <div class="product-stock"> @ViewBag.Stock</div>
+
+
+                    @if (ViewBag.Stock != null)
+                    {
+                        <div class="product-stock">@ViewBag.Stock</div>
+                    }
+                    else
+                    {
+                        <div class="product-stockR">@ViewBag.StockR</div>
+                    }
+
+
                     <hr>
                     <div class="btn-group cart">
                         @Html.ActionLink("Agregar al carrito", "CarritoV", "Pedido", new { id = @Html.DisplayFor(model => model.Codigo) }, new { @class = "btn btn-primary" })

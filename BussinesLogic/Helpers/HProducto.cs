@@ -35,10 +35,10 @@ namespace BussinesLogic.Helpers
             return pc.GetProducto();
         }
 
-        public DtoProducto GetProductoCarrito(int id)
+        public DtoProducto GetProductoCarrito(int id, bool stockOk, List<DtoProducto> colProducto)
         {
             PProducto pp = new PProducto();
-            return pp.GetProductoCarrito(id);
+            return pp.GetProductoCarrito(id, stockOk, colProducto);
         }
 
         public DtoProducto GetProductoInfo(int id)

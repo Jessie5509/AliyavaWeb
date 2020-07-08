@@ -73,14 +73,31 @@ namespace DataAccess.Persistencia
             return colDtoProducto;
         }
 
-        public DtoProducto GetProductoCarrito(int id)
+        public DtoProducto GetProductoCarrito(int id, bool stockOk, List<DtoProducto> colProducto)
         {
             DtoProducto dto = new DtoProducto();
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Producto Producto = context.Producto.FirstOrDefault(f => f.Codigo == id);
+                Producto Producto = context.Producto.Include("Stock").FirstOrDefault(f => f.Codigo == id);
                 Producto.CantidadPreparar = 1;
+                //Validación de stock.
+                float cantidad = (float)context.Stock.Include("Producto").FirstOrDefault(f => f.idProducto == id).Cantidad;
+
+                foreach (DtoProducto item in colProducto)
+                {
+                    if (item.Codigo == Producto.Codigo && item.CantidadPreparar > cantidad)
+                    {
+                        stockOk = false;
+
+                    }
+                    else
+                    {
+                        stockOk = true;
+                    }
+
+                }
+
                 dto = MProducto.MapToDto(Producto);
                  
                 
@@ -182,10 +199,10 @@ namespace DataAccess.Persistencia
 
                 hisStock.idEmpleado = idEmpl;
 
-                context.Stock.Remove(stock);
-                context.Producto.Remove(prod);
+                RemStockWhenRemovePro(stock, context);
 
                 context.HistoricoStock.Add(hisStock);
+                context.Producto.Remove(prod);
 
                 context.SaveChanges();
 
@@ -193,6 +210,12 @@ namespace DataAccess.Persistencia
             }
 
 
+        }
+
+        public void RemStockWhenRemovePro(Stock stock, AliyavaEntities context)
+        {
+            context.Stock.Remove(stock);
+            context.SaveChanges();
         }
 
 

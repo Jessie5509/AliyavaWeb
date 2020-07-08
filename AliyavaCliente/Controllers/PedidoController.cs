@@ -1,6 +1,7 @@
 ﻿using AliyavaCliente.Helpers;
 using BussinesLogic.Helpers;
 using Common.DTO;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -36,38 +37,62 @@ namespace AliyavaCliente.Controllers
 
             }
 
-            DtoProducto producto = new DtoProducto();
-            producto = HProducto.getInstace().GetProductoCarrito(id);
+            bool stockOk = (bool)Session["stockOk"];
 
-            if (colProducto.Count == 0)
+            DtoProducto producto = new DtoProducto();
+            producto = HProducto.getInstace().GetProductoCarrito(id, stockOk, colProducto);
+
+            if (!stockOk)
             {
-                colProducto.Add(producto);
+                TempData["ErrorStock"] = "¡No queda más stock de este producto!";
+
+                return RedirectToAction("MsgStock");
             }
             else
             {
-                bool existe = false;
 
-                foreach (DtoProducto item in colProducto)
-                {
-                    if (item.Codigo == producto.Codigo)
-                    {
-                        item.CantidadPreparar++;
-                        existe = true;
-                        break;
-                    }
-             
-                }
 
-                if (existe == false)
+                if (colProducto.Count == 0)
                 {
                     colProducto.Add(producto);
                 }
+                else
+                {
+                    bool existe = false;
+
+                    foreach (DtoProducto item in colProducto)
+                    {
+                        if (item.Codigo == producto.Codigo)
+                        {
+                            item.CantidadPreparar++;
+                            existe = true;
+                            break;
+                        }
+
+                    }
+
+                    if (existe == false)
+                    {
+                        colProducto.Add(producto);
+                    }
+                }
+
+                Session["colProductos"] = colProducto;
+
             }
 
-            Session["colProductos"] = colProducto;
-
-
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult MsgStock()
+        {
+            if (TempData["ErrorStock"] != null)
+            {
+                ViewBag.ErrorStock = TempData["ErrorStock"].ToString();
+
+            }
+
+            return View();
         }
 
         [AcceptVerbs(HttpVerbs.Post)]

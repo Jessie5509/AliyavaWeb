@@ -95,7 +95,7 @@ namespace Aliyava.Controllers
                 TempData["Message"] = "Error, verifique los datos por favor!";
             }
 
-            return View("MsgModificar");
+            return RedirectToAction("MsgModificar");
 
 
         }

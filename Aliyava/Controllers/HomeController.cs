@@ -93,31 +93,38 @@ namespace Aliyava.Controllers
             DtoProducto producto = new DtoProducto();
             producto = HProducto.getInstace().GetProductoInfo(id);
 
-            string stock = "no entro¿";
+            string stock = "No entro";
             List<DtoStock> colstock = new List<DtoStock>();
             colstock = HStock.getInstace().GetAllStock();
 
-            colstock = colstock.Where(s => s.idProducto == id).ToList();
+            bool hayStock;
 
-            foreach (DtoStock item in colstock)
+            hayStock = colstock.Any(a => a.idProducto == id);
+
+            if (hayStock)
             {
+                colstock = colstock.Where(s => s.idProducto == id).ToList();
 
-                if (id == item.idProducto && item.Cantidad > 0)
+                foreach (DtoStock item in colstock)
                 {
+                    if (id == item.idProducto && item.Cantidad > 0)
+                    {
 
-                    stock = "In Stock";
+                        stock = "En Stock";
+                        ViewBag.Stock = stock;
+
+                    }
 
                 }
-                else
-                {
 
-                    stock = "Out of Stock";
-
-                }
 
             }
-            ViewBag.Stock = stock;
+            else 
+            {
+                stock = "Fuera de stock";
+                ViewBag.StockR = stock;
 
+            }
 
             return View(producto);
         }
