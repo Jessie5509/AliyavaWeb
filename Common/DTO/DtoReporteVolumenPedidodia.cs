@@ -9,9 +9,9 @@ namespace Common.DTO
     public class DtoReporteVolumenPedidodia
     {
 
-        public float cantPedidos { get; set; }
+        public double cantPedidos { get; set; }
 
-        public float Volumen { get; set; }
+        public double Volumen { get; set; }
 
     }
 }
