@@ -29,5 +29,10 @@ namespace BussinesLogic.Helpers
             return pc.Reporte1();
         }
 
+        public List<DtoReporteVolumenPedidodia> GetReporte3()
+        {
+            PReporte pc = new PReporte();
+            return pc.Reporte3();
+        }
     }
 }
