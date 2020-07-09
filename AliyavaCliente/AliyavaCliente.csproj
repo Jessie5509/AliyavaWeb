@@ -283,6 +283,7 @@
     <Content Include="Views\Pedido\ListadoPedidosCli.cshtml" />
     <Content Include="Views\Pedido\DetallePedidosCli.cshtml" />
     <Content Include="Views\Pedido\MsgStock.cshtml" />
+    <Content Include="Views\Pedido\ListadoPedidosCliEnPrep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

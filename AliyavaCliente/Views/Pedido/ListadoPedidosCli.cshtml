@@ -7,6 +7,9 @@
 <h2>Pedidos realizados</h2>
 
 <br />
+<p>
+    @Html.ActionLink("Pedidos pendientes o en preparación", "ListadoPedidosCliEnPrep", "Pedido", new { @class = "btn btn-danger" })
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -36,8 +39,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
+
+            foreach (var item in Model)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
@@ -59,10 +65,11 @@
                 </td>
                
                 <td>
-                    @Html.ActionLink("Detalle", "DetallePedidosCli", new { id = item.Numero  }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Cancelar pedido", "Details", new { id = item.Numero }, new { @class = "btn btn-danger" }) 
+                    @Html.ActionLink("Detalle", "DetallePedidosCli", new { id = item.Numero }, new { @class = "btn btn-primary" }) |
+                    
                 </td>
             </tr>
+            }
         }
     </tbody>
 </table>

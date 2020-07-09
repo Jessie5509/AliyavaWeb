@@ -22,12 +22,12 @@ namespace Aliyava.Controllers
             return View();
         }
 
-        //Agregar el listado de pedidos en despacho y que se puedan asignar al reparto.
+       
         [HttpPost]
         public ActionResult AddReparto(DtoReparto nuevoReparto)
         {
             HReparto.getInstace().AddReparto(nuevoReparto);
-            ViewBag.Message = "Reparto agregado satisfactoriamente!";
+            //ViewBag.Message = "Reparto agregado satisfactoriamente!";
             return RedirectToAction("RegistroReparto");
         }
 

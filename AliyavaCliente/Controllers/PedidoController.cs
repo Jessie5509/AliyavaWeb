@@ -36,13 +36,15 @@ namespace AliyavaCliente.Controllers
                 colProducto = (List<DtoProducto>)Session["colProductos"];
 
             }
-
+            Session["stockOk"] = true;
             bool stockOk = (bool)Session["stockOk"];
 
             DtoProducto producto = new DtoProducto();
-            producto = HProducto.getInstace().GetProductoCarrito(id, stockOk, colProducto);
+            producto = HProducto.getInstace().GetProductoCarrito(id, out stockOk, colProducto);
 
-            if (!stockOk)
+            Session["stockOk"] = stockOk;
+
+            if (stockOk == false && colProducto.Count != 0)
             {
                 TempData["ErrorStock"] = "¡No queda más stock de este producto!";
 
@@ -78,10 +80,10 @@ namespace AliyavaCliente.Controllers
                 }
 
                 Session["colProductos"] = colProducto;
-
+                return RedirectToAction("Index", "Home");
             }
 
-            return RedirectToAction("Index", "Home");
+            
         }
 
         public ActionResult MsgStock()
@@ -108,7 +110,7 @@ namespace AliyavaCliente.Controllers
             HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
 
-            return View("ListadoPedidosCli");
+            return RedirectToAction("ListadoPedidosCli");
         }
 
         public ActionResult ListadoPedidosCli()
@@ -119,16 +121,25 @@ namespace AliyavaCliente.Controllers
 
         }
 
+        public ActionResult ListadoPedidosCliEnPrep()
+        {
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            List<DtoPedido> colPedidosCli = HPedido.getInstace().GetPedidoCliPrep(NombreUsu);
+            return View(colPedidosCli);
+
+        }
+
         public ActionResult DetallePedidosCli(int id)
         {
             List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
             return View(colDetallesByPedido);
         }
 
-        //public ActionResult CancelarPedido()
-        //{
-        //    return View("ListadoPedidosCli");
-        //}
+        public ActionResult CancelarPedido(int idPedido)
+        {
+            HPedido.getInstace().CancelarPed(idPedido);
+            return RedirectToAction("ListadoPedidosCliEnPrep");
+        }
 
         public ActionResult EliminarProCarrito(int cod)
         {

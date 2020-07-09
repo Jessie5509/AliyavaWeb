@@ -73,12 +73,12 @@ namespace Aliyava.Controllers
             return View(colProducto);
         }
 
-        public ActionResult RemoveProducto(int Codigo)
-        {
-            string NombreUsu = Session["NombreDeUsuario"].ToString();
-            HProducto.getInstace().RemoveProducto(Codigo, NombreUsu);
-            return RedirectToAction("ListarProducto");
-        }
+        //public ActionResult RemoveProducto(int Codigo)
+        //{
+        //    string NombreUsu = Session["NombreDeUsuario"].ToString();
+        //    HProducto.getInstace().RemoveProducto(Codigo, NombreUsu);
+        //    return RedirectToAction("ListarProducto");
+        //}
 
         //Modifica el producto.
         public ActionResult ConfirmarCambios(DtoProducto dtoPro)

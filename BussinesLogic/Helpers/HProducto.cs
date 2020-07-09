@@ -35,10 +35,10 @@ namespace BussinesLogic.Helpers
             return pc.GetProducto();
         }
 
-        public DtoProducto GetProductoCarrito(int id, bool stockOk, List<DtoProducto> colProducto)
+        public DtoProducto GetProductoCarrito(int id, out bool stockOk, List<DtoProducto> colProducto)
         {
             PProducto pp = new PProducto();
-            return pp.GetProductoCarrito(id, stockOk, colProducto);
+            return pp.GetProductoCarrito(id, out stockOk, colProducto);
         }
 
         public DtoProducto GetProductoInfo(int id)
@@ -54,11 +54,11 @@ namespace BussinesLogic.Helpers
         }
         
 
-        public void RemoveProducto(int Codigo, string NombreUsu)
-        {
-            PProducto ps = new PProducto();
-            ps.RemoveProducto(Codigo, NombreUsu);
-        }
+        //public void RemoveProducto(int Codigo, string NombreUsu)
+        //{
+        //    PProducto ps = new PProducto();
+        //    ps.RemoveProducto(Codigo, NombreUsu);
+        //}
 
         public List<DtoProducto> GetProductoFamilia(string familia)
         {

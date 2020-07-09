@@ -9,14 +9,14 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
+<div class="form-group">
 
-        @if (ViewBag.ErrorStock != null)
-        {
-            <h3>@Html.Label("", (string)ViewBag.ErrorStock, new { @class = "label label-primary" })</h3>
-        }
-        <br />
-        @Html.ActionLink("Inicio", "Index", "Home", new { @class = "btn btn-info" })
-
-    </div>
+    @if (ViewBag.ErrorStock != null)
+    {
+        <h3>@Html.Label("", (string)ViewBag.ErrorStock, new { @class = "label label-primary" })</h3>
+    }
+    <br />
+    @Html.ActionLink("Inicio", "Index", "Home", new { @class = "btn btn-info" })
+    
+</div>
 </div>

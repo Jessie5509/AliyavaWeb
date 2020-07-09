@@ -122,9 +122,65 @@ namespace DataAccess.Persistencia
 
         }
 
-        public void CancelarPedido()
+        public void cancelarPed(int idPedido)
         {
+            
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Pedido ped = context.Pedido.Include("Reserva").FirstOrDefault(f => f.Numero == idPedido);
+                        //List<DetallePedido> coldet = context.DetallePedido.Include("Pedido, Reserva").Where(w => w.idPedido == idPedido).ToList();
 
+                        Stock stockByPro = new Stock();
+                        ped.Estado = "Cancelado";
+
+                        foreach (DetallePedido det in ped.DetallePedido)
+                        {
+                            foreach (Reserva res in ped.Reserva)
+                            {
+                                res.Estado = "Inactiva";
+                                stockByPro = context.Stock.FirstOrDefault(w => w.idProducto == det.idProducto);
+
+                                if (stockByPro != null)
+                                {
+                                    stockByPro.Cantidad = stockByPro.Cantidad + det.CantidadPreparar;
+                                }
+
+
+                            }
+
+
+                        }
+
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                        //foreach (DetallePedido det in coldet)
+                        //{ 
+                        //    foreach (Reserva res in det.Pedido.Reserva)
+                        //    {
+                        //        res.Estado = "Inactiva";
+                        //        stockByPro = context.Stock.FirstOrDefault(w => w.idProducto == det.idProducto);
+                        //        stockByPro.Cantidad = stockByPro.Cantidad + det.CantidadPreparar;
+
+                        //    }
+
+
+                        //}
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                       
+                    }
+                }
+
+            }
         }
 
         public List<DtoPedido> getPedidoCli(string NombreUsu)
@@ -135,6 +191,28 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 colPedidosDB = context.Pedido.Where(w => w.Usuario == NombreUsu).ToList();
+
+                foreach (Pedido item in colPedidosDB)
+                {
+                    DtoPedido pedido = MPedido.MapToDto(item);
+                    colPedidos.Add(pedido);
+                }
+
+
+            }
+
+            return colPedidos;
+        }
+
+        public List<DtoPedido> getPedidoCliPrep(string NombreUsu)
+        {
+            List<Pedido> colPedidosDB = new List<Pedido>();
+            List<DtoPedido> colPedidos = new List<DtoPedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colPedidosDB = context.Pedido.Where(w => w.Usuario == NombreUsu).ToList();
+                colPedidosDB = context.Pedido.Where(w => w.Estado == "En preparación" || w.Estado == "Pendiente").ToList();
 
                 foreach (Pedido item in colPedidosDB)
                 {

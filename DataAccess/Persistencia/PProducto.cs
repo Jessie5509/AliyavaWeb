@@ -73,9 +73,11 @@ namespace DataAccess.Persistencia
             return colDtoProducto;
         }
 
-        public DtoProducto GetProductoCarrito(int id, bool stockOk, List<DtoProducto> colProducto)
+        public DtoProducto GetProductoCarrito(int id, out bool stockOk, List<DtoProducto> colProducto)
         {
             DtoProducto dto = new DtoProducto();
+
+            stockOk = true;
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -86,7 +88,7 @@ namespace DataAccess.Persistencia
 
                 foreach (DtoProducto item in colProducto)
                 {
-                    if (item.Codigo == Producto.Codigo && item.CantidadPreparar > cantidad)
+                    if (item.Codigo == Producto.Codigo && item.CantidadPreparar >= cantidad)
                     {
                         stockOk = false;
 
@@ -180,46 +182,44 @@ namespace DataAccess.Persistencia
         }
 
 
-        public void RemoveProducto(int Codigo, string NombreUsu)
-        {
-            int idEmpl = 0;
+        //public void RemoveProducto(int Codigo, string NombreUsu)
+        //{
+        //    int idEmpl = 0;
 
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo );
-                Stock stock = context.Stock.Include("Producto").FirstOrDefault(f => f.idProducto == Codigo);
+        //    using (AliyavaEntities context = new AliyavaEntities())
+        //    {
+        //        Producto prod = context.Producto.FirstOrDefault(f => f.Codigo == Codigo );
+        //        Stock stock = context.Stock.Include("Producto").FirstOrDefault(f => f.idProducto == Codigo);
 
-                HistoricoStock hisStock = new HistoricoStock();
-                hisStock.Cantidad = (double)stock.Cantidad;
-                hisStock.Ubicacion = stock.Ubicacion;
-                hisStock.Motivo = "Eliminación de producto";
-                hisStock.CantidadAddOBaja = -(double)stock.Cantidad;
+        //        HistoricoStock hisStock = new HistoricoStock();
+        //        //Modificar para productos sin stock.
+        //        hisStock.Cantidad = (double)stock.Cantidad;
+        //        hisStock.Ubicacion = stock.Ubicacion;
+        //        hisStock.Motivo = "Eliminación de producto";
+        //        hisStock.CantidadAddOBaja = -(double)stock.Cantidad;
 
-                idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == NombreUsu).idEmpleado;
+        //        idEmpl = context.Empleado.FirstOrDefault(f => f.NombreUsuario == NombreUsu).idEmpleado;
 
-                hisStock.idEmpleado = idEmpl;
+        //        hisStock.idEmpleado = idEmpl;
 
-                RemStockWhenRemovePro(stock, context);
+        //        RemStockWhenRemovePro(stock, context);
 
-                context.HistoricoStock.Add(hisStock);
-                context.Producto.Remove(prod);
+        //        context.HistoricoStock.Add(hisStock);
+        //        context.Producto.Remove(prod);
 
-                context.SaveChanges();
-
-
-            }
+        //        context.SaveChanges();
 
 
-        }
-
-        public void RemStockWhenRemovePro(Stock stock, AliyavaEntities context)
-        {
-            context.Stock.Remove(stock);
-            context.SaveChanges();
-        }
+        //    }
 
 
+        //}
 
+        //public void RemStockWhenRemovePro(Stock stock, AliyavaEntities context)
+        //{
+        //    context.Stock.Remove(stock);
+        //    context.SaveChanges();
+        //}
 
 
         public DtoProducto GetProductoM(int Codigo)

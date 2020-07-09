@@ -1,14 +1,14 @@
 ﻿@model List<Common.DTO.DtoPedido>
 
 @{
-    ViewBag.Title = "PedidosEnDespacho";
+    ViewBag.Title = "ListadoPedidosCliEnPrep";
 }
 
-<h2>Pedidos en despacho</h2>
+<h2>Pedidos pendientes o en preparación</h2>
 
 <p>
-    @Html.ActionLink("Volver", "ListadoRepartos", "Reparto", new { @class = "btn btn-primary" })
-</p>
+    @Html.ActionLink("Volver", "ListadoPedidosCli", "Pedido", new { @class = "btn btn-primary" })
+</p> 
 <table class="table">
     <thead>
         <tr>
@@ -22,7 +22,7 @@
                 Número
             </th>
             <th>
-               Usuario
+                Usuario
             </th>
             <th>
                 Dirección
@@ -33,7 +33,7 @@
             <th>
                 Urgente
             </th>
-   
+
             <th>
                 Acciones
             </th>
@@ -65,12 +65,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Urgente)
                 </td>
-        
+
                 <td>
-                    @Html.ActionLink("Asignar", "AsignarPedido", new { idP = item.Numero }, new { @class = "btn btn-danger" }) |
-       
+                    @Html.ActionLink("Cancelar pedido", "CancelarPedido", new { idPedido = item.Numero }, new { @class = "btn btn-danger" })  |
+
                 </td>
             </tr>
         }
     </tbody>
+
 </table>

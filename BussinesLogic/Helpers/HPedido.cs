@@ -34,9 +34,23 @@ namespace BussinesLogic.Helpers
             return pp.getPedidoCli(NombreUsu);
         }
 
+        public List<DtoPedido> GetPedidoCliPrep(string NombreUsu)
+        {
+            PPedido pp = new PPedido();
+            return pp.getPedidoCliPrep(NombreUsu);
+        }
+
+        public void CancelarPed(int idPedido)
+        {
+            PPedido pp = new PPedido();
+            pp.cancelarPed(idPedido);
+        }
 
 
-      //-------------------------------------------------------------------------------------------------------
+
+
+
+        //-------------------------------------------------------------------------------------------------------
 
 
 

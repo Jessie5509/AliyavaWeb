@@ -14,7 +14,7 @@ namespace Common.DTO
              
         public int idCategoria { get; set; }
 
-        [DisplayName("Nombre Categoria")]
+        [DisplayName("Nombre categoría")]
         [Required(ErrorMessage = "El {0} de la categoria es requerido!")]
         [StringLength(50, ErrorMessage = "El {0}  no debe superar los {1} caracteres")]
         public string Nombre { get; set; }
