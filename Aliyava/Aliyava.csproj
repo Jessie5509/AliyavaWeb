@@ -301,6 +301,8 @@
     <Content Include="Views\Producto\MsgModificar.cshtml" />
     <Content Include="Views\Reporte\ReporteVolumenPedidodia.cshtml" />
     <Content Include="Views\Reporte\Reportes.cshtml" />
+    <Content Include="Views\Pedido\ListaProPrep.cshtml" />
+    <Content Include="Views\Pedido\MsgConfirmarPedido.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

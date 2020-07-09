@@ -28,27 +28,57 @@ namespace Aliyava.Controllers
         public ActionResult PrepararPedidosV(int id)
         {
             List<DtoProducto> colProPreparar = HProducto.getInstace().GetProPreparar(id);
+            List<DtoProducto> colProSinRemove = HProducto.getInstace().GetProPreparar(id);
             Session["colProPreparar"] = colProPreparar;
+            Session["colProSinRemove"] = colProSinRemove;
             return View(colProPreparar);
 
         }
 
-        public ActionResult ConfirmarPreparación(int id)
+        public ActionResult ConfirmarPreparación(int id, int cantP)
         {
-            //List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
-
-            //bool confirmado = true;
-            
-
-            return RedirectToAction("PrepararPedidosV");
+            List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
+            HPedido.getInstace().ConfirmarProPre(id, cantP, colProPreparar);
+          
+            return RedirectToAction("ListaProPrep");
 
         }
 
-        public ActionResult ConfirmarPedido()
+        public ActionResult ListaProPrep()
         {
             List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
-            HPedido.getInstace().CambiarEstadoPedido(colProPreparar);
-            return View("ListarPedidoUrgente");
+            return View(colProPreparar);
+        }
+
+
+        public ActionResult ConfirmarPedido()
+        {
+            List<DtoProducto> colProSinRemove = (List<DtoProducto>)Session["colProSinRemove"];
+            List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
+            if (colProPreparar.Count == 0)
+            {
+                HPedido.getInstace().CambiarEstadoPedido(colProSinRemove);
+                return View("ListarPedidoUrgente");
+            }
+            else 
+            {
+                TempData["ErrorPedido"] = "¡Error, faltan pedidos por confirmar!";
+
+                return RedirectToAction("MsgConfirmarPedido");
+            }
+
+          
+        }
+
+        public ActionResult MsgConfirmarPedido()
+        {
+            if (TempData["ErrorPedido"] != null)
+            {
+                ViewBag.ErrorPedido = TempData["ErrorPedido"].ToString();
+
+            }
+
+            return View();
         }
 
         public ActionResult ListarPedidoUrgente()

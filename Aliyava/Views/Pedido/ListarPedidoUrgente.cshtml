@@ -42,8 +42,11 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @if (Model != null)
         {
+
+            foreach (var item in Model)
+            {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.Estado)
@@ -68,11 +71,12 @@
                 </td>
          
                 <td>
-                    @Html.ActionLink("Detalle", "DetallePedidos", new { id=item.Numero }, new { @class = "btn btn-info" }) |
-                    @Html.ActionLink("Preparar", "PrepararPedidosV", new { id=item.Numero }, new { @class = "btn btn-primary" }) 
+                    @Html.ActionLink("Detalle", "DetallePedidos", new { id = item.Numero }, new { @class = "btn btn-info" }) |
+                    @Html.ActionLink("Preparar", "PrepararPedidosV", new { id = item.Numero }, new { @class = "btn btn-primary" }) 
 
                 </td>
             </tr>
+            }
         }
     </tbody>
 

@@ -232,32 +232,77 @@ namespace DataAccess.Persistencia
 
 
         //Empleados
-        public void cambiarEstadoPedido(List<DtoProducto> colProPreparar)
+        public void cambiarEstadoPedido(List<DtoProducto> colProSinRemove)
         {
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                List<DetallePedido> coldet = context.DetallePedido.Select(s => s).ToList();
+                List<DetallePedido> coldet = context.DetallePedido.Include("Producto").Select(s => s).ToList();
+                List<Producto> colProDB = new List<Producto>();
+                Producto pro = new Producto();
                 int numPedido = 0;
+
+                foreach (DtoProducto item in colProSinRemove)
+                { 
+                    pro = MProducto.MapToEntity(item);
+                    
+                    colProDB.Add(pro);
+                }
+
+                    //foreach (Producto pro in colProDB)
+                    //{
+                    //    foreach (DetallePedido det in pro.DetallePedido)
+                    //    {
+                    //        if (pro.Codigo == det.idProducto)
+                    //        {
+                    //            numPedido = det.idPedido;
+                    //        }
+                    //    }
+
+                    //}
 
                 foreach (DetallePedido det in coldet)
                 {
-                    foreach (DtoProducto item in colProPreparar)
+                    foreach (Producto p in colProDB)
                     {
-                        if (item.Codigo == det.idProducto)
+                        if (p.Codigo == det.Producto.Codigo)
                         {
                             numPedido = det.idPedido;
                         }
-                       
                     }
+
                 }
 
                 Pedido pedido = context.Pedido.FirstOrDefault(f => f.Numero == numPedido);
-                pedido.Estado = "En preparación";
+                pedido.Estado = "En despacho";
                 context.SaveChanges();
 
             }
         }
+
+        public void confirmarProPre(int id, int cantP, List<DtoProducto> colProPreparar)
+        {
+            DtoProducto dto = new DtoProducto();
+
+            using (AliyavaEntities context = new AliyavaEntities()) 
+            {
+                foreach (DtoProducto item in colProPreparar)
+                {
+                    if (item.Codigo == id)
+                    {
+                        dto = item;
+
+                    }
+
+                }
+
+                colProPreparar.Remove(dto);
+
+            }
+
+        }
+
+
         public List<DtoPedido> getPedidoUrg()
         {
             List<Pedido> colPedidosDB = new List<Pedido>();

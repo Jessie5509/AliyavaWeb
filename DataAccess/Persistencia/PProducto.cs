@@ -117,6 +117,8 @@ namespace DataAccess.Persistencia
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 List<DetallePedido> colDet = context.DetallePedido.Where(w => w.idPedido == id).ToList();
+                Pedido ped = context.Pedido.FirstOrDefault(f => f.Numero == id);
+                ped.Estado = "En preparación";
 
                 foreach (DetallePedido det in colDet)
                 {
@@ -128,7 +130,7 @@ namespace DataAccess.Persistencia
                     colDtoProducto.Add(dto);
                 }
 
-         
+                context.SaveChanges();
             }
             return colDtoProducto;
 
