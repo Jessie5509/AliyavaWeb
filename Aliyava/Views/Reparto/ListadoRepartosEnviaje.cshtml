@@ -1,14 +1,13 @@
 ﻿@model List<Common.DTO.DtoReparto>
 
 @{
-    ViewBag.Title = "ListadoRepartos";
+    ViewBag.Title = "ListadoRepartosEnviaje";
 }
 
-<h2>Repartos en definición</h2>
+    <h2>Repartos en viaje</h2>
 
 <p>
-    @Html.ActionLink("Volver", "RegistroReparto", "Reparto", new { @class = "btn btn-primary" }) |
-    @Html.ActionLink("Repartos en viaje", "ListadoRepartosEnviaje", "Reparto", new { @class = "btn btn-info" }) 
+    @Html.ActionLink("Volver", "ListadoRepartos", "Reparto", new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <thead>
@@ -33,7 +32,6 @@
             </th>
         </tr>
     </thead>
-
     <tbody>
         @foreach (var item in Model)
         {
@@ -54,9 +52,8 @@
                     @Html.DisplayFor(modelItem => item.FechaSalida)
                 </td>
                 <td>
-                    @Html.ActionLink("Asignar pedidos", "PedidosEnDespacho", new { id = item.idReparto }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Eliminar", "EliminarReparto", new { id = item.idReparto }, new { @class = "btn btn-danger" })
-
+                    @Html.ActionLink("Finalizar", "FinalizarReparto", new { id = item.idReparto }, new { @class = "btn btn-danger" }) 
+       
                 </td>
             </tr>
         }

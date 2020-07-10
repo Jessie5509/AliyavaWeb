@@ -305,6 +305,7 @@
     <Content Include="Views\Pedido\MsgConfirmarPedido.cshtml" />
     <Content Include="Views\Pedido\HistoricoEstado.cshtml" />
     <Content Include="Views\Pedido\TodosLosPedidos.cshtml" />
+    <Content Include="Views\Reparto\ListadoRepartosEnviaje.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

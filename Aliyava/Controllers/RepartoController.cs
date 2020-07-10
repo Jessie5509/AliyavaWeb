@@ -38,6 +38,20 @@ namespace Aliyava.Controllers
             return View(colDtoReparto);
         }
 
+        public ActionResult ListadoRepartosEnviaje()
+        {
+            List<DtoReparto> colDtoReparto = new List<DtoReparto>();
+            colDtoReparto = HReparto.getInstace().GetRepartosEnViaje();
+            return View(colDtoReparto);
+        }
+
+        public ActionResult FinalizarReparto(int id)
+        {
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            HReparto.getInstace().FinalizarReparto(id, NombreUsu);
+            return RedirectToAction("ListadoRepartosEnviaje");
+        }
+
         public ActionResult EliminarReparto(int id)
         {
             HReparto.getInstace().EliminarRepartoById(id);

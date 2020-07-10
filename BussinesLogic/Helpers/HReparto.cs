@@ -53,5 +53,18 @@ namespace BussinesLogic.Helpers
             pr.asignarPedido(idP, idR, NombreUsu);
         }
 
+        public List<DtoReparto> GetRepartosEnViaje()
+        {
+            PReparto pr = new PReparto();
+            return pr.getRepartoEnViaje();
+
+        }
+
+        public void FinalizarReparto(int id, string NombreUsu)
+        {
+            PReparto pr = new PReparto();
+            pr.finalizarReparto(id, NombreUsu);
+        }
+
     }
 }

@@ -89,6 +89,25 @@ namespace DataAccess.Persistencia
            return colDtoRe;
         }
 
+        public List<DtoReparto> getRepartoEnViaje()
+        {
+            List<DtoReparto> colDtoRe = new List<DtoReparto>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                List<Reparto> colRepDB = context.Reparto.Where(w => w.Estado == "En viaje").ToList();
+
+                foreach (Reparto item in colRepDB)
+                {
+                    DtoReparto dto = MReparto.MapToDto(item);
+                    colDtoRe.Add(dto);
+                }
+
+            }
+
+            return colDtoRe;
+
+        }
         public void eliminarRepartoById(int id)
         {
             using (AliyavaEntities context = new AliyavaEntities())
@@ -121,7 +140,46 @@ namespace DataAccess.Persistencia
             return colDtoP;
         }
 
-      
+        public void finalizarReparto(int id, string NombreUsu)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Reparto reparto = context.Reparto.FirstOrDefault(f => f.idReparto == id);
+                        reparto.Estado = "Finalizado";
+
+                        foreach (Pedido ped in reparto.Pedido)
+                        {
+                            ped.Estado = "Entregado";
+
+                            Historico_de_Cambio_de_estados hisEstado = new Historico_de_Cambio_de_estados();
+                            hisEstado.Accion = "Se entregó el pedido con éxito.";
+                            hisEstado.Estados = "Entregado";
+                            hisEstado.numPedido = ped.Numero;
+                            hisEstado.Funcionario = NombreUsu;
+                            hisEstado.FechaCambio = DateTime.Today;
+
+                            context.Historico_de_Cambio_de_estados.Add(hisEstado);
+
+                        }
+
+                        context.SaveChanges();
+
+                        scope.Complete();
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                    }
+
+                }
+
+                    
+            }
+        }
 
     }
 }
