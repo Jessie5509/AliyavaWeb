@@ -19,5 +19,6 @@ namespace DataAccess.Model
         public string Funcionario { get; set; }
         public string Estados { get; set; }
         public System.DateTime FechaCambio { get; set; }
+        public int numPedido { get; set; }
     }
 }
