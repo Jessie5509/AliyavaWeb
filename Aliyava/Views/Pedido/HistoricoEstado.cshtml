@@ -1,0 +1,55 @@
+﻿@model List<Common.DTO.DtoHistoricoEstado>
+
+@{
+    ViewBag.Title = "HistoricoEstado";
+}
+
+<h2>Histórico cambios de estado</h2>
+
+<p>
+    @Html.ActionLink("Volver", "TodosLosPedidos", "Pedido", new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+       
+            <th>
+                Estado
+            </th>
+            <th>
+                
+                Fecha de cambio
+            </th>
+            <th>
+                Funcionario
+            </th>
+            <th>
+                Acción
+            </th>
+         
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+        
+    
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estados)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCambio)
+                </td>
+                <td>  
+                    @Html.DisplayFor(modelItem => item.Funcionario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accion)
+                </td>
+    
+            </tr>
+        }
+    </tbody>
+</table>

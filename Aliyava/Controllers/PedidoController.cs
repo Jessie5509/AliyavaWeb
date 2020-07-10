@@ -27,10 +27,9 @@ namespace Aliyava.Controllers
 
         public ActionResult PrepararPedidosV(int id)
         {
-            List<DtoProducto> colProPreparar = HProducto.getInstace().GetProPreparar(id);
-            //List<DtoProducto> colProSinRemove = HProducto.getInstace().GetProPreparar(id);
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            List<DtoProducto> colProPreparar = HProducto.getInstace().GetProPreparar(id, NombreUsu);
             Session["colProPreparar"] = colProPreparar;
-            //Session["colProSinRemove"] = colProSinRemove;
             Session["idPedido"] = id;
             return View(colProPreparar);
 
@@ -56,9 +55,10 @@ namespace Aliyava.Controllers
         {
             int idPedido = (int)Session["idPedido"];
             List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
             if (colProPreparar.Count == 0)
             {
-                HPedido.getInstace().CambiarEstadoPedido(idPedido);
+                HPedido.getInstace().CambiarEstadoPedido(idPedido, NombreUsu);
                 return View("ListarPedidoUrgente");
             }
             else 
@@ -94,12 +94,17 @@ namespace Aliyava.Controllers
             return View(colPedidos);
         }
 
-        public ActionResult HistoricoEstado()
+        public ActionResult HistoricoEstado(int id)
         {
-
-
+            List<DtoHistoricoEstado> colHisEstado = HPedido.getInstace().GetHisEstado(id);
+            return View(colHisEstado);
         }
 
+        public ActionResult TodosLosPedidos()
+        {
+            List<DtoPedido> colPed = HPedido.getInstace().GetAllPedidos();
+            return View(colPed);
+        }
 
     }
 }

@@ -8,8 +8,9 @@
 <h4>No urgentes</h4>
 
 <p>
-    @Html.ActionLink("Urgente", "ListarPedidoUrgente", "Pedido", new { @class = "btn btn-primary"})
-   
+    @Html.ActionLink("Urgente", "ListarPedidoUrgente", "Pedido", new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Ver histórico", "TodosLosPedidos", "Pedido", new { @class = "btn btn-info" })
+
 </p>
 <table class="table">
     <thead>
@@ -74,6 +75,7 @@
                 <td>
                     @Html.ActionLink("Detalle", "DetallePedidos", new { id = item.Numero }, new { @class = "btn btn-info" }) |
                     @Html.ActionLink("Preparar", "PrepararPedidosV", new { id = item.Numero }, new { @class = "btn btn-primary" }) 
+                   
 
                 </td>
             </tr>

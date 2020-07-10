@@ -54,8 +54,9 @@ namespace Aliyava.Controllers
 
         public ActionResult AsignarPedido(int idP)
         {
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
             int idR = (int)Session["IdReparto"];
-            HReparto.getInstace().AsignarPedido(idP, idR);
+            HReparto.getInstace().AsignarPedido(idP, idR, NombreUsu);
             return RedirectToAction("ListadoRepartos");
         }
 

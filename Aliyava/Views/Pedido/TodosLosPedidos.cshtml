@@ -1,14 +1,14 @@
 ﻿@model List<Common.DTO.DtoPedido>
 
 @{
-    ViewBag.Title = "ListadoPedidosCliEnPrep";
+    ViewBag.Title = "TodosLosPedidos";
 }
 
-<h2>Pedidos pendientes o en preparación</h2>
+<h2>Todos los pedidos</h2>
 
 <p>
-    @Html.ActionLink("Volver", "ListadoPedidosCli", "Pedido", new { @class = "btn btn-primary" })
-</p> 
+    @Html.ActionLink("Volver", "ListarPedidoUrgente", "Pedido", new { @class = "btn btn-primary" })
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -16,30 +16,29 @@
                 Estado
             </th>
             <th>
-                Precio total
+                PrecioTotal
             </th>
             <th>
-                Número
+                Numero
             </th>
             <th>
                 Usuario
             </th>
             <th>
-                Dirección
+                Direccion
             </th>
             <th>
-                Fecha de ingreso
+                FechaIngreso
             </th>
             <th>
                 Urgente
             </th>
-
+     
             <th>
                 Acciones
             </th>
         </tr>
     </thead>
-
     <tbody>
         @foreach (var item in Model)
         {
@@ -65,13 +64,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Urgente)
                 </td>
-
+          
                 <td>
-                    @Html.ActionLink("Cancelar pedido", "CancelarPedido", new { idPedido = item.Numero }, new { @class = "btn btn-danger" }) 
-
+                    @Html.ActionLink("Ver histórico", "HistoricoEstado", "Pedido", new { id = item.Numero }, new { @class = "btn btn-info" })
                 </td>
             </tr>
         }
     </tbody>
-
 </table>

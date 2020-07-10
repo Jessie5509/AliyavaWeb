@@ -20,6 +20,11 @@ namespace AliyavaCliente.Controllers
 
         public ActionResult RegistroCliente()
         {
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
 
             return View();
         }
@@ -27,7 +32,16 @@ namespace AliyavaCliente.Controllers
         [HttpPost]
         public ActionResult AddCliente(DtoCliente nuevoCliente)
         {
-            HCliente.getInstace().AddCliente(nuevoCliente);
+            bool msg = HCliente.getInstace().AddCliente(nuevoCliente);
+
+            if (msg == true)
+            {
+                TempData["Message"] = "Registrado satisfactoriamente!";
+            }
+            else
+            {
+                TempData["Message"] = "Completa todos los campos por favor!";
+            }
             return RedirectToAction("RegistroCliente");
         }
 

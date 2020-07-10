@@ -58,6 +58,7 @@
     <Compile Include="Mappers\MCliente.cs" />
     <Compile Include="Mappers\MDetalle.cs" />
     <Compile Include="Mappers\MDirecciones.cs" />
+    <Compile Include="Mappers\MHisEstado.cs" />
     <Compile Include="Mappers\MHisStock.cs" />
     <Compile Include="Mappers\MPedido.cs" />
     <Compile Include="Mappers\MProducto.cs" />

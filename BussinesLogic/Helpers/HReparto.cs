@@ -47,10 +47,10 @@ namespace BussinesLogic.Helpers
             return pr.getPedidosEnDespacho(id);
         }
 
-        public void AsignarPedido(int idP, int idR)
+        public void AsignarPedido(int idP, int idR, string NombreUsu)
         {
             PReparto pr = new PReparto();
-            pr.asignarPedido(idP, idR);
+            pr.asignarPedido(idP, idR, NombreUsu);
         }
 
     }

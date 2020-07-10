@@ -66,6 +66,7 @@
                
                 <td>
                     @Html.ActionLink("Detalle", "DetallePedidosCli", new { id = item.Numero }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Ver histórico", "HistoricoEstado", new { id = item.Numero }, new { @class = "btn btn-info" }) 
                     
                 </td>
             </tr>

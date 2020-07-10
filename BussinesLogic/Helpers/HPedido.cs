@@ -22,10 +22,10 @@ namespace BussinesLogic.Helpers
         }
 
         //Clientes
-        public void AddPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
+        public bool AddPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
         {
             PPedido pp = new PPedido();
-            pp.AgregarPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
+            return pp.AgregarPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
         }
 
         public List<DtoPedido> GetPedidoCli(string NombreUsu)
@@ -40,10 +40,10 @@ namespace BussinesLogic.Helpers
             return pp.getPedidoCliPrep(NombreUsu);
         }
 
-        public void CancelarPed(int idPedido)
+        public void CancelarPed(int idPedido, string NombreUsu)
         {
             PPedido pp = new PPedido();
-            pp.cancelarPed(idPedido);
+            pp.cancelarPed(idPedido, NombreUsu);
         }
 
         public void ConfirmarProPre(int id, List<DtoProducto> colProPreparar) 
@@ -52,7 +52,11 @@ namespace BussinesLogic.Helpers
             pp.confirmarProPre(id, colProPreparar);
         }
 
-
+        public List<DtoHistoricoEstado> GetHisEstado(int id)
+        {
+            PPedido pp = new PPedido();
+            return pp.getHisEstado(id);
+        }
 
 
         //-------------------------------------------------------------------------------------------------------
@@ -72,19 +76,26 @@ namespace BussinesLogic.Helpers
             PPedido pp = new PPedido();
             return pp.GetPedidos();
         }
-        
+
+        public List<DtoPedido> GetAllPedidos()
+        {
+            PPedido pp = new PPedido();
+            return pp.getAllPedidos();
+        }
+
         //Cliente/Empleado
         public List<DtoDetallePedido> GetDetallePedido(int id)
         {
             PPedido pp = new PPedido();
             return pp.GetDetalle(id);
         }
+
         //----------------
 
-        public void CambiarEstadoPedido(int idPedido)
+        public void CambiarEstadoPedido(int idPedido, string NombreUsu)
         {
             PPedido pp = new PPedido();
-            pp.cambiarEstadoPedido(idPedido);
+            pp.cambiarEstadoPedido(idPedido, NombreUsu);
         }
 
     }

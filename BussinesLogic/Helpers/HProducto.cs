@@ -47,10 +47,10 @@ namespace BussinesLogic.Helpers
             return pp.GetProductoInfo(id);
         }
 
-        public List<DtoProducto> GetProPreparar(int id)
+        public List<DtoProducto> GetProPreparar(int id, string NombreUsu)
         {
             PProducto pp = new PProducto();
-            return pp.getProPreparar(id);
+            return pp.getProPreparar(id, NombreUsu);
         }
         
 

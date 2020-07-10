@@ -9,7 +9,9 @@
 
 <p>
   
-    @Html.ActionLink("No urgente", "ListarPedidosNoUrgentes", "Pedido", new { @class = "btn btn-primary" })
+    @Html.ActionLink("No urgente", "ListarPedidosNoUrgentes", "Pedido", new { @class = "btn btn-primary" }) |
+    @Html.ActionLink("Todos los pedidos", "TodosLosPedidos", "Pedido", new { @class = "btn btn-info" }) 
+    
 </p>
 <table class="table">
     <thead>
@@ -73,6 +75,7 @@
                 <td>
                     @Html.ActionLink("Detalle", "DetallePedidos", new { id = item.Numero }, new { @class = "btn btn-info" }) |
                     @Html.ActionLink("Preparar", "PrepararPedidosV", new { id = item.Numero }, new { @class = "btn btn-primary" }) 
+                    
 
                 </td>
             </tr>

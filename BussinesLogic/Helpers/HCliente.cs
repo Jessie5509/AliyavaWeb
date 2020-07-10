@@ -21,10 +21,10 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void AddCliente(DtoCliente dto)
+        public bool AddCliente(DtoCliente dto)
         {
             PCliente pc = new PCliente();
-            pc.RegistrarCliente(dto);
+            return pc.RegistrarCliente(dto);
         }
 
         public DtoCliente GetDataCliente(string password)

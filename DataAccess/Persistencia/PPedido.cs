@@ -3,6 +3,7 @@ using DataAccess.Mappers;
 using DataAccess.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,10 @@ namespace DataAccess.Persistencia
     public class PPedido
     {
         //Clientes
-        public void AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
+        public bool AgregarPedido(List<DtoProducto> colProductosPedidos, string NombreUsu, string password, bool ChkUrgente)
         {
+            bool error = false;
+
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Cliente cli = context.Cliente.FirstOrDefault(f => f.NombreUsuario == NombreUsu && f.contraseña == password);
@@ -81,6 +84,7 @@ namespace DataAccess.Persistencia
                             context.SaveChanges();
 
                             scope.Complete();
+
                         }
                         catch (Exception ex)
                         {
@@ -93,9 +97,12 @@ namespace DataAccess.Persistencia
                 else
                 {
                     //Msj de error porque no ingreso esos datos.
+                    error = true;
                 }
 
             }
+
+            return error;
         }
 
         public void AddReserva(List<DtoProducto> colProductosPedidos, Pedido nuevoPedido, AliyavaEntities context)
@@ -122,9 +129,8 @@ namespace DataAccess.Persistencia
 
         }
 
-        public void cancelarPed(int idPedido)
+        public void cancelarPed(int idPedido, string NombreUsu)
         {
-            
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -149,28 +155,21 @@ namespace DataAccess.Persistencia
                                     stockByPro.Cantidad = stockByPro.Cantidad + det.CantidadPreparar;
                                 }
 
-
                             }
-
 
                         }
 
+                        Historico_de_Cambio_de_estados hisEstado = new Historico_de_Cambio_de_estados();
+                        hisEstado.Accion = "Se canceló su pedido.";
+                        hisEstado.Estados = "Cancelado";
+                        hisEstado.numPedido = ped.Numero;
+                        hisEstado.Funcionario = NombreUsu;
+                        hisEstado.FechaCambio = DateTime.Today;
+
+                        context.Historico_de_Cambio_de_estados.Add(hisEstado);
                         context.SaveChanges();
 
                         scope.Complete();
-
-                        //foreach (DetallePedido det in coldet)
-                        //{ 
-                        //    foreach (Reserva res in det.Pedido.Reserva)
-                        //    {
-                        //        res.Estado = "Inactiva";
-                        //        stockByPro = context.Stock.FirstOrDefault(w => w.idProducto == det.idProducto);
-                        //        stockByPro.Cantidad = stockByPro.Cantidad + det.CantidadPreparar;
-
-                        //    }
-
-
-                        //}
 
                     }
                     catch (Exception ex)
@@ -232,16 +231,46 @@ namespace DataAccess.Persistencia
 
 
         //Empleados
-        public void cambiarEstadoPedido(int idPedido)
+        public void cambiarEstadoPedido(int idPedido, string NombreUsu)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Pedido pedido = context.Pedido.FirstOrDefault(f => f.Numero == idPedido);
                 pedido.Estado = "En despacho";
+
+                Historico_de_Cambio_de_estados hisEstado = new Historico_de_Cambio_de_estados();
+                hisEstado.Accion = "Se confirmó que la preparación del pedido culminó, pasó a despacho.";
+                hisEstado.Estados = "En despacho";
+                hisEstado.numPedido = idPedido;
+                hisEstado.Funcionario = NombreUsu;
+                hisEstado.FechaCambio = DateTime.Today;
+
+                context.Historico_de_Cambio_de_estados.Add(hisEstado);
                 context.SaveChanges();
 
             }
         }
+
+        public List<DtoPedido> getAllPedidos()
+        {
+            List<Pedido> colPedidosDB = new List<Pedido>();
+            List<DtoPedido> colPedidos = new List<DtoPedido>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colPedidosDB = context.Pedido.Select(s => s).ToList();
+
+                foreach (Pedido item in colPedidosDB)
+                {
+                    DtoPedido pedido = MPedido.MapToDto(item);
+                    colPedidos.Add(pedido);
+                }
+
+            }
+
+            return colPedidos;
+        }
+
 
         public void confirmarProPre(int id, List<DtoProducto> colProPreparar)
         {
@@ -330,6 +359,28 @@ namespace DataAccess.Persistencia
 
             return colDtoDetalle;
         }
+
+        public List<DtoHistoricoEstado> getHisEstado(int id)
+        {
+            List<Historico_de_Cambio_de_estados> colHisDB = new List<Historico_de_Cambio_de_estados>();
+            List<DtoHistoricoEstado> colHis = new List<DtoHistoricoEstado>();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                colHisDB = context.Historico_de_Cambio_de_estados.Where(w => w.numPedido == id).ToList();
+
+                foreach (Historico_de_Cambio_de_estados item in colHisDB)
+                {
+                    DtoHistoricoEstado his = MHisEstado.MapToDto(item);
+                    colHis.Add(his);
+                }
+
+
+            }
+
+            return colHis;
+        }
+
         //-------------------------------------------------------------
     }
 }

@@ -110,7 +110,7 @@ namespace DataAccess.Persistencia
         }
 
 
-        public List<DtoProducto> getProPreparar(int id)
+        public List<DtoProducto> getProPreparar(int id, string NombreUsu)
         {
             List<DtoProducto> colDtoProducto = new List<DtoProducto>();
        
@@ -119,6 +119,13 @@ namespace DataAccess.Persistencia
                 List<DetallePedido> colDet = context.DetallePedido.Where(w => w.idPedido == id).ToList();
                 Pedido ped = context.Pedido.FirstOrDefault(f => f.Numero == id);
                 ped.Estado = "En preparación";
+
+                Historico_de_Cambio_de_estados hisEstado = new Historico_de_Cambio_de_estados();
+                hisEstado.Accion = "El pedido está en la fase de preparación.";
+                hisEstado.Estados = "En preparación";
+                hisEstado.numPedido = ped.Numero;
+                hisEstado.Funcionario = NombreUsu;
+                hisEstado.FechaCambio = DateTime.Today;
 
                 foreach (DetallePedido det in colDet)
                 {
@@ -130,6 +137,7 @@ namespace DataAccess.Persistencia
                     colDtoProducto.Add(dto);
                 }
 
+                context.Historico_de_Cambio_de_estados.Add(hisEstado);
                 context.SaveChanges();
             }
             return colDtoProducto;

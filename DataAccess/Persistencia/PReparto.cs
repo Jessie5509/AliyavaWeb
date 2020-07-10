@@ -40,7 +40,7 @@ namespace DataAccess.Persistencia
             }
         }
 
-        public void asignarPedido(int idP, int idR)
+        public void asignarPedido(int idP, int idR, string NombreUsu)
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -54,6 +54,14 @@ namespace DataAccess.Persistencia
                 Ped.Estado = "En viaje";
                 rep.Estado = "En viaje";
 
+                Historico_de_Cambio_de_estados hisEstado = new Historico_de_Cambio_de_estados();
+                hisEstado.Accion = "El pedido ya está en viaje.";
+                hisEstado.Estados = "En viaje";
+                hisEstado.numPedido = Ped.Numero;
+                hisEstado.Funcionario = NombreUsu;
+                hisEstado.FechaCambio = DateTime.Today;
+
+                context.Historico_de_Cambio_de_estados.Add(hisEstado);
                 context.SaveChanges();
             }
        

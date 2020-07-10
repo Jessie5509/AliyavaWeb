@@ -107,10 +107,26 @@ namespace AliyavaCliente.Controllers
             string password = Session["Contraseña"].ToString();
             List<DtoProducto> colProductosPedidos = (List<DtoProducto>)Session["colProductos"];
 
-            HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
+            bool error = HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
 
-
+            if (error)
+            {
+                TempData["Pedido"] = "Debe ingresar su teléfono y dirección!";
+                return RedirectToAction("MsgErrorPedido");
+            }
+    
             return RedirectToAction("ListadoPedidosCli");
+        }
+
+        public ActionResult MsgErrorPedido()
+        {
+            if (TempData["Pedido"] != null)
+            {
+                ViewBag.Pedido = TempData["Pedido"].ToString();
+
+            }
+
+            return View();
         }
 
         public ActionResult ListadoPedidosCli()
@@ -129,6 +145,12 @@ namespace AliyavaCliente.Controllers
 
         }
 
+        public ActionResult HistoricoEstado(int id)
+        {
+            List<DtoHistoricoEstado> colHisEstado = HPedido.getInstace().GetHisEstado(id);
+            return View(colHisEstado);
+        }
+
         public ActionResult DetallePedidosCli(int id)
         {
             List<DtoDetallePedido> colDetallesByPedido = HPedido.getInstace().GetDetallePedido(id);
@@ -137,7 +159,8 @@ namespace AliyavaCliente.Controllers
 
         public ActionResult CancelarPedido(int idPedido)
         {
-            HPedido.getInstace().CancelarPed(idPedido);
+            string NombreUsu = Session["NombreDeUsuario"].ToString();
+            HPedido.getInstace().CancelarPed(idPedido, NombreUsu);
             return RedirectToAction("ListadoPedidosCliEnPrep");
         }
 
