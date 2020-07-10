@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ff5516cd6d6643719cf95bd2c061d096" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="11" PointY="0.5" />
         <EntityTypeShape EntityType="AliyavaModel.Reparto" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="AliyavaModel.Usuario" Width="1.5" PointX="9.125" PointY="0.5" FillColor="192, 0, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Empleado" Width="1.5" PointX="4.75" PointY="0.875" FillColor="192, 0, 0" />
@@ -22,11 +21,12 @@
         <AssociationConnector Association="AliyavaModel.FKDetalle_Pedido" />
         <AssociationConnector Association="AliyavaModel.FKPedido_Reparto" />
         <AssociationConnector Association="AliyavaModel.FKReserva_Pedido" />
-        <EntityTypeShape EntityType="AliyavaModel.Categoria" Width="1.5" PointX="11.5" PointY="2.75" />
+        <EntityTypeShape EntityType="AliyavaModel.Categoria" Width="1.5" PointX="11.25" PointY="3.5" />
         <EntityTypeShape EntityType="AliyavaModel.Producto" Width="1.5" PointX="9.25" PointY="3.875" />
         <AssociationConnector Association="AliyavaModel.FKProducto_Categoria" />
         <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
         <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
+        <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="11.125" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

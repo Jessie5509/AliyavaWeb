@@ -232,55 +232,18 @@ namespace DataAccess.Persistencia
 
 
         //Empleados
-        public void cambiarEstadoPedido(List<DtoProducto> colProSinRemove)
+        public void cambiarEstadoPedido(int idPedido)
         {
-
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                List<DetallePedido> coldet = context.DetallePedido.Include("Producto").Select(s => s).ToList();
-                List<Producto> colProDB = new List<Producto>();
-                Producto pro = new Producto();
-                int numPedido = 0;
-
-                foreach (DtoProducto item in colProSinRemove)
-                { 
-                    pro = MProducto.MapToEntity(item);
-                    
-                    colProDB.Add(pro);
-                }
-
-                    //foreach (Producto pro in colProDB)
-                    //{
-                    //    foreach (DetallePedido det in pro.DetallePedido)
-                    //    {
-                    //        if (pro.Codigo == det.idProducto)
-                    //        {
-                    //            numPedido = det.idPedido;
-                    //        }
-                    //    }
-
-                    //}
-
-                foreach (DetallePedido det in coldet)
-                {
-                    foreach (Producto p in colProDB)
-                    {
-                        if (p.Codigo == det.Producto.Codigo)
-                        {
-                            numPedido = det.idPedido;
-                        }
-                    }
-
-                }
-
-                Pedido pedido = context.Pedido.FirstOrDefault(f => f.Numero == numPedido);
+                Pedido pedido = context.Pedido.FirstOrDefault(f => f.Numero == idPedido);
                 pedido.Estado = "En despacho";
                 context.SaveChanges();
 
             }
         }
 
-        public void confirmarProPre(int id, int cantP, List<DtoProducto> colProPreparar)
+        public void confirmarProPre(int id, List<DtoProducto> colProPreparar)
         {
             DtoProducto dto = new DtoProducto();
 

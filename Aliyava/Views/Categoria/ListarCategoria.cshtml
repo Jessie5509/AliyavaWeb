@@ -4,7 +4,7 @@
     ViewBag.Title = "ListarCategoria";
 }
 
-<h2>Listar categoría</h2>
+<h2>Categorías</h2>
 
 <p>
     @Html.ActionLink("Agregar categorías", "RegistrarCategoria", "Categoria", new { @class = "btn btn-primary" })
@@ -36,8 +36,9 @@
                 </td>
 
                 <td>
+                    @Html.ActionLink("Modificar", "ModificarCategoria", new { id = item.idCategoria }, new { @class = "btn btn-primary" }) |
                     @Html.ActionLink("Eliminar", "RemoveCategoria", new { id = item.idCategoria }, new { @class = "btn btn-danger" })
-                    @Html.ActionLink("Modificar", "ModificarCategoria", new { id = item.idCategoria }, new { @class = "btn btn-primary" })
+
                 </td>
             </tr>
         }

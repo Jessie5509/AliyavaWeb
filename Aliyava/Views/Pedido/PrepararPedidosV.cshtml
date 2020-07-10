@@ -45,7 +45,7 @@
                         @Html.DisplayFor(modelItem => item.UbicacionPro)
                     </td>
                     <td>
-                        @Html.ActionLink("Confirmar", "ConfirmarPreparación", "Pedido", new { id = item.Codigo, cantP = item.CantidadPreparar }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Confirmar", "ConfirmarPreparación", "Pedido", new { id = item.Codigo }, new { @class = "btn btn-primary" })
                     </td>
                 </tr>
             }

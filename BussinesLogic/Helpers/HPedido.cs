@@ -46,10 +46,10 @@ namespace BussinesLogic.Helpers
             pp.cancelarPed(idPedido);
         }
 
-        public void ConfirmarProPre(int id, int cantP, List<DtoProducto> colProPreparar) 
+        public void ConfirmarProPre(int id, List<DtoProducto> colProPreparar) 
         {
             PPedido pp = new PPedido();
-            pp.confirmarProPre(id, cantP, colProPreparar);
+            pp.confirmarProPre(id, colProPreparar);
         }
 
 
@@ -81,10 +81,10 @@ namespace BussinesLogic.Helpers
         }
         //----------------
 
-        public void CambiarEstadoPedido(List<DtoProducto> colProSinRemove)
+        public void CambiarEstadoPedido(int idPedido)
         {
             PPedido pp = new PPedido();
-            pp.cambiarEstadoPedido(colProSinRemove);
+            pp.cambiarEstadoPedido(idPedido);
         }
 
     }

@@ -13,8 +13,8 @@ namespace Common.DTO
         
         public int idStock { get; set; }
 
-        [DisplayName("Ubicacion")]
-        [Required(ErrorMessage = "La {0} del stock es requerido!")]
+        [DisplayName("Ubicación")]
+        [Required(ErrorMessage = "La {0} del stock es requerida!")]
         public string Ubicacion { get; set; }
 
         [DisplayName("Motivo")]
@@ -32,6 +32,7 @@ namespace Common.DTO
 
         public int idProducto { get; set; }
 
+        [DisplayName("Nombre del usuario")]
         public string nombreUsuEmpleado { get; set; }
 
 

@@ -25,7 +25,6 @@ namespace DataAccess.Model
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Historico_de_Cambio_de_estados> Historico_de_Cambio_de_estados { get; set; }
         public virtual DbSet<Reparto> Reparto { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
@@ -38,5 +37,6 @@ namespace DataAccess.Model
         public virtual DbSet<Reserva> Reserva { get; set; }
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
+        public virtual DbSet<Historico_de_Cambio_de_estados> Historico_de_Cambio_de_estados { get; set; }
     }
 }

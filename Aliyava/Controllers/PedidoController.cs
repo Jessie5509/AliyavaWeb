@@ -28,17 +28,18 @@ namespace Aliyava.Controllers
         public ActionResult PrepararPedidosV(int id)
         {
             List<DtoProducto> colProPreparar = HProducto.getInstace().GetProPreparar(id);
-            List<DtoProducto> colProSinRemove = HProducto.getInstace().GetProPreparar(id);
+            //List<DtoProducto> colProSinRemove = HProducto.getInstace().GetProPreparar(id);
             Session["colProPreparar"] = colProPreparar;
-            Session["colProSinRemove"] = colProSinRemove;
+            //Session["colProSinRemove"] = colProSinRemove;
+            Session["idPedido"] = id;
             return View(colProPreparar);
 
         }
 
-        public ActionResult ConfirmarPreparación(int id, int cantP)
+        public ActionResult ConfirmarPreparación(int id)
         {
             List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
-            HPedido.getInstace().ConfirmarProPre(id, cantP, colProPreparar);
+            HPedido.getInstace().ConfirmarProPre(id, colProPreparar);
           
             return RedirectToAction("ListaProPrep");
 
@@ -53,11 +54,11 @@ namespace Aliyava.Controllers
 
         public ActionResult ConfirmarPedido()
         {
-            List<DtoProducto> colProSinRemove = (List<DtoProducto>)Session["colProSinRemove"];
+            int idPedido = (int)Session["idPedido"];
             List<DtoProducto> colProPreparar = (List<DtoProducto>)Session["colProPreparar"];
             if (colProPreparar.Count == 0)
             {
-                HPedido.getInstace().CambiarEstadoPedido(colProSinRemove);
+                HPedido.getInstace().CambiarEstadoPedido(idPedido);
                 return View("ListarPedidoUrgente");
             }
             else 
@@ -91,6 +92,12 @@ namespace Aliyava.Controllers
         {
             List<DtoPedido> colPedidos = HPedido.getInstace().GetPedido();
             return View(colPedidos);
+        }
+
+        public ActionResult HistoricoEstado()
+        {
+
+
         }
 
 

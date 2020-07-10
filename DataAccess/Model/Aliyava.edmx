@@ -65,10 +65,11 @@
             <PropertyRef Name="idHistorico" />
           </Key>
           <Property Name="idHistorico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Accion" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Funcionario" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Estados" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Accion" Type="varchar" MaxLength="75" Nullable="false" />
+          <Property Name="Funcionario" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Estados" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="FechaCambio" Type="datetime" Nullable="false" />
+          <Property Name="numPedido" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="HistoricoStock">
           <Key>
@@ -312,7 +313,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="AliyavaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AliyavaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
           <EntitySet Name="Reparto" EntityType="AliyavaModel.Reparto" />
           <EntitySet Name="Usuario" EntityType="AliyavaModel.Usuario" />
           <EntitySet Name="Empleado" EntityType="AliyavaModel.Empleado" />
@@ -361,17 +361,8 @@
             <End Role="Producto" EntitySet="Producto" />
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
+          <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
           </EntityContainer>
-        <EntityType Name="Historico_de_Cambio_de_estados">
-          <Key>
-            <PropertyRef Name="idHistorico" />
-          </Key>
-          <Property Name="idHistorico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Accion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Funcionario" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Estados" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="FechaCambio" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
         <EntityType Name="Reparto">
           <Key>
             <PropertyRef Name="idReparto" />
@@ -631,23 +622,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Historico_de_Cambio_de_estados">
+          <Key>
+            <PropertyRef Name="idHistorico" />
+          </Key>
+          <Property Name="idHistorico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Accion" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="Funcionario" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Estados" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FechaCambio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="numPedido" Type="Int32" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AliyavaModelStoreContainer" CdmEntityContainer="AliyavaEntities">
-          <EntitySetMapping Name="Historico_de_Cambio_de_estados">
-            <EntityTypeMapping TypeName="AliyavaModel.Historico_de_Cambio_de_estados">
-              <MappingFragment StoreEntitySet="Historico de Cambio de estados">
-                <ScalarProperty Name="FechaCambio" ColumnName="FechaCambio" />
-                <ScalarProperty Name="Estados" ColumnName="Estados" />
-                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
-                <ScalarProperty Name="Accion" ColumnName="Accion" />
-                <ScalarProperty Name="idHistorico" ColumnName="idHistorico" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Reparto">
             <EntityTypeMapping TypeName="AliyavaModel.Reparto">
               <MappingFragment StoreEntitySet="Reparto">
@@ -790,6 +781,18 @@
                 <ScalarProperty Name="Familia" ColumnName="Familia" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Historico_de_Cambio_de_estados">
+            <EntityTypeMapping TypeName="AliyavaModel.Historico_de_Cambio_de_estados">
+              <MappingFragment StoreEntitySet="Historico de Cambio de estados">
+                <ScalarProperty Name="numPedido" ColumnName="numPedido" />
+                <ScalarProperty Name="FechaCambio" ColumnName="FechaCambio" />
+                <ScalarProperty Name="Estados" ColumnName="Estados" />
+                <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
+                <ScalarProperty Name="Accion" ColumnName="Accion" />
+                <ScalarProperty Name="idHistorico" ColumnName="idHistorico" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
