@@ -24,13 +24,7 @@ namespace Aliyava.Controllers
 
         public ActionResult MapaTermico()
         {
-            List<decimal> colLat = HReporte.getInstace().getLatEntregado();
-            List<decimal> colLng = HReporte.getInstace().getLngEntregado();
-            TempData["ColLat"] = colLat;
-            TempData["ColLng"] = colLng;
-
-            //ViewBag.ColLat = TempData["ColLat"].ToString();
-            //ViewBag.ColLng = TempData["ColLng"].ToString();
+            
 
             return View();
         }

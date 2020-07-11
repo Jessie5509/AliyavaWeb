@@ -77,64 +77,64 @@ namespace DataAccess.Persistencia
             return coldto;
         }
 
-        public List<decimal> getLatEntregado()
-        {
-            List<decimal> colLat = new List<decimal>();
+        //public List<decimal> getLatEntregado()
+        //{
+        //    List<decimal> colLat = new List<decimal>();
 
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                List<Pedido> colP = context.Pedido.Include("Cliente").Where(w => w.Estado == "Entregado").ToList();
-                List<Cliente> colc = context.Pedido.Include("Cliente").Select(s => s.Cliente).ToList();
-                //List<Cliente> colcli = context.Cliente.Include("Pedido").Select(s => s).ToList();
+        //    using (AliyavaEntities context = new AliyavaEntities())
+        //    {
+        //        List<Pedido> colP = context.Pedido.Include("Cliente").Where(w => w.Estado == "Entregado").ToList();
+        //        List<Cliente> colc = context.Pedido.Include("Cliente").Select(s => s.Cliente).ToList();
+        //        //List<Cliente> colcli = context.Cliente.Include("Pedido").Select(s => s).ToList();
 
-                foreach (Cliente item in colc)
-                {
-                    foreach (Pedido ped in item.Pedido)
-                    {
-                        if (item.idCliente == ped.Cliente.idCliente)
-                        {
-                            decimal lat = (decimal)item.latitud;
+        //        foreach (Cliente item in colc)
+        //        {
+        //            foreach (Pedido ped in item.Pedido)
+        //            {
+        //                if (item.idCliente == ped.Cliente.idCliente)
+        //                {
+        //                    decimal lat = (decimal)item.latitud;
 
-                            colLat.Add(lat);
+        //                    colLat.Add(lat);
 
-                        }
-                    }
+        //                }
+        //            }
                    
-                }
+        //        }
 
-            }
+        //    }
 
-            return colLat;
-        }
+        //    return colLat;
+        //}
 
-        public List<decimal> getLngEntregado()
-        {
-            List<decimal> colLng = new List<decimal>();
+        //public List<decimal> getLngEntregado()
+        //{
+        //    List<decimal> colLng = new List<decimal>();
 
-            using (AliyavaEntities context = new AliyavaEntities())
-            {
-                List<Pedido> colP = context.Pedido.Include("Cliente").Where(w => w.Estado == "Entregado").ToList();
-                List<Cliente> colc = context.Pedido.Include("Cliente").Select(s => s.Cliente).ToList();
-                //List<Cliente> colcli = context.Cliente.Include("Pedido").Select(s => s).ToList();
+        //    using (AliyavaEntities context = new AliyavaEntities())
+        //    {
+        //        List<Pedido> colP = context.Pedido.Include("Cliente").Where(w => w.Estado == "Entregado").ToList();
+        //        List<Cliente> colc = context.Pedido.Include("Cliente").Select(s => s.Cliente).ToList();
+        //        //List<Cliente> colcli = context.Cliente.Include("Pedido").Select(s => s).ToList();
 
-                foreach (Cliente item in colc)
-                {
-                    foreach (Pedido ped in item.Pedido)
-                    {
-                        if (item.idCliente == ped.Cliente.idCliente)
-                        {
-                            decimal lng = (decimal)item.longitud;
+        //        foreach (Cliente item in colc)
+        //        {
+        //            foreach (Pedido ped in item.Pedido)
+        //            {
+        //                if (item.idCliente == ped.Cliente.idCliente)
+        //                {
+        //                    decimal lng = (decimal)item.longitud;
 
-                            colLng.Add(lng);
+        //                    colLng.Add(lng);
 
-                        }
-                    }
+        //                }
+        //            }
 
-                }
+        //        }
 
-            }
+        //    }
 
-            return colLng;
-        }
+        //    return colLng;
+        //}
     }
 }
