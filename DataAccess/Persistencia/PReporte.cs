@@ -33,20 +33,20 @@ namespace DataAccess.Persistencia
         public double Reporte2(DateTime fecha1, DateTime fecha2)
         {
             
-            List<Reparto> colrep = null;
+            List<Pedido> colrep = null;
             double average = 0;
             using (AliyavaEntities context = new AliyavaEntities())
             {
 
-                colrep = context.Reparto.Where(w => w.Estado == "Entregado").ToList();
+                colrep = context.Pedido.Where(w => w.Estado == "Entregado").ToList();
                 
-                foreach (Reparto item in colrep)
+                foreach (Pedido item in colrep)
                 {
 
-                    if ((item.FechaSalida >= fecha1) && (item.FechaSalida <= fecha2))
+                    if ((item.FechaIngreso.Day >= fecha1.Day && item.FechaIngreso.Month >= fecha1.Month && item.FechaIngreso.Year >= fecha1.Year) && (item.Reparto.FechaSalida.Day <= fecha2.Day && item.Reparto.FechaSalida.Month <= fecha2.Month && item.Reparto.FechaSalida.Year <= fecha2.Year))
                     {
 
-                         average = context.Reparto.Average(a=> a.idReparto);
+                         average = context.Pedido.Average(a=> a.Numero);
 
                     }
 

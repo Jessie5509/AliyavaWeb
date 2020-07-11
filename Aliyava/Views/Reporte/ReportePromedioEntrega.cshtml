@@ -1,0 +1,66 @@
+﻿@model Common.DTO.DtoReportePromedio
+
+@{
+    ViewBag.Title = "ReportePromedioEntrega";
+}
+
+
+
+<h2>ReportePromedioEntrega</h2>
+
+@using (Html.BeginForm("ReportePromedioEntrega1", "Reporte"))
+{
+
+
+    <div class="form-horizontal">
+        <h4>Reporte promedio pedidos en un rango de fechas</h4>
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fecha1, new { type = "date" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.fecha2, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.fecha2, new { type = "date" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Promedio" class="btn btn-default" />
+            </div>
+        </div>
+
+
+
+
+    </div>
+}
+<div class="bg-info">
+
+
+    <label>El promedio de pedidos es:</label>
+    @TempData["Promedio"]
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
