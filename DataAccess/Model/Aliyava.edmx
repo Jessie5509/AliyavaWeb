@@ -50,6 +50,8 @@
           <Property Name="Edificio" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="idCliente" Type="int" Nullable="false" />
           <Property Name="nombreDir" Type="varchar" MaxLength="50" />
+          <Property Name="latitud" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="longitud" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -323,11 +325,6 @@
             <End Role="HistoricoStock" EntitySet="HistoricoStock" />
           </AssociationSet>
           <EntitySet Name="Cliente" EntityType="AliyavaModel.Cliente" />
-          <EntitySet Name="Direcciones" EntityType="AliyavaModel.Direcciones" />
-          <AssociationSet Name="FKDireccionesCliente" Association="AliyavaModel.FKDireccionesCliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Direcciones" EntitySet="Direcciones" />
-          </AssociationSet>
           <EntitySet Name="DetallePedido" EntityType="AliyavaModel.DetallePedido" />
           <EntitySet Name="Pedido" EntityType="AliyavaModel.Pedido" />
           <EntitySet Name="Reserva" EntityType="AliyavaModel.Reserva" />
@@ -362,6 +359,11 @@
             <End Role="Stock" EntitySet="Stock" />
           </AssociationSet>
           <EntitySet Name="Historico_de_Cambio_de_estados" EntityType="AliyavaModel.Historico_de_Cambio_de_estados" />
+          <EntitySet Name="Direcciones" EntityType="AliyavaModel.Direcciones" />
+          <AssociationSet Name="FKDireccionesCliente" Association="AliyavaModel.FKDireccionesCliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direcciones" EntitySet="Direcciones" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Reparto">
           <Key>
@@ -442,35 +444,9 @@
           <Property Name="contraseña" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="latitud" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="longitud" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Direcciones" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Cliente" ToRole="Direcciones" />
           <NavigationProperty Name="Pedido" Relationship="AliyavaModel.FKPedidoCliente" FromRole="Cliente" ToRole="Pedido" />
+          <NavigationProperty Name="Direcciones" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Cliente" ToRole="Direcciones" />
         </EntityType>
-        <EntityType Name="Direcciones">
-          <Key>
-            <PropertyRef Name="idDireccion" />
-          </Key>
-          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Barrio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Numero" Type="Double" Nullable="false" />
-          <Property Name="Apartamento" Type="Int32" Nullable="false" />
-          <Property Name="Edificio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="idCliente" Type="Int32" Nullable="false" />
-          <Property Name="nombreDir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Direcciones" ToRole="Cliente" />
-        </EntityType>
-        <Association Name="FKDireccionesCliente">
-          <End Type="AliyavaModel.Cliente" Role="Cliente" Multiplicity="1" />
-          <End Type="AliyavaModel.Direcciones" Role="Direcciones" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="idCliente" />
-            </Principal>
-            <Dependent Role="Direcciones">
-              <PropertyRef Name="idCliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="DetallePedido">
           <Key>
             <PropertyRef Name="idDetallePedido" />
@@ -633,6 +609,34 @@
           <Property Name="FechaCambio" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="numPedido" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="idDireccion" />
+          </Key>
+          <Property Name="idDireccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ciudad" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Barrio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="Double" Nullable="false" />
+          <Property Name="Apartamento" Type="Int32" Nullable="false" />
+          <Property Name="Edificio" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="idCliente" Type="Int32" Nullable="false" />
+          <Property Name="nombreDir" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="latitud" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="longitud" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Cliente" Relationship="AliyavaModel.FKDireccionesCliente" FromRole="Direcciones" ToRole="Cliente" />
+        </EntityType>
+        <Association Name="FKDireccionesCliente">
+          <End Type="AliyavaModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="AliyavaModel.Direcciones" Role="Direcciones" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="idCliente" />
+            </Principal>
+            <Dependent Role="Direcciones">
+              <PropertyRef Name="idCliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -709,20 +713,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Direcciones">
-            <EntityTypeMapping TypeName="AliyavaModel.Direcciones">
-              <MappingFragment StoreEntitySet="Direcciones">
-                <ScalarProperty Name="nombreDir" ColumnName="nombreDir" />
-                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
-                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
-                <ScalarProperty Name="Apartamento" ColumnName="Apartamento" />
-                <ScalarProperty Name="Numero" ColumnName="Numero" />
-                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="DetallePedido">
             <EntityTypeMapping TypeName="AliyavaModel.DetallePedido">
               <MappingFragment StoreEntitySet="DetallePedido">
@@ -793,6 +783,22 @@
                 <ScalarProperty Name="Funcionario" ColumnName="Funcionario" />
                 <ScalarProperty Name="Accion" ColumnName="Accion" />
                 <ScalarProperty Name="idHistorico" ColumnName="idHistorico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direcciones">
+            <EntityTypeMapping TypeName="AliyavaModel.Direcciones">
+              <MappingFragment StoreEntitySet="Direcciones">
+                <ScalarProperty Name="longitud" ColumnName="longitud" />
+                <ScalarProperty Name="latitud" ColumnName="latitud" />
+                <ScalarProperty Name="nombreDir" ColumnName="nombreDir" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="Edificio" ColumnName="Edificio" />
+                <ScalarProperty Name="Apartamento" ColumnName="Apartamento" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Barrio" ColumnName="Barrio" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="idDireccion" ColumnName="idDireccion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

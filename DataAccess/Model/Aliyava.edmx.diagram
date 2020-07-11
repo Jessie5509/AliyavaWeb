@@ -12,8 +12,6 @@
         <EntityTypeShape EntityType="AliyavaModel.HistoricoStock" Width="1.5" PointX="7" PointY="0.5" />
         <AssociationConnector Association="AliyavaModel.FKHistStock_Empleado" />
         <EntityTypeShape EntityType="AliyavaModel.Cliente" Width="1.5" PointX="2.75" PointY="0.875" FillColor="192, 0, 0" />
-        <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="6.875" />
-        <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
         <EntityTypeShape EntityType="AliyavaModel.DetallePedido" Width="1.5" PointX="4.625" PointY="4" />
         <EntityTypeShape EntityType="AliyavaModel.Pedido" Width="1.5" PointX="0.625" PointY="3.625" FillColor="192, 64, 0" />
         <EntityTypeShape EntityType="AliyavaModel.Reserva" Width="1.5" PointX="0.625" PointY="8" />
@@ -27,6 +25,8 @@
         <AssociationConnector Association="AliyavaModel.FKDetalle_Producto" />
         <AssociationConnector Association="AliyavaModel.FKStock_Producto" />
         <EntityTypeShape EntityType="AliyavaModel.Historico_de_Cambio_de_estados" Width="1.5" PointX="11.125" PointY="0.625" />
+        <EntityTypeShape EntityType="AliyavaModel.Direcciones" Width="1.5" PointX="4.5" PointY="7.125" />
+        <AssociationConnector Association="AliyavaModel.FKDireccionesCliente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
