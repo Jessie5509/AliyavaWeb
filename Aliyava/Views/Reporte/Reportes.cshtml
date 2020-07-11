@@ -8,11 +8,11 @@
 <div class="card">
     <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin-left:10px; margin-bottom:50px; margin-right:15px;margin-top:15px; background-color: rgba(0,0,255,.1)">
 
-        <div id="portada" class="card-title">Primer Reporte</div>
+        <div id="portada" class="card-title">Productos más vendidos</div>
 
         <div class="panel-body" style="width: 200px; height: 200px;">
-            <p>Este primer reporte muestra un listado de los producto mas vendidos</p>
-            <p>Para acceder al lista de click en el boton que se encuentra debajo</p>
+            <p>Este primer reporte muestra un listado de los productos más vendidos.</p>
+            <p>Para acceder al mismo de click en el botón de abajo.</p>
         </div>
         <div class="panel-footer">
 
@@ -26,11 +26,11 @@
 <div class="card">
     <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin-left:10px; margin-bottom:50px; margin-right:15px;margin-top:15px; background-color: rgba(0,0,255,.1)">
 
-        <div id="portada" class="card-title">Segundo Reporte</div>
+        <div id="portada" class="card-title">Promedio de entrega en un rango de tiempo.</div>
 
         <div class="panel-body" style="width: 200px; height: 200px;">
-            <p>Este Reporte nos muestra un listado de cantidad de pedidos y el volumen que se entrego en el dia</p>
-            <p>Para acceder al lista de click en el boton que se encuentra debajo</p>
+            <p>Este reporte nos muestra un promedio entre fechas de los pedidos entregados.</p>
+            <p>Para acceder al mismo de click en el botón que se encuentra debajo.</p>
         </div>
         <div class="panel-footer">
 
@@ -47,15 +47,33 @@
 <div class="card">
     <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin-left:10px; margin-bottom:50px; margin-right:15px;margin-top:15px; background-color: rgba(0,0,255,.1)">
 
-        <div id="portada" class="card-title">Segundo Reporte</div>
+        <div id="portada" class="card-title">Cantidad de pedidos y volumen entregados por día.</div>
 
         <div class="panel-body" style="width: 200px; height: 200px;">
-            <p>Este Reporte nos muestra un listado de cantidad de pedidos y el volumen que se entrego en el dia</p>
-            <p>Para acceder al lista de click en el boton que se encuentra debajo</p>
+            <p>Este reporte nos muestra un listado de cantidad de pedidos y el volumen que se entrego en el dia</p>
+            <p>Para acceder a la lista de click en el botón que se encuentra debajo.</p>
         </div>
         <div class="panel-footer">
 
             @Html.ActionLink("Ir al reporte", "ReporteVolumenPedidodia", "Reporte", new { @class = "btn btn-primary" })
+        </div>
+
+
+    </div>
+</div>
+
+<div class="card">
+    <div id="card" class="panel panel-default " style="width: 250px; height: 250px; float:left;margin-left:10px; margin-bottom:50px; margin-right:15px;margin-top:15px; background-color: rgba(0,0,255,.1)">
+
+        <div id="portada" class="card-title">Mapa térmico</div>
+
+        <div class="panel-body" style="width: 200px; height: 200px;">
+            <p>Este reporte muestra un mapa térmico con las zonas más concurridas por los choferes al entregar pedidos.</p>
+            <p>Para mostrarlo acceda mediante el botón que está debajo.</p>
+        </div>
+        <div class="panel-footer">
+
+            @Html.ActionLink("Ir al reporte", "MapaTermico", "Reporte", new { @class = "btn btn-primary" })
         </div>
 
 
