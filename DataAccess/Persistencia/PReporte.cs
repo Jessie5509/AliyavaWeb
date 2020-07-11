@@ -45,14 +45,14 @@ namespace DataAccess.Persistencia
                 foreach (Pedido item in colrep)
                 {
                     
-                    aux = (item.FechaIngreso - item.Reparto.FechaSalida).TotalMinutes;                    
+                    aux = (item.FechaIngreso - item.Reparto.FechaSalida).TotalDays;                    
                     min.Add(aux);
                     aux = 0;
                 }
 
                 
                 
-                average = min.Average() /colrep.Count();
+                average = colrep.Count()/ min.Sum();
 
 
             }
