@@ -10,6 +10,9 @@ namespace Common.DTO
 {
     public class DtoDirecciones
     {
+
+        public int idDireccion { get; set; }
+
         [DisplayName("Ciudad")]
         [Required(ErrorMessage = "La {0} es requerida!")]
         public string Ciudad { get; set; }

@@ -286,6 +286,7 @@
     <Content Include="Views\Pedido\ListadoPedidosCliEnPrep.cshtml" />
     <Content Include="Views\Pedido\HistoricoEstado.cshtml" />
     <Content Include="Views\Pedido\MsgErrorPedido.cshtml" />
+    <Content Include="Views\Cliente\DireccionFormAdd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

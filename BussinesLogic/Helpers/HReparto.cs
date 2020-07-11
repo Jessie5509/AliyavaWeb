@@ -21,10 +21,10 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void AddReparto(DtoReparto nuevoReparto)
+        public bool AddReparto(DtoReparto nuevoReparto)
         {
             PReparto pr = new PReparto();
-            pr.RegistrarReparto(nuevoReparto);
+            return pr.RegistrarReparto(nuevoReparto);
 
         }
 

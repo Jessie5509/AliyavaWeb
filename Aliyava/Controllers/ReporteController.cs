@@ -21,7 +21,13 @@ namespace Aliyava.Controllers
         {
             return View();
         }
-            public ActionResult ReporteProMasVendido()
+
+        public ActionResult MapaTermico()
+        {
+            return View();
+        }
+
+        public ActionResult ReporteProMasVendido()
         {
             List<DtoReporteMasVendido> colProd1 = new List<DtoReporteMasVendido>();
             colProd1 = HReporte.getInstace().GetReporte1();

@@ -27,10 +27,10 @@ namespace BussinesLogic.Helpers
             return pc.RegistrarCliente(dto);
         }
 
-        public DtoCliente GetDataCliente(string password)
+        public DtoCliente GetDataCliente(string password, out bool existeDir)
         {
             PCliente pc = new PCliente();
-            return pc.getDataCli(password);
+            return pc.getDataCli(password, out existeDir);
             
         }
 
@@ -58,7 +58,23 @@ namespace BussinesLogic.Helpers
             return pc.existeCliente(dto);
         }
 
+        public DtoDirecciones getNombreD(string password, string nombreD)
+        {
+            PCliente pc = new PCliente();
+            return pc.getNombreD(password, nombreD);
+        }
 
+        public void EliminarDireccion(int id)
+        {
+            PCliente pc = new PCliente();
+            pc.eliminarDireccion(id);
+        }
+
+        //public DtoDirecciones getNombreDAdd(string password)
+        //{
+        //    PCliente pc = new PCliente();
+        //    return pc.getNombreDAdd(password);
+        //}
 
 
     }

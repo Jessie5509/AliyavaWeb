@@ -50,13 +50,14 @@ namespace DataAccess.Persistencia
         }
 
 
-        public DtoCliente getDataCli(string password)
+        public DtoCliente getDataCli(string password, out bool existeDir)
         {
             DtoCliente dtoCli = new DtoCliente();
 
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 Cliente clienteByPassword = context.Cliente.FirstOrDefault(f => f.contraseña == password);
+                existeDir = context.Direcciones.Any(a => a.idCliente == clienteByPassword.idCliente);
                 dtoCli = MCliente.MapToDto(clienteByPassword);
             }
 
@@ -84,7 +85,7 @@ namespace DataAccess.Persistencia
             return colDtoDire;
         }
 
-        public void addDire(DtoDirecciones nuevaDireccion, string password)
+        public void addDire(DtoDirecciones nuevaDireccion, string password )
         {
             using (AliyavaEntities context = new AliyavaEntities())
             {
@@ -94,11 +95,12 @@ namespace DataAccess.Persistencia
                     {
                         Direcciones dire = new Direcciones();
                         dire.Ciudad = nuevaDireccion.Ciudad;
+                        dire.nombreDir = nuevaDireccion.nombreDir;
                         dire.Barrio = nuevaDireccion.Barrio;
                         dire.Apartamento = nuevaDireccion.Apartamento;
                         dire.Edificio = nuevaDireccion.Edificio;
                         dire.Numero = nuevaDireccion.Numero;
-
+  
                         int idCli = context.Cliente.FirstOrDefault(f => f.contraseña == password).idCliente;
 
                         dire.idCliente = idCli;
@@ -116,6 +118,32 @@ namespace DataAccess.Persistencia
 
             }
 
+        }
+
+        public DtoDirecciones getNombreD(string password, string nombreD)
+        {
+            DtoDirecciones dtoDire = new DtoDirecciones();
+
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Cliente clienteByPassword = context.Cliente.FirstOrDefault(f => f.contraseña == password);
+                dtoDire.nombreDir = nombreD;
+                //dtoCli = MCliente.MapToDto(clienteByPassword);
+            }
+
+            return dtoDire;
+        }
+
+     
+        public void eliminarDireccion(int id)
+        {
+            using (AliyavaEntities context = new AliyavaEntities())
+            {
+                Direcciones Dire = context.Direcciones.FirstOrDefault(f => f.idDireccion == id);
+
+                context.Direcciones.Remove(Dire);
+                context.SaveChanges();
+            }
         }
         public void UpdateCliente(DtoCliente dtoCliente)
         {
