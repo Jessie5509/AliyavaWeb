@@ -20,6 +20,8 @@ namespace DataAccess.Mappers
             dto.Apartamento = entity.Apartamento;
             dto.Edificio = entity.Edificio;
             dto.nombreDir = entity.nombreDir;
+            dto.latitud = entity.latitud;
+            dto.longitud = entity.longitud;
      
             return dto;
         }
@@ -34,6 +36,8 @@ namespace DataAccess.Mappers
             entity.Apartamento = dto.Apartamento;
             entity.Edificio = dto.Edificio;
             entity.nombreDir = dto.nombreDir;
+            entity.latitud = dto.latitud;
+            entity.longitud = dto.longitud;
 
             return entity;
         }

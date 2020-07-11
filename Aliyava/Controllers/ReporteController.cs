@@ -24,6 +24,8 @@ namespace Aliyava.Controllers
 
         public ActionResult MapaTermico()
         {
+            
+
             return View();
         }
 

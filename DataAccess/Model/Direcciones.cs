@@ -22,6 +22,8 @@ namespace DataAccess.Model
         public string Edificio { get; set; }
         public int idCliente { get; set; }
         public string nombreDir { get; set; }
+        public Nullable<decimal> latitud { get; set; }
+        public Nullable<decimal> longitud { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }

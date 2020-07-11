@@ -37,5 +37,11 @@ namespace Common.DTO
         [DisplayName("Nombre de la dirección")]
         [Required(ErrorMessage = "El {0} es requerida!")]
         public string nombreDir { get; set; }
+
+        [DisplayName("Latitud")]
+        public Nullable<decimal> latitud { get; set; }
+
+        [DisplayName("Longitud")]
+        public Nullable<decimal> longitud { get; set; }
     }
 }

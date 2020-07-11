@@ -40,5 +40,17 @@ namespace BussinesLogic.Helpers
             PReporte pc = new PReporte();
             return pc.Reporte3();
         }
+
+        //public List<decimal> getLatEntregado()
+        //{
+        //    PReporte pc = new PReporte();
+        //    return pc.getLatEntregado();
+        //}
+
+        //public List<decimal> getLngEntregado()
+        //{
+        //    PReporte pc = new PReporte();
+        //    return pc.getLngEntregado();
+        //}
     }
 }

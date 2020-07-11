@@ -43,12 +43,21 @@
 
     @using (Html.BeginForm())
     {
-        <div class="navbar  navbar-fixed-top" style="top:10px; left:1650px">
-            <p>
-                @Html.TextBox("SearchString", null, new { @class = "search_input" })
-                <input type="submit" value="Buscar" />
-            </p>
+        @*<div class="navbar  navbar-fixed-top" style="top:10px; left:1650px">
+                <p>
+                    @Html.TextBox("SearchString", null, new { @class = "search_input" })
+                    <input type="submit" value="Buscar" />
+                </p>
+            </div>*@
+
+        <div class="navbar-fixed-top navbar-collapse collapse navbar-header" style="margin-top:0.8%; margin-left:75%">
+            <ul class="nav navbar-nav">
+                <li>@Html.TextBox("SearchString", null, new { @class = "search_input form-control" })</li>
+                <li><input type="submit" value="Buscar" class="btn btn-primary" placeholder="Buscar" /></li>
+            </ul>
         </div>
+
+
 
         <div id="FamiliS">
             <div class="col-md-10">
@@ -59,7 +68,7 @@
         </div>
 
         <p>
-            @Html.ActionLink("Ordenar precios", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Ordenar por precios", "Index", new { sortOrder = ViewBag.PriceSort, currentFilter = ViewBag.CurrentFilter }, new { @class = "btn btn-primary" })
         </p>
 
 
@@ -69,9 +78,9 @@
     }
 
     <div>
-        <div class="row" style="height:5000px; background-color: rgb(181, 181, 187);">
+        <div class="row" style="height:5000px; background-color: rgb(226, 226, 238);">
             <div class="container" id="searchable-container">
-
+               
                 @{
                     Html.RenderPartial("_listaProductos");
 
@@ -82,3 +91,4 @@
     </div>
 
 </div>
+<br />
