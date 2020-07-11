@@ -29,8 +29,8 @@ namespace Aliyava.Controllers
             TempData["ColLat"] = colLat;
             TempData["ColLng"] = colLng;
 
-            ViewBag.ColLat = TempData["ColLat"].ToString();
-            ViewBag.ColLng = TempData["ColLng"].ToString();
+            //ViewBag.ColLat = TempData["ColLat"].ToString();
+            //ViewBag.ColLng = TempData["ColLng"].ToString();
 
             return View();
         }
