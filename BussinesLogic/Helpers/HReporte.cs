@@ -29,6 +29,12 @@ namespace BussinesLogic.Helpers
             return pc.Reporte1();
         }
 
+        public double GetReporte2(DateTime fecha1, DateTime fecha2)
+        {
+            PReporte pc = new PReporte();
+            return pc.Reporte2(fecha1, fecha2);
+        }
+
         public List<DtoReporteVolumenPedidodia> GetReporte3()
         {
             PReporte pc = new PReporte();

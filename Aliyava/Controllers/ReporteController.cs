@@ -29,11 +29,28 @@ namespace Aliyava.Controllers
             return View(colProd1);
         }
 
+        public ActionResult ReportePromedioEntrega()
+        {
+
+            
+            return View();
+        }
+        public ActionResult ReportePromedioEntrega1(DateTime fecha1,DateTime fecha2 )
+        {
+
+            double promedio = 0;
+            promedio = HReporte.getInstace().GetReporte2(fecha1, fecha2);
+
+            TempData["Promedio"] = promedio;
+            return RedirectToAction("ReportePromedioEntrega");
+        }
+        
         public ActionResult ReporteVolumenPedidodia()
         {
 
             List<DtoReporteVolumenPedidodia> colProd3 = new List<DtoReporteVolumenPedidodia>();
             colProd3 = HReporte.getInstace().GetReporte3();
+
 
             return View(colProd3);
         }
