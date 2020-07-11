@@ -99,7 +99,7 @@ namespace Aliyava.Controllers
 
             bool hayStock;
 
-            hayStock = colstock.Any(a => a.idProducto == id);
+            hayStock = colstock.Any(a => a.idProducto == id && a.Cantidad != 0);
 
             if (hayStock)
             {
