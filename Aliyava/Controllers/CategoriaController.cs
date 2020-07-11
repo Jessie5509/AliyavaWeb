@@ -19,14 +19,30 @@ namespace Aliyava.Controllers
 
         public ActionResult RegistrarCategoria()
         {
+            if (TempData["Cat"] != null)
+            {
+                ViewBag.Message = TempData["Cat"].ToString();
+
+            }
 
             return View();
+
         }
 
         [HttpPost]
         public ActionResult AddCategoria(DtoCategoria nuevacategoria)
         {
-            HCategoria.getInstace().AddCategoria(nuevacategoria);
+            bool msg = HCategoria.getInstace().AddCategoria(nuevacategoria);
+
+            if (msg == true)
+            {
+                TempData["Cat"] = "Categoría añadida satisfactoriamente!";
+            }
+            else
+            {
+                TempData["Cat"] = "Revisa el nombre que quieres ingresar!";
+            }
+
             return RedirectToAction("RegistrarCategoria");
         }
 

@@ -42,14 +42,32 @@ namespace AliyavaCliente.Controllers
             {
                 TempData["Message"] = "Completa todos los campos por favor!";
             }
+
             return RedirectToAction("RegistroCliente");
         }
 
         public ActionResult PerfilV()
         {
             string password = Session["Contraseña"].ToString();
+            bool existeDir = false;
+            Session["existeDir"] = existeDir;
             DtoCliente clienteDB = new DtoCliente();
-            clienteDB = HCliente.getInstace().GetDataCliente(password);
+            clienteDB = HCliente.getInstace().GetDataCliente(password, out existeDir);
+
+            if (existeDir == true)
+            {
+                TempData["Message"] = existeDir;
+            }
+            else 
+            {
+                TempData["Message"] = existeDir;
+            }
+
+            if (TempData["Message"] != null)
+            {
+                ViewBag.Message = TempData["Message"].ToString();
+
+            }
 
             return View(clienteDB);
        
@@ -57,16 +75,27 @@ namespace AliyavaCliente.Controllers
 
         public ActionResult DireccionForm(string nombreD)
         {
+            string password = Session["Contraseña"].ToString();
+            DtoDirecciones clienteDB = new DtoDirecciones();
+            clienteDB = HCliente.getInstace().getNombreD(password, nombreD);
 
-            return View(nombreD);
+            return View(clienteDB);
+        }
+
+        public ActionResult DireccionFormAdd()
+        {
+        
+            return View();
         }
 
         public ActionResult AddDireccion(DtoDirecciones nuevaDireccion)
         {
             string password = Session["Contraseña"].ToString();
             HCliente.getInstace().AddDireccion(nuevaDireccion, password);
-            return RedirectToAction("DireccionForm");
+            return RedirectToAction("ListarDirecciones");
         }
+
+    
 
         public ActionResult ListarDirecciones()
         {
@@ -76,7 +105,11 @@ namespace AliyavaCliente.Controllers
             return View(colDirecciones);
         }
 
-  
+        public ActionResult EliminarDireccion(int id)
+        {
+            HCliente.getInstace().EliminarDireccion(id);
+            return RedirectToAction("ListarDirecciones");
+        }
 
         public ActionResult ConfirmarCambios(DtoCliente dtoCli)
         {

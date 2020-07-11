@@ -22,10 +22,10 @@ namespace BussinesLogic.Helpers
             return _instance;
         }
 
-        public void AddCategoria(DtoCategoria dto)
+        public bool AddCategoria(DtoCategoria dto)
         {
             PCategoria pc = new PCategoria();
-            pc.RegistrarCategoria(dto);
+            return pc.RegistrarCategoria(dto);
         }
 
         public List<DtoCategoria> GetCategoria()

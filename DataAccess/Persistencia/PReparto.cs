@@ -12,8 +12,9 @@ namespace DataAccess.Persistencia
 {
     public class PReparto
     {
-        public void RegistrarReparto(DtoReparto nuevoReparto)
+        public bool RegistrarReparto(DtoReparto nuevoReparto)
         {
+            bool msg;
             using (AliyavaEntities context = new AliyavaEntities())
             {
                 using (TransactionScope scope = new TransactionScope())
@@ -34,7 +35,10 @@ namespace DataAccess.Persistencia
                     catch (Exception ex)
                     {
                         scope.Dispose();
+                        return msg = false;
                     }
+
+                    return msg = true;
                 }
 
             }

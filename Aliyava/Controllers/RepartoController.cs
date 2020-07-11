@@ -18,7 +18,12 @@ namespace Aliyava.Controllers
 
         public ActionResult RegistroReparto()
         {
-       
+            if (TempData["Rep"] != null)
+            {
+                ViewBag.Message = TempData["Rep"].ToString();
+
+            }
+
             return View();
         }
 
@@ -26,8 +31,17 @@ namespace Aliyava.Controllers
         [HttpPost]
         public ActionResult AddReparto(DtoReparto nuevoReparto)
         {
-            HReparto.getInstace().AddReparto(nuevoReparto);
-            //ViewBag.Message = "Reparto agregado satisfactoriamente!";
+            bool msg = HReparto.getInstace().AddReparto(nuevoReparto);
+
+            if (msg == true)
+            {
+                TempData["Rep"] = "Reparto agregado satisfactoriamente!";
+            }
+            else
+            {
+                TempData["Rep"] = "Ocurrió un error, vuelva a intentarlo!";
+            }
+
             return RedirectToAction("RegistroReparto");
         }
 

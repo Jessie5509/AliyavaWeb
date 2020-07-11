@@ -6,21 +6,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace DataAccess.Persistencia
 {
     public class PCategoria
     {
 
-        public void RegistrarCategoria(DtoCategoria dto)
+        public bool RegistrarCategoria(DtoCategoria dto)
         {
+            bool msg;
             using (AliyavaEntities context = new AliyavaEntities())
             {
-                Categoria Cat = new Categoria();
-                Cat.Nombre = dto.Nombre;
-         
-                context.Categoria.Add(Cat);
-                context.SaveChanges();
+                using (TransactionScope scope = new TransactionScope())
+                {
+                    try
+                    {
+                        Categoria Cat = new Categoria();
+                        Cat.Nombre = dto.Nombre;
+
+                        context.Categoria.Add(Cat);
+                        context.SaveChanges();
+
+                        scope.Complete();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        scope.Dispose();
+                        return msg = false;
+
+                    }
+
+                    return msg = true;
+                }
+                
 
             }
         }

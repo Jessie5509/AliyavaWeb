@@ -34,7 +34,9 @@
             <th>
                 Código cliente
             </th>
-            <th></th>
+            <th>
+                Acciones
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -63,9 +65,9 @@
                     @Html.DisplayFor(modelItem => item.idCliente)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+
+                    @Html.ActionLink("Eliminar", "EliminarDireccion", "Cliente", new { id = item.idDireccion }, new { @class = "btn btn-danger" }) 
+                
                 </td>
             </tr>
         }

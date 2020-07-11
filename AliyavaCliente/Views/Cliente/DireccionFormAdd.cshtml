@@ -1,7 +1,7 @@
 ﻿@model Common.DTO.DtoDirecciones
 
 @{
-    ViewBag.Title = "DireccionForm";
+    ViewBag.Title = "DireccionFormAdd";
 }
 
 <h2>Agregar nuevas direcciones</h2>
@@ -15,7 +15,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
+        <div class="form-group">
 
             @Html.LabelFor(model => model.nombreDir, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -79,4 +79,3 @@
 <div>
     @Html.ActionLink("Volver al inicio", "Index", "Home", new { @class = "btn btn-info" })
 </div>
-
