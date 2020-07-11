@@ -307,6 +307,7 @@
     <Content Include="Views\Pedido\TodosLosPedidos.cshtml" />
     <Content Include="Views\Reparto\ListadoRepartosEnviaje.cshtml" />
     <Content Include="Views\Reporte\ReportePromedioEntrega.cshtml" />
+    <Content Include="Views\Reporte\MapaTermico.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
