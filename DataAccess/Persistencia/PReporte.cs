@@ -35,22 +35,25 @@ namespace DataAccess.Persistencia
             
             List<Pedido> colrep = null;
             double average = 0;
+            double aux = 0;
+
+            List<double> min = new List<double>();
             using (AliyavaEntities context = new AliyavaEntities())
             {
-
-                colrep = context.Pedido.Where(w => w.Estado == "Entregado").ToList();
                 
+                colrep = context.Pedido.Where(w => w.Estado == "Entregado" &&  (w.FechaIngreso >= fecha1 ||  w.FechaIngreso >= fecha2 && w.Reparto.FechaSalida >= fecha1 || w.Reparto.FechaSalida >= fecha2)).ToList();
                 foreach (Pedido item in colrep)
                 {
-
-                    if ((item.FechaIngreso.Day >= fecha1.Day && item.FechaIngreso.Month >= fecha1.Month && item.FechaIngreso.Year >= fecha1.Year) && (item.Reparto.FechaSalida.Day <= fecha2.Day && item.Reparto.FechaSalida.Month <= fecha2.Month && item.Reparto.FechaSalida.Year <= fecha2.Year))
-                    {
-
-                         average = context.Pedido.Average(a=> a.Numero);
-
-                    }
-
+                    
+                    aux = (item.FechaIngreso - item.Reparto.FechaSalida).TotalMinutes;                    
+                    min.Add(aux);
+                    aux = 0;
                 }
+
+                
+                
+                average = min.Average() /colrep.Count();
+
 
             }
             return average;
