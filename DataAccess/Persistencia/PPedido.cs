@@ -22,8 +22,9 @@ namespace DataAccess.Persistencia
             {
                 Cliente cli = context.Cliente.FirstOrDefault(f => f.NombreUsuario == NombreUsu && f.contraseña == password);
                 double precioTotal = 0;
+                bool tieneDirecciones = context.Direcciones.Any(a => a.idCliente == cli.idCliente);
 
-                if (cli.Direccion != null && cli.Telefono != null)
+                if (cli.Direccion != null && cli.Telefono != null && tieneDirecciones == true)
                 {
                     using (TransactionScope scope = new TransactionScope())
                     {
