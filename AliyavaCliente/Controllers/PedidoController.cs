@@ -108,7 +108,7 @@ namespace AliyavaCliente.Controllers
             List<DtoProducto> colProductosPedidos = (List<DtoProducto>)Session["colProductos"];
 
             bool error = HPedido.getInstace().AddPedido(colProductosPedidos, NombreUsu, password, ChkUrgente);
-
+        
             if (error)
             {
                 TempData["Pedido"] = "Debe ingresar su teléfono y dirección!";
