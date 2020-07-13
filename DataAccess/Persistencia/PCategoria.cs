@@ -69,6 +69,12 @@ namespace DataAccess.Persistencia
             {
 
                 Categoria cat = context.Categoria.FirstOrDefault(f => f.idCategoria == id);
+                Producto pro = context.Producto.FirstOrDefault(f => f.idCategoria == cat.idCategoria);
+                if (pro != null)
+                {
+                    pro.idCategoria = null;
+                }
+
                 context.Categoria.Remove(cat);
                 context.SaveChanges();
 

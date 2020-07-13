@@ -21,7 +21,7 @@ namespace Aliyava.Controllers
         {
             if (TempData["Cat"] != null)
             {
-                ViewBag.Message = TempData["Cat"].ToString();
+                ViewBag.Cat = TempData["Cat"].ToString();
 
             }
 
